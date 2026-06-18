@@ -14,17 +14,10 @@ function OverlayBorderOverlayBlur() {
   return <div className="-translate-x-1/2 absolute backdrop-blur-[10px] bg-[#a0a320] border border-[rgba(255,255,255,0.18)] border-solid h-[75px] left-1/2 rounded-[10px] top-[40px] w-[1140px]" data-name="Overlay+Border+OverlayBlur" />;
 }
 
-function Link() {
-  return <div className="absolute bg-[#39471d] border border-[#39471d] border-solid h-[49px] left-[994px] rounded-[10px] shadow-[0px_0px_15px_0px_rgba(255,255,255,0.21)] top-[52px] w-[276px]" data-name="Link" />;
-}
-
 function Group() {
   return (
-    <div className="absolute contents left-[994px] top-[52px]">
-      <Link />
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Figtree:ExtraBold',sans-serif] font-extrabold justify-center leading-[0] left-[calc(50%+412px)] text-[17px] text-center text-white top-[76.5px] whitespace-nowrap">
-        <p className="leading-[17px]">Quero uma equipe profissional</p>
-      </div>
+    <div className="absolute flex items-center justify-center bg-[#39471d] border border-[#39471d] border-solid h-[49px] left-[994px] rounded-[10px] shadow-[0px_0px_15px_0px_rgba(255,255,255,0.21)] top-[52px] w-[276px]" data-name="Link">
+      <p className="font-['Figtree:ExtraBold',sans-serif] font-extrabold text-[17px] text-white whitespace-nowrap">Quero uma equipe profissional</p>
     </div>
   );
 }
