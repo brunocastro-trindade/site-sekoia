@@ -1,0 +1,79 @@
+/* ── Google Fonts imports ── */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;800&family=Montserrat:wght@400;700;900&family=Bebas+Neue&display=swap');
+
+/*
+ * Map every Figma-exported font family name to a real loaded font.
+ * Using font-weight range (100 900) so the alias fires regardless of
+ * what weight the element declares — critical for Gotham_Black:Regular
+ * where the element has no explicit font-weight set.
+ */
+
+/* Gotham Black — mapped to Montserrat 900 (Black) */
+@font-face {
+  font-family: 'Gotham_Black:Regular';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Montserrat Black'), local('Montserrat-Black'),
+       url('https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr73w5aXo.woff2') format('woff2');
+}
+
+/* Gotham Book — mapped to Montserrat 400 */
+@font-face {
+  font-family: 'Gotham:Book';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Montserrat'), local('Montserrat-Regular'),
+       url('https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2') format('woff2');
+}
+
+/* Gotham Bold — mapped to Montserrat 700 */
+@font-face {
+  font-family: 'Gotham:Bold';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'),
+       url('https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w5aXo.woff2') format('woff2');
+}
+
+/* Rogoro — mapped to Bebas Neue */
+@font-face {
+  font-family: 'Rogoro:Regular';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Bebas Neue'), local('BebasNeue-Regular'),
+       url('https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXooxW5rygbi49c.woff2') format('woff2');
+}
+
+/* Figtree ExtraBold */
+@font-face {
+  font-family: 'Figtree:ExtraBold';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Figtree ExtraBold'), local('Figtree-ExtraBold'),
+       url('https://fonts.gstatic.com/s/figtree/v6/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5ewkEU.woff2') format('woff2');
+}
+
+/* Figtree Medium */
+@font-face {
+  font-family: 'Figtree:Medium';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Figtree Medium'), local('Figtree-Medium'),
+       url('https://fonts.gstatic.com/s/figtree/v6/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5ewkEU.woff2') format('woff2');
+}
+
+/* Figtree Regular */
+@font-face {
+  font-family: 'Figtree:Regular';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: local('Figtree'), local('Figtree-Regular'),
+       url('https://fonts.gstatic.com/s/figtree/v6/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5ewkEU.woff2') format('woff2');
+}
