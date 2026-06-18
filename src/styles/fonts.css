@@ -8,44 +8,58 @@
  * where the element has no explicit font-weight set.
  */
 
-/* Gotham Black — mapped to Montserrat 900 (Black) */
+/* Gotham Black */
 @font-face {
   font-family: 'Gotham_Black:Regular';
-  font-weight: 100 900;
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
-  src: local('Montserrat Black'), local('Montserrat-Black'),
-       url('https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr73w5aXo.woff2') format('woff2');
+  src: url('/fonts/Gotham-Black.otf') format('opentype');
 }
 
-/* Gotham Book — mapped to Montserrat 400 */
+/* Gotham Book */
 @font-face {
   font-family: 'Gotham:Book';
-  font-weight: 100 900;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: local('Montserrat'), local('Montserrat-Regular'),
-       url('https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2') format('woff2');
+  src: url('/fonts/Gotham-Book.otf') format('opentype');
 }
 
-/* Gotham Bold — mapped to Montserrat 700 */
+/* Gotham Bold */
 @font-face {
   font-family: 'Gotham:Bold';
-  font-weight: 100 900;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: local('Montserrat Bold'), local('Montserrat-Bold'),
-       url('https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w5aXo.woff2') format('woff2');
+  src: url('/fonts/Gotham-Bold.otf') format('opentype');
 }
 
-/* Rogoro — mapped to Bebas Neue */
+/* Gotham Medium */
 @font-face {
-  font-family: 'Rogoro:Regular';
-  font-weight: 100 900;
+  font-family: 'Gotham:Medium';
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: local('Bebas Neue'), local('BebasNeue-Regular'),
-       url('https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXooxW5rygbi49c.woff2') format('woff2');
+  src: url('/fonts/Gotham-Medium.otf') format('opentype');
+}
+
+/* Gotham Light */
+@font-face {
+  font-family: 'Gotham:Light';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Gotham-Light.otf') format('opentype');
+}
+
+/* Rogoro Regular */
+@font-face {
+  font-family: 'Rogoro:Regular';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/rogoro-regular.otf') format('opentype');
 }
 
 /* Figtree ExtraBold */
