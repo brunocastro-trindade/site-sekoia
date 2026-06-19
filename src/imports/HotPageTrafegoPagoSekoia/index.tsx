@@ -169,7 +169,7 @@ function Link4() {
 
 function Group8() {
   return (
-    <div className="absolute flex items-center justify-center bg-[#a0a320] border border-[#c5c5c5] border-solid h-[31px] left-[787px] rounded-[20px] top-[2684px] w-[157px]">
+    <div className="absolute flex items-center justify-center bg-[#a0a320] border border-[#c5c5c5] border-solid h-[31px] left-[787px] rounded-[20px] top-[2684px] w-[190px]">
       <p className="font-['Gotham:Book',sans-serif] not-italic text-[#39471d] text-[14px] whitespace-nowrap m-0 leading-none">entre 25 a 35 dias</p>
     </div>
   );
