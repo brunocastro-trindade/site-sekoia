@@ -11,7 +11,7 @@
 /* Gotham Black */
 @font-face {
   font-family: 'Gotham_Black:Regular';
-  font-weight: 900;
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
   src: url('/fonts/Gotham-Black.otf') format('opentype');
