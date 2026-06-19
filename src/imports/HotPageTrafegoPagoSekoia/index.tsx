@@ -169,8 +169,24 @@ function Link4() {
 
 function Group8() {
   return (
-    <div className="absolute flex items-center justify-center bg-[#a0a320] border border-[#c5c5c5] border-solid h-[31px] left-[787px] rounded-[20px] top-[2684px] w-[190px]">
-      <span className="font-['Gotham:Book',sans-serif] not-italic text-[#39471d] text-[14px] whitespace-nowrap">entre 25 a 35 dias</span>
+    <div
+      style={{
+        position: "absolute",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#a0a320",
+        border: "1px solid #c5c5c5",
+        height: 31,
+        left: 787,
+        borderRadius: 20,
+        top: 2684,
+        width: 190,
+      }}
+    >
+      <span style={{ fontFamily: "Gotham Book, sans-serif", color: "#39471d", fontSize: 14, whiteSpace: "nowrap" }}>
+        entre 25 a 35 dias
+      </span>
     </div>
   );
 }
