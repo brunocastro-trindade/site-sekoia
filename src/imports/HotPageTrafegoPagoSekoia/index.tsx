@@ -169,11 +169,8 @@ function Link4() {
 
 function Group8() {
   return (
-    <div className="absolute contents left-[787px] top-[2684px]">
-      <div className="absolute bg-[#a0a320] border border-[#c5c5c5] border-solid h-[31px] left-[787px] rounded-[20px] top-[2684px] w-[157px]" />
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[865px] not-italic text-[#39471d] text-[14px] text-center top-[2699.5px] whitespace-nowrap">
-        <p className="leading-[21px]">entre 25 a 35 dias</p>
-      </div>
+    <div className="absolute flex items-center justify-center bg-[#a0a320] border border-[#c5c5c5] border-solid h-[31px] left-[787px] rounded-[20px] top-[2684px] w-[157px]">
+      <p className="font-['Gotham:Book',sans-serif] not-italic text-[#39471d] text-[14px] whitespace-nowrap">entre 25 a 35 dias</p>
     </div>
   );
 }
@@ -390,21 +387,35 @@ export default function HotPageTrafegoPagoSekoia() {
         <p className="font-['Gotham_Black:Regular',sans-serif] leading-[1.133]">+escala.</p>
       </div>
       <Group2 />
-      <div className="absolute h-[235px] left-[1020px] pointer-events-none rounded-[30px] top-[549px] w-[270px]">
-        <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-        <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-      </div>
-      <div className="absolute h-[235px] left-[730px] pointer-events-none rounded-[30px] top-[549px] w-[270px]">
-        <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-        <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-      </div>
-      <div className="absolute h-[235px] left-[440px] pointer-events-none rounded-[30px] top-[549px] w-[270px]">
-        <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-        <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-      </div>
-      <div className="absolute h-[235px] left-[150px] pointer-events-none rounded-[30px] top-[549px] w-[270px]">
-        <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-        <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
+      <div className="-translate-x-1/2 absolute left-1/2 top-[549px] w-[1140px] h-[235px]">
+        <div className="absolute h-[235px] left-[0px] pointer-events-none rounded-[30px] w-[270px]">
+          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
+          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
+        </div>
+        <div className="absolute h-[235px] left-[290px] pointer-events-none rounded-[30px] w-[270px]">
+          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
+          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
+        </div>
+        <div className="absolute h-[235px] left-[580px] pointer-events-none rounded-[30px] w-[270px]">
+          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
+          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
+        </div>
+        <div className="absolute h-[235px] left-[870px] pointer-events-none rounded-[30px] w-[270px]">
+          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
+          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[135px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
+          <p className="leading-[normal]">Estratégia</p>
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[425px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
+          <p className="leading-[normal]">Performance</p>
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[715px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
+          <p className="leading-[normal]">Escala</p>
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[1005px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
+          <p className="leading-[normal]">Inteligência</p>
+        </div>
       </div>
       <div className="absolute h-[20.915px] left-[166px] top-[402px] w-[942.216px]">
         <div className="absolute inset-[-26.34%_0_-10.97%_0]">
@@ -414,20 +425,8 @@ export default function HotPageTrafegoPagoSekoia() {
         </div>
       </div>
       <div className="-translate-x-1/2 absolute bg-[rgba(255,255,255,0.8)] border border-[#a0a320] border-solid h-[21px] left-[calc(50%-0.5px)] rounded-[40px] top-[823px] w-[153px]" />
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[719px] not-italic text-[#a0a320] text-[10px] text-center top-[834.5px] whitespace-nowrap">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-1/2 not-italic text-[#a0a320] text-[10px] text-center top-[834.5px] whitespace-nowrap">
         <p className="leading-[0.863]">DOMINE OS SEU MERCADO</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[285.5px] not-italic text-[20px] text-black text-center top-[667.5px] whitespace-nowrap">
-        <p className="leading-[normal]">Estratégia</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[575px] not-italic text-[20px] text-black text-center top-[667.5px] whitespace-nowrap">
-        <p className="leading-[normal]">Performance</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[865px] not-italic text-[20px] text-black text-center top-[667.5px] whitespace-nowrap">
-        <p className="leading-[normal]">Escala</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[1156px] not-italic text-[20px] text-black text-center top-[667.5px] whitespace-nowrap">
-        <p className="leading-[normal]">Inteligência</p>
       </div>
       <div className="-translate-x-1/2 absolute h-[220px] left-1/2 top-[914px] w-[1140px]" data-name="Background+Shadow">
         <div className="absolute inset-[-9.09%_-3.07%_-22.73%_-3.07%]">
