@@ -1,6 +1,43 @@
 /* ── Google Fonts imports ── */
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;800&family=Montserrat:wght@400;700;900&family=Bebas+Neue&display=swap');
 
+/* ── Gotham unified family (para font-family padrão do site) ── */
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 100;
+  src: url('/fonts/Gotham-Thin.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 200;
+  src: url('/fonts/Gotham-XLight.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 300;
+  src: url('/fonts/Gotham-Light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 400;
+  src: url('/fonts/Gotham-Book.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 500;
+  src: url('/fonts/Gotham-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 700;
+  src: url('/fonts/Gotham-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 900;
+  src: url('/fonts/Gotham-Black.otf') format('opentype');
+}
+
 /*
  * Map every Figma-exported font family name to a real loaded font.
  * Using font-weight range (100 900) so the alias fires regardless of
