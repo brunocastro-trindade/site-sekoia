@@ -1,25 +1,21 @@
 import HotPageTrafegoPagoSekoia from "../imports/HotPageTrafegoPagoSekoia";
 import MethodologySection from "./MethodologySection";
 import ContactForm from "./ContactForm";
+import { Canvas } from "../components/Canvas";
 
-// Methodology section: covers old block at ~2385px, ~380px tall
+// Coordenadas dentro do canvas de 1440×4259 (espaço Figma)
 const METH_TOP = 2385;
 const METH_HEIGHT = 380;
-
-// Contact form: covers old block at ~3091px, ~750px tall
 const FORM_TOP = 3091;
 const FORM_HEIGHT = 750;
 
 export default function App() {
   return (
-    <div style={{ minWidth: 1440, position: "relative" }}>
+    <Canvas>
+      {/* Landing page completa do Figma */}
+      <HotPageTrafegoPagoSekoia />
 
-      {/* Full original landing page */}
-      <div style={{ minHeight: 4200, position: "relative" }}>
-        <HotPageTrafegoPagoSekoia />
-      </div>
-
-      {/* ── Methodology: white mask + new section ── */}
+      {/* ── Metodologia: máscara branca + nova seção ── */}
       <div
         style={{
           position: "absolute",
@@ -43,7 +39,7 @@ export default function App() {
         <MethodologySection />
       </div>
 
-      {/* ── Contact form: white mask + new form ── */}
+      {/* ── Formulário de contato: máscara branca + formulário ── */}
       <div
         style={{
           position: "absolute",
@@ -66,7 +62,6 @@ export default function App() {
       >
         <ContactForm />
       </div>
-
-    </div>
+    </Canvas>
   );
 }

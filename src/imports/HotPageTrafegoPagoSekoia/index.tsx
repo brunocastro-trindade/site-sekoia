@@ -1,7 +1,7 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
 
-const TICKER_UNIT = Array(9).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
+const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
 
 function Group3() {
   return (
@@ -486,26 +486,30 @@ export default function HotPageTrafegoPagoSekoia() {
         <p className="leading-[31.2px]">Como podemos te ajudar com Tráfego pago</p>
       </div>
       <div className="absolute bg-[rgba(0,0,0,0.2)] h-[430px] left-[830px] top-[1547px] w-[469px]" data-name="image 39" />
+      {/* Faixa verde — banda de fundo (estendida para cobrir qualquer viewport) */}
       <div className="-translate-x-1/2 absolute flex h-[109.518px] items-center justify-center left-[calc(50%-1.39px)] top-[2034.77px] w-[1487.218px]">
         <div className="flex-none rotate-[2.3deg] skew-x-[-0.44deg]">
-          <div className="bg-[#39471d] border border-[#c5c5c5] border-solid h-[50.024px] relative w-[1486.024px]" />
+          <div className="bg-[#39471d] border border-[#c5c5c5] border-solid h-[50.024px] relative w-[6000px]" />
         </div>
       </div>
-      <div className="-translate-y-1/2 absolute flex h-[88.046px] items-center justify-center left-[calc(50%-730.93px)] top-[2092.67px] w-[1514.445px]">
-        <div className="flex-none rotate-[2.54deg] w-[1514.445px] overflow-hidden">
+      {/* Faixa verde — texto ticker (centralizado, cobre o viewport inteiro) */}
+      <div className="-translate-y-1/2 absolute flex h-[88.046px] items-center justify-center left-[calc(50%-3000px)] top-[2092.67px] w-[6000px]">
+        <div className="flex-none rotate-[2.54deg] w-[6000px] overflow-hidden">
           <div className="sek-ticker">
             <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#a0a320] whitespace-nowrap not-italic">{TICKER_UNIT}</p>
             <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#a0a320] whitespace-nowrap not-italic" aria-hidden="true">{TICKER_UNIT}</p>
           </div>
         </div>
       </div>
+      {/* Faixa oliva — banda de fundo (estendida para cobrir qualquer viewport) */}
       <div className="-translate-x-1/2 absolute flex h-[224.126px] items-center justify-center left-[calc(50%-1px)] top-[1976.51px] w-[1481.998px]">
         <div className="flex-none rotate-[-6.74deg] skew-x-[0.44deg]">
-          <div className="bg-[#a0a320] border border-[#c5c5c5] border-solid h-[50.024px] relative w-[1486.023px]" />
+          <div className="bg-[#a0a320] border border-[#c5c5c5] border-solid h-[50.024px] relative w-[6000px]" />
         </div>
       </div>
-      <div className="-translate-y-1/2 absolute flex h-[204.427px] items-center justify-center left-[calc(50%-727px)] top-[2085.79px] w-[1506.381px]">
-        <div className="flex-none rotate-[-6.96deg] w-[1506.381px] overflow-hidden">
+      {/* Faixa oliva — texto ticker reverso (centralizado, cobre o viewport inteiro) */}
+      <div className="-translate-y-1/2 absolute flex h-[204.427px] items-center justify-center left-[calc(50%-3000px)] top-[2085.79px] w-[6000px]">
+        <div className="flex-none rotate-[-6.96deg] w-[6000px] overflow-hidden">
           <div className="sek-ticker sek-ticker--reverse">
             <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#39471d] whitespace-nowrap not-italic">{TICKER_UNIT}</p>
             <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#39471d] whitespace-nowrap not-italic" aria-hidden="true">{TICKER_UNIT}</p>
