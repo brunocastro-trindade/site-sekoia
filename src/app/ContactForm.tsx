@@ -16,9 +16,9 @@ const initialForm = {
   telefone: "",
   empresa: "",
   cargo: "",
-  num_funcionarios: "",
+  funcionarios: "",
   site: "",
-  investimento_marketing: "",
+  investimento: "",
   mensagem: "",
 };
 
@@ -52,8 +52,9 @@ export default function ContactForm() {
 
     setStatus("loading");
     setMessage("");
+
     try {
-      await submitLead({ ...form, aceite_comunicacao: checked });
+      await submitLead({ ...form, consent: checked });
       setStatus("success");
       setMessage("Recebemos seus dados! Em breve entraremos em contato.");
       setForm(initialForm);
@@ -72,43 +73,51 @@ export default function ContactForm() {
 
   return (
     <div className="w-full flex flex-col items-center px-4 py-10 bg-white">
-      {/* Dark green form card */}
       <form
         onSubmit={handleSubmit}
         className="w-full rounded-[15px] p-6 flex flex-col gap-3"
         style={{ maxWidth: 1160, background: "#39471D" }}
       >
+        {/* Honeypot anti-spam */}
+        <input
+          name="website_hp"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] top-0 size-px opacity-0"
+        />
+
         {/* Row 1: Nome | Sobrenome */}
         <div className="grid grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} placeholder="Nome" value={form.nome} onChange={update("nome")} disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="Nome"      value={form.nome}      onChange={update("nome")}      disabled={loading} />
           <input className={inputClass} style={font.book} placeholder="Sobrenome" value={form.sobrenome} onChange={update("sobrenome")} disabled={loading} />
         </div>
 
-        {/* Row 2: E-mail | Telefone/WhatsApp | Empresa */}
+        {/* Row 2: E-mail | Telefone | Empresa */}
         <div className="grid grid-cols-3 gap-3">
-          <input className={inputClass} style={font.book} placeholder="E-mail" type="email" value={form.email} onChange={update("email")} disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="Telefone/WhatsApp" value={form.telefone} onChange={update("telefone")} disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="Empresa" value={form.empresa} onChange={update("empresa")} disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="E-mail"            type="email" value={form.email}    onChange={update("email")}    disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="Telefone/WhatsApp"              value={form.telefone} onChange={update("telefone")} disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="Empresa"                        value={form.empresa}  onChange={update("empresa")}  disabled={loading} />
         </div>
 
-        {/* Row 3: Cargo | Nº de funcionários | www.site.com.br */}
+        {/* Row 3: Cargo | Funcionários | Site */}
         <div className="grid grid-cols-3 gap-3">
-          <input className={inputClass} style={font.book} placeholder="Cargo" value={form.cargo} onChange={update("cargo")} disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="Nº de funcionários" value={form.num_funcionarios} onChange={update("num_funcionarios")} disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="www.site.com.br" value={form.site} onChange={update("site")} disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="Cargo"              value={form.cargo}        onChange={update("cargo")}        disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="Nº de funcionários" value={form.funcionarios} onChange={update("funcionarios")} disabled={loading} />
+          <input className={inputClass} style={font.book} placeholder="www.site.com.br"    value={form.site}         onChange={update("site")}         disabled={loading} />
         </div>
 
-        {/* Row 4: Investimento (full width) */}
+        {/* Row 4: Investimento */}
         <input
           className={inputClass}
           style={font.book}
           placeholder="Quanto sua empresa investe em marketing mensalmente?"
-          value={form.investimento_marketing}
-          onChange={update("investimento_marketing")}
+          value={form.investimento}
+          onChange={update("investimento")}
           disabled={loading}
         />
 
-        {/* Row 5: Textarea (full width, taller) */}
+        {/* Row 5: Mensagem */}
         <textarea
           className={`${inputClass} resize-none`}
           style={{ ...font.book, minHeight: 110 }}
@@ -118,16 +127,16 @@ export default function ContactForm() {
           disabled={loading}
         />
 
-        {/* Checkbox row */}
+        {/* Checkbox */}
         <div className="flex items-center gap-3 mt-1">
           <button
             type="button"
             onClick={() => setChecked(!checked)}
-            className="shrink-0 w-[18px] h-[18px] border-2 border-white rounded-[2px] flex items-center justify-center transition-colors"
+            disabled={loading}
+            className="shrink-0 w-[18px] h-[18px] border-2 border-white rounded-[2px] flex items-center justify-center transition-colors disabled:opacity-60"
             style={{ background: checked ? "white" : "transparent" }}
             aria-checked={checked}
             role="checkbox"
-            disabled={loading}
           >
             {checked && (
               <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
@@ -135,34 +144,28 @@ export default function ContactForm() {
               </svg>
             )}
           </button>
-          <span
-            className="text-white text-[13px] leading-[1.4]"
-            style={font.bold}
-          >
+          <span className="text-white text-[13px] leading-[1.4]" style={font.bold}>
             Aceito receber e-mails personalizados com estratégias e materiais sobre marketing digital
           </span>
         </div>
 
-        {/* Submit + feedback */}
-        <div className="flex items-center gap-4 mt-2">
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-[#a0a320] hover:bg-[#b4b81f] text-[#39471D] font-bold rounded-[10px] px-8 py-[10px] text-[14px] transition-colors disabled:opacity-60"
-            style={font.bold}
-          >
-            {loading ? "Enviando..." : "Enviar"}
-          </button>
-          {message && (
-            <span
-              role="status"
-              className="text-[13px] leading-[1.4]"
-              style={{ ...font.book, color: status === "success" ? "#cdec6a" : "#ffb3b3" }}
-            >
-              {message}
-            </span>
-          )}
-        </div>
+        {/* Submit */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="mt-2 self-end px-8 py-3 rounded-[10px] text-white text-[15px] transition-opacity disabled:opacity-60"
+          style={{ background: "#a0a320", ...font.bold }}
+        >
+          {loading ? "Enviando..." : "Enviar"}
+        </button>
+
+        {/* Feedback */}
+        {status === "success" && (
+          <p className="text-[#a0a320] text-[14px] text-center" style={font.book}>{message}</p>
+        )}
+        {status === "error" && (
+          <p className="text-red-300 text-[14px] text-center" style={font.book}>{message}</p>
+        )}
       </form>
     </div>
   );
