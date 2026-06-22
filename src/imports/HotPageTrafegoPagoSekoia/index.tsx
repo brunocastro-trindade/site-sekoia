@@ -71,7 +71,6 @@ function Group2() {
 function Group6() {
   return (
     <div className="absolute contents left-[150px] top-[1170px]">
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[1170px_10.42%_2757px_10.42%] rounded-[15px]" data-name="Background+Border" />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[169.66px] not-italic text-[#39471d] text-[14px] top-[1306px] w-[1100.69px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">Suas vendas dependem apenas de indicações ou prospecção ativa? Sua empresa investe em marketing digital, mas não gera oportunidades reais de negócio? Você sente que sua marca não está alcançando as pessoas certas? Acredita que poderia vender mais, mas não sabe como escalar seus resultados? Seus anúncios não geram retorno consistente? Sua equipe comercial recebe poucos leads ou contatos sem potencial de compra?</p>
         <p className="leading-[21px] mb-0">Se a resposta for sim para alguma dessas perguntas, você está no lugar certo. Afinal, se chegou até aqui, provavelmente está buscando uma forma mais inteligente e previsível de atrair clientes para sua empresa.</p>
@@ -86,7 +85,6 @@ function Group6() {
 function Group7() {
   return (
     <div className="-translate-x-1/2 absolute contents left-[calc(50%-236px)] top-[1547px]">
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[1547px_43.19%_2223px_10.42%] rounded-[15px]" data-name="Background+Border" />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[170px] not-italic text-[#39471d] text-[14px] top-[1762.5px] w-[624px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">O Tráfego Pago é uma das formas mais rápidas e eficientes de gerar oportunidades de negócio para sua empresa, pois permite que sua marca seja encontrada exatamente pelas pessoas que possuem interesse nos seus produtos ou serviços.</p>
         <p className="leading-[21px] mb-0">​</p>
