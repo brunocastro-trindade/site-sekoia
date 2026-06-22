@@ -1,4 +1,7 @@
+import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
+
+const TICKER_UNIT = Array(9).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
 
 function Group3() {
   return (
@@ -390,6 +393,27 @@ function Group14() {
 }
 
 export default function HotPageTrafegoPagoSekoia() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>(".sek-card");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.25 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="bg-white relative size-full" data-name="Hot Page - Tráfego pago - Sekoia">
       <Group3 />
@@ -404,34 +428,22 @@ export default function HotPageTrafegoPagoSekoia() {
       </div>
       <Group2 />
       <div className="-translate-x-1/2 absolute left-1/2 top-[549px] w-[1140px] h-[235px]">
-        <div className="absolute h-[235px] left-[0px] pointer-events-none rounded-[30px] w-[270px]">
-          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-        </div>
-        <div className="absolute h-[235px] left-[290px] pointer-events-none rounded-[30px] w-[270px]">
-          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-        </div>
-        <div className="absolute h-[235px] left-[580px] pointer-events-none rounded-[30px] w-[270px]">
-          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-        </div>
-        <div className="absolute h-[235px] left-[870px] pointer-events-none rounded-[30px] w-[270px]">
-          <div aria-hidden className="absolute bg-[#fafafa] inset-0 rounded-[30px]" />
-          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]" />
-        </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[135px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
-          <p className="leading-[normal]">Estratégia</p>
-        </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[425px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
-          <p className="leading-[normal]">Performance</p>
-        </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[715px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
-          <p className="leading-[normal]">Escala</p>
-        </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[1005px] not-italic text-[20px] text-black text-center top-[118.5px] whitespace-nowrap">
-          <p className="leading-[normal]">Inteligência</p>
-        </div>
+        {[
+          { left: 0,   label: "Estratégia" },
+          { left: 290, label: "Performance" },
+          { left: 580, label: "Escala" },
+          { left: 870, label: "Inteligência" },
+        ].map((card, i) => (
+          <div
+            key={card.label}
+            className="sek-card absolute flex h-[235px] w-[270px] items-center justify-center rounded-[30px] bg-[#fafafa] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]"
+            style={{ left: card.left, "--i": i } as CSSProperties}
+          >
+            <span className="sek-card-label relative font-['Gotham:Book',sans-serif] text-[20px] text-black whitespace-nowrap">
+              {card.label}
+            </span>
+          </div>
+        ))}
       </div>
       <div className="absolute h-[20.915px] left-[166px] top-[402px] w-[942.216px]">
         <div className="absolute inset-[-26.34%_0_-10.97%_0]">
@@ -480,9 +492,10 @@ export default function HotPageTrafegoPagoSekoia() {
         </div>
       </div>
       <div className="-translate-y-1/2 absolute flex h-[88.046px] items-center justify-center left-[calc(50%-730.93px)] top-[2092.67px] w-[1514.445px]">
-        <div className="flex-none rotate-[2.54deg]">
-          <div className="[word-break:break-word] flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] not-italic relative text-[#a0a320] text-[14px] whitespace-nowrap">
-            <p className="leading-[21px]">A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR</p>
+        <div className="flex-none rotate-[2.54deg] w-[1514.445px] overflow-hidden">
+          <div className="sek-ticker">
+            <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#a0a320] whitespace-nowrap not-italic">{TICKER_UNIT}</p>
+            <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#a0a320] whitespace-nowrap not-italic" aria-hidden="true">{TICKER_UNIT}</p>
           </div>
         </div>
       </div>
@@ -492,9 +505,10 @@ export default function HotPageTrafegoPagoSekoia() {
         </div>
       </div>
       <div className="-translate-y-1/2 absolute flex h-[204.427px] items-center justify-center left-[calc(50%-727px)] top-[2085.79px] w-[1506.381px]">
-        <div className="flex-none rotate-[-6.96deg]">
-          <div className="[word-break:break-word] flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] not-italic relative text-[#39471d] text-[14px] whitespace-nowrap">
-            <p className="leading-[21px]">A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR - A SEKOIA PODE TE AJUDAR</p>
+        <div className="flex-none rotate-[-6.96deg] w-[1506.381px] overflow-hidden">
+          <div className="sek-ticker sek-ticker--reverse">
+            <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#39471d] whitespace-nowrap not-italic">{TICKER_UNIT}</p>
+            <p className="font-['Gotham:Bold',sans-serif] text-[14px] leading-[21px] text-[#39471d] whitespace-nowrap not-italic" aria-hidden="true">{TICKER_UNIT}</p>
           </div>
         </div>
       </div>
