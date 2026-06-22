@@ -60,7 +60,7 @@ body {
 .sek-ticker {
   display: flex;
   width: max-content;
-  animation: sek-ticker-scroll 18s linear infinite;
+  animation: sek-ticker-scroll 60s linear infinite;
   will-change: transform;
 }
 
