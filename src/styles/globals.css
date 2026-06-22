@@ -7,24 +7,25 @@ body {
 /* ── Cards: entrada em cascata ao entrar na viewport + hover lift ── */
 .sek-card {
   opacity: 0;
-  transform: translateY(28px) scale(0.96);
+  transform: translateY(20px) scale(0.97);
   transition:
-    opacity 0.6s ease,
-    transform 0.5s cubic-bezier(0.2, 0.8, 0.25, 1),
-    box-shadow 0.4s ease;
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
 .sek-card.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition-delay: calc(var(--i) * 0.12s);
+  transition-delay: calc(var(--i) * 0.15s);
 }
 
 .sek-card.is-visible:hover {
-  transform: translateY(-8px);
-  box-shadow: -7px 10px 24px -8px rgba(57, 71, 29, 0.3);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: -7px 14px 28px -8px rgba(57, 71, 29, 0.25);
   transition-delay: 0s;
+  transition-duration: 0.4s;
 }
 
 /* Sublinhado oliva que cresce no hover */
@@ -38,7 +39,7 @@ body {
   border-radius: 3px;
   background: #a0a320;
   transform: translateX(-50%);
-  transition: width 0.4s ease;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sek-card:hover .sek-card-label::after {
