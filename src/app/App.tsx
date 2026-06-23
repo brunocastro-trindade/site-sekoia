@@ -5,7 +5,7 @@ import { Canvas } from "../components/Canvas";
 
 // Coordenadas dentro do canvas de 1440×4259 (espaço Figma)
 const METH_TOP = 2385;
-const METH_HEIGHT = 380;
+const METH_HEIGHT = 706;
 const FORM_TOP = 3091;
 const FORM_HEIGHT = 750;
 
