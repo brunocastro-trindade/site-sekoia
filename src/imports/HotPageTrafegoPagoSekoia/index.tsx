@@ -136,8 +136,8 @@ function Copy() {
 
 function Link2() {
   return (
-    <div className="absolute bg-[#39471d] bottom-[1279px] left-[1076px] rounded-[10px] top-[2863px] w-[223px]" data-name="Link">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[9px] not-italic text-[#fffefc] text-[16px] top-[28.5px] whitespace-nowrap">
+    <div className="absolute bg-[#39471d] h-[58px] left-[1076px] rounded-[10px] top-[2863px] w-[223px]" data-name="Link">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[9px] not-italic text-[#fffefc] text-[16px] top-[29px] whitespace-nowrap">
         <p className="leading-[22.4px]">Fale com um especialista</p>
       </div>
     </div>
@@ -146,10 +146,8 @@ function Link2() {
 
 function Link3() {
   return (
-    <div className="absolute bg-[#1fcb41] bottom-[1185px] left-[1076px] rounded-[10px] top-[2957px] w-[223px]" data-name="Link">
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%-60.27px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%+62.27px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[7px] not-italic text-[#fffefc] text-[16px] top-[28.5px] whitespace-nowrap">
+    <div className="absolute bg-[#1fcb41] h-[58px] left-[1076px] rounded-[10px] top-[2937px] w-[223px]" data-name="Link">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[7px] not-italic text-[#fffefc] text-[16px] top-[29px] whitespace-nowrap">
         <p className="leading-[22.4px]">Nos chame no WhatsApp</p>
       </div>
     </div>
@@ -544,7 +542,6 @@ export default function HotPageTrafegoPagoSekoia() {
       </div>
       <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2433px_22.12%_1465px_68.33%] rounded-[15px]" data-name="Background+Border" />
       <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2433px_33.06%_1465px_28.75%] rounded-[15px]" data-name="Background+Border" />
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2839px_26.67%_1161px_9.72%] rounded-[15px]" data-name="Background+Border" />
       <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2433px_11.22%_1465px_79.24%] rounded-[15px]" data-name="Background+Border" />
       <div className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[0] left-[434px] not-italic text-[#39471d] text-[14px] top-[2493px] w-[510px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">Na primeira fase, chamada Setup Estratégico, realizamos toda a estruturação necessária para construir suas campanhas:</p>
