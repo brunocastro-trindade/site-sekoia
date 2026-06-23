@@ -11,7 +11,6 @@ const font = {
 
 type PhaseData = {
   id: number;
-  shortLabel: string;
   title: string;
   Icon: React.ComponentType;
   badge?: string;
@@ -23,7 +22,6 @@ type PhaseData = {
 const PHASES: PhaseData[] = [
   {
     id: 1,
-    shortLabel: "1ª fase",
     title: "1ª fase do Tráfego pago na Sekoia",
     Icon: Group273,
     badge: "Planejamento estratégico",
@@ -42,8 +40,7 @@ const PHASES: PhaseData[] = [
   },
   {
     id: 2,
-    shortLabel: "2ª fase",
-    title: "Rampagem",
+    title: "2ª fase — Rampagem",
     Icon: Group274,
     badge: "Lançamento e otimização",
     paragraphs: [
@@ -54,8 +51,7 @@ const PHASES: PhaseData[] = [
   },
   {
     id: 3,
-    shortLabel: "3ª fase",
-    title: "Ongoing",
+    title: "3ª fase — Ongoing",
     Icon: Group275,
     badge: "Gestão contínua",
     paragraphs: [
@@ -67,19 +63,13 @@ const PHASES: PhaseData[] = [
 ];
 
 export default function MethodologySection() {
-  // Card 1 starts open (matches the original Figma design); Cards 2 & 3 hidden until clicked
-  const [openId, setOpenId] = useState<number | null>(1);
+  const [openId, setOpenId] = useState<number | null>(null);
 
   const toggle = (id: number) =>
     setOpenId((prev) => (prev === id ? null : id));
 
-  // Build CSS grid columns: open card gets 5x the space of closed ones
-  const gridCols = PHASES.map((p) =>
-    openId === p.id ? "5fr" : "1fr"
-  ).join(" ");
-
   return (
-    <div className="w-full flex justify-center px-5 py-[30px] bg-white">
+    <div className="w-full flex justify-center px-5 py-[50px] bg-white">
       <div
         className="w-full rounded-[20px] overflow-hidden"
         style={{
@@ -92,8 +82,8 @@ export default function MethodologySection() {
 
           {/* ── Left: heading ── */}
           <div
-            className="shrink-0 flex items-center px-7 py-7"
-            style={{ width: 240 }}
+            className="shrink-0 flex items-center px-8 py-8"
+            style={{ width: 250 }}
           >
             <h2
               className="text-white text-[22px] leading-[1.35]"
@@ -103,18 +93,8 @@ export default function MethodologySection() {
             </h2>
           </div>
 
-          {/* ── Horizontal accordion ── */}
-          <div
-            style={{
-              flex: 1,
-              display: "grid",
-              gridTemplateColumns: gridCols,
-              gap: 8,
-              padding: 12,
-              transition: "grid-template-columns 0.55s cubic-bezier(0.16, 1, 0.3, 1)",
-              minWidth: 0,
-            }}
-          >
+          {/* ── Right: accordion cards ── */}
+          <div className="flex-1 flex flex-col gap-[8px] px-4 py-4">
             {PHASES.map((phase) => {
               const isOpen = openId === phase.id;
               const PhaseIcon = phase.Icon;
@@ -122,118 +102,106 @@ export default function MethodologySection() {
               return (
                 <div
                   key={phase.id}
-                  onClick={() => toggle(phase.id)}
-                  className="rounded-[14px] bg-[#f7f7f7] border border-[#c5c5c5] flex flex-col cursor-pointer overflow-hidden"
+                  className="rounded-[15px] bg-[#f7f7f7] border border-[#c5c5c5] overflow-hidden"
                   style={{
-                    minWidth: 0,
-                    transition: "box-shadow 0.3s ease",
-                    boxShadow: isOpen ? "0 4px 18px rgba(57,71,29,0.18)" : "none",
+                    transition: "box-shadow 0.35s ease",
+                    boxShadow: isOpen
+                      ? "0 4px 20px rgba(57, 71, 29, 0.20)"
+                      : "none",
                   }}
                 >
-                  {/* Card header — always visible */}
-                  <div className="flex items-start justify-between px-4 pt-4 pb-2 shrink-0">
-                    <p
-                      className="text-[#39471D] text-[13px] leading-[1.3] min-w-0 truncate"
+                  {/* Header — always visible, click to toggle */}
+                  <button
+                    type="button"
+                    onClick={() => toggle(phase.id)}
+                    className="w-full flex items-center justify-between px-6 py-4 text-left"
+                    style={{ background: "transparent", border: "none", cursor: "pointer" }}
+                  >
+                    <span
+                      className="text-[#39471D] text-[17px] leading-[1.3]"
                       style={font.bold}
                     >
-                      {phase.shortLabel}
-                    </p>
+                      {phase.title}
+                    </span>
+                    {/* + rotates to × when open */}
                     <span
                       aria-hidden="true"
                       style={{
                         display: "block",
-                        marginLeft: 8,
-                        flexShrink: 0,
+                        marginLeft: 16,
                         color: "#39471d",
-                        fontSize: 20,
+                        fontSize: 24,
                         lineHeight: 1,
-                        fontWeight: 300,
                         fontFamily: "sans-serif",
+                        fontWeight: 300,
+                        flexShrink: 0,
                         transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
                         transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
                       }}
                     >
                       +
                     </span>
-                  </div>
+                  </button>
 
-                  {/* Expanded content — fades in when open, hidden otherwise */}
+                  {/* Animated content wrapper (CSS grid trick — smooth with no JS height calc) */}
                   <div
                     style={{
-                      flex: 1,
-                      minWidth: 0,
-                      overflow: "hidden",
-                      paddingLeft: 16,
-                      paddingRight: 16,
-                      opacity: isOpen ? 1 : 0,
-                      pointerEvents: isOpen ? "auto" : "none",
-                      transition: isOpen
-                        ? "opacity 0.35s ease 0.2s"
-                        : "opacity 0.15s ease",
+                      display: "grid",
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                      transition: "grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
-                    {/* Full phase title */}
-                    <p
-                      className="text-[#39471D] text-[15px] leading-[1.3] mb-2"
-                      style={font.bold}
-                    >
-                      {phase.title}
-                    </p>
+                    <div style={{ overflow: "hidden" }}>
+                      <div className="px-6 pb-5">
 
-                    {/* Intro paragraphs */}
-                    {phase.paragraphs.map((p, i) => (
-                      <p
-                        key={i}
-                        className="text-[#39471D] text-[12px] leading-[1.55] mb-2"
-                        style={font.book}
-                      >
-                        {p}
-                      </p>
-                    ))}
-
-                    {/* Bullet list — Card 1 only */}
-                    {phase.bullets && phase.bullets.length > 0 && (
-                      <ul
-                        className="text-[#39471D] text-[12px] leading-[1.55] list-none p-0 mb-2"
-                        style={font.book}
-                      >
-                        {phase.bullets.map((b, i) => (
-                          <li key={i}>• {b}</li>
+                        {/* Paragraphs */}
+                        {phase.paragraphs.map((p, i) => (
+                          <p
+                            key={i}
+                            className="text-[#39471D] text-[13px] leading-[1.6] mb-3"
+                            style={font.book}
+                          >
+                            {p}
+                          </p>
                         ))}
-                      </ul>
-                    )}
-                  </div>
 
-                  {/* Card footer — icon + badge + days (always at bottom) */}
-                  <div className="flex items-center gap-[8px] px-4 pb-4 pt-2 mt-auto shrink-0">
-                    <div className="size-[26px] shrink-0">
-                      <PhaseIcon />
-                    </div>
-                    {isOpen && phase.badge && (
-                      <span
-                        className="text-[#39471D] text-[12px] whitespace-nowrap"
-                        style={{
-                          ...font.bold,
-                          opacity: isOpen ? 1 : 0,
-                          transition: isOpen ? "opacity 0.3s ease 0.25s" : "opacity 0.1s ease",
-                        }}
-                      >
-                        {phase.badge}
-                      </span>
-                    )}
-                    {isOpen && phase.showDays && (
-                      <div
-                        className="relative shrink-0"
-                        style={{
-                          width: 157,
-                          height: 31,
-                          opacity: isOpen ? 1 : 0,
-                          transition: isOpen ? "opacity 0.3s ease 0.3s" : "opacity 0.1s ease",
-                        }}
-                      >
-                        <Group272 />
+                        {/* Bullet list — Card 1 only */}
+                        {phase.bullets && phase.bullets.length > 0 && (
+                          <ul
+                            className="text-[#39471D] text-[13px] leading-[1.6] list-none p-0 mb-4"
+                            style={font.book}
+                          >
+                            {phase.bullets.map((b, i) => (
+                              <li key={i}>• {b}</li>
+                            ))}
+                          </ul>
+                        )}
+
+                        {/* Footer: phase icon + badge label + days badge (Card 1 only) */}
+                        <div className="flex items-center gap-[10px] mt-3">
+                          <div className="size-[30px] shrink-0">
+                            <PhaseIcon />
+                          </div>
+                          {phase.badge && (
+                            <span
+                              className="text-[#39471D] text-[13px] whitespace-nowrap"
+                              style={font.bold}
+                            >
+                              {phase.badge}
+                            </span>
+                          )}
+                          {phase.showDays && (
+                            <div
+                              className="relative shrink-0"
+                              style={{ width: 157, height: 31 }}
+                            >
+                              <Group272 />
+                            </div>
+                          )}
+                        </div>
+
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
               );
