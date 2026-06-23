@@ -581,7 +581,7 @@ export default function HotPageTrafegoPagoSekoia() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[139px] not-italic text-[#39471d] text-[26px] top-[2787px] whitespace-nowrap">
         <p className="leading-[31.2px]">Seja o próximo case de Tráfego pago com a Sekoia</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[calc(50%-402px)] not-italic text-[#39471d] text-[26px] top-[3091px] whitespace-nowrap">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[calc(50%-402px)] not-italic text-[#39471d] text-[26px] top-[3060px] whitespace-nowrap">
         <p className="leading-[31.2px]">INTERESSADO NESTE SERVIÇO? SOLICITE UM ORÇAMENTO</p>
       </div>
       <Group12 />
