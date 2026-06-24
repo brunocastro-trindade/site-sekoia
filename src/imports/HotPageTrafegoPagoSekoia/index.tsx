@@ -99,37 +99,47 @@ function Group7() {
   );
 }
 
-function Heading() {
-  return (
-    <div className="absolute content-stretch flex flex-col items-start left-[305px] py-[2.395px] top-[2248px] w-[304px]" data-name="Heading 1">
-      <div className="[word-break:break-word] flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#39471d] text-[26px] w-[288px]">
-        <p className="leading-[31.2px]">Leve seu negócio para o próximo nível!</p>
-      </div>
-    </div>
-  );
-}
-
-function Link1() {
-  return (
-    <div className="absolute bg-[#39471d] h-[58px] left-[1070px] rounded-[10px] top-[2250px] w-[185px]" data-name="Link">
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%+9px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%+9px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-0 right-0 not-italic text-[#fffefc] text-[16px] text-center top-[29px] whitespace-nowrap">
-        <p className="leading-[22.4px]">Fale com a Sekoia!</p>
-      </div>
-    </div>
-  );
-}
-
 function Copy() {
   return (
-    <div className="-translate-x-1/2 absolute contents left-[calc(50%-1px)] top-[2218px]" data-name="Copy 4">
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2218px_9.79%_1851px_9.65%] rounded-[15px]" data-name="Background+Border" />
-      <Heading />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[631px] not-italic text-[#39471d] text-[14px] top-[2282.5px] w-[425px]">
-        <p className="leading-[21px]">Com o tráfego pago seu negócio se torna muito mais estratégico e inteligente, visando a captação e nutrição de novos leads com conteúdos ricos e muito mais!</p>
-      </div>
-      <Link1 />
+    <div
+      className="absolute flex items-center gap-8 bg-[#f7f7f7] border border-[#c5c5c5] rounded-[15px]"
+      style={{ top: 2218, left: 139, right: 141, height: 190, padding: "0 48px" }}
+      data-name="Copy 4"
+    >
+      {/* Heading */}
+      <p
+        className="shrink-0 text-[#39471d] text-[26px] leading-[1.25]"
+        style={{ fontFamily: "'Gotham:Bold','Montserrat',sans-serif", fontWeight: 700, width: 260 }}
+      >
+        Leve seu negócio para o próximo nível!
+      </p>
+
+      {/* Divider */}
+      <div className="shrink-0 self-stretch" style={{ width: 1, background: "#c5c5c5", margin: "36px 0" }} />
+
+      {/* Description */}
+      <p
+        className="flex-1 text-[#39471d] text-[14px] leading-[1.55]"
+        style={{ fontFamily: "'Gotham:Book','Montserrat',sans-serif", fontWeight: 400 }}
+      >
+        Com o tráfego pago seu negócio se torna muito mais estratégico e inteligente, visando a captação e nutrição de novos leads com conteúdos ricos e muito mais!
+      </p>
+
+      {/* CTA button */}
+      <button
+        className="shrink-0 flex items-center justify-center text-white text-[16px] rounded-[10px] whitespace-nowrap"
+        style={{
+          fontFamily: "'Gotham:Bold','Montserrat',sans-serif",
+          fontWeight: 700,
+          background: "#39471d",
+          height: 58,
+          padding: "0 28px",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        Fale com a Sekoia!
+      </button>
     </div>
   );
 }
