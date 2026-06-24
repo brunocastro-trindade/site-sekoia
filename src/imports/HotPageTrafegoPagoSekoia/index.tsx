@@ -156,12 +156,32 @@ function Link3() {
 
 function Link4() {
   return (
-    <div className="-translate-x-1/2 absolute bg-[#1fcb41] bottom-[339px] left-[calc(50%-1.5px)] rounded-[10px] top-[3803px] w-[471px]" data-name="Link">
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%-60.27px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%+62.27px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[calc(50%-185.5px)] not-italic text-[#fffefc] text-[16px] top-[28.5px] whitespace-nowrap">
-        <p className="leading-[22.4px]">SOLICITE SEU ORÇAMENTO, AGORA MESMO!</p>
-      </div>
+    <div
+      className="absolute flex items-center justify-center"
+      style={{
+        top: 3843,
+        left: 100,
+        right: 100,
+        height: 66,
+        background: "#1fcb41",
+        borderRadius: 30,
+        cursor: "pointer",
+      }}
+      data-name="Link"
+    >
+      <span
+        style={{
+          color: "#fffefc",
+          fontSize: 16,
+          fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif",
+          fontWeight: 700,
+          lineHeight: 1,
+          whiteSpace: "nowrap",
+          letterSpacing: "0.02em",
+        }}
+      >
+        SOLICITE SEU ORÇAMENTO, AGORA MESMO!
+      </span>
     </div>
   );
 }
