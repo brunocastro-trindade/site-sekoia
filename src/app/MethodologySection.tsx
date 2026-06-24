@@ -15,6 +15,7 @@ type PhaseData = {
   Icon: React.ComponentType;
   badge?: string;
   showDays?: boolean;
+  daysLabel?: string;
   paragraphs: string[];
   bullets?: string[];
 };
@@ -26,6 +27,7 @@ const PHASES: PhaseData[] = [
     Icon: Group273,
     badge: "Planejamento estratégico",
     showDays: true,
+    daysLabel: "entre 25 a 35 dias",
     paragraphs: [
       "Na primeira fase, chamada Setup Estratégico, realizamos toda a estruturação necessária para construir suas campanhas:",
     ],
@@ -44,6 +46,7 @@ const PHASES: PhaseData[] = [
     Icon: Group274,
     badge: "Lançamento e otimização",
     showDays: true,
+    daysLabel: "Em até 90 dias",
     paragraphs: [
       "Na fase de Rampagem, iniciamos a veiculação das campanhas e coletamos dados essenciais para identificar oportunidades de otimização e crescimento.",
       "Durante este período, realizamos testes de públicos, criativos, ofertas e segmentações, analisando constantemente o comportamento dos usuários e o desempenho das campanhas.",
@@ -56,6 +59,7 @@ const PHASES: PhaseData[] = [
     Icon: Group275,
     badge: "Gestão contínua",
     showDays: true,
+    daysLabel: "entre 25 a 35 dias",
     paragraphs: [
       "Na fase de Ongoing, as campanhas entram em um processo contínuo de gestão, monitoramento e otimização.",
       "Nossa equipe acompanha diariamente os indicadores de performance, realiza ajustes estratégicos, testa novas oportunidades de crescimento e busca constantemente aumentar o volume de conversões com o melhor custo possível.",
@@ -197,7 +201,7 @@ export default function MethodologySection() {
                               className="relative shrink-0"
                               style={{ width: 157, height: 31 }}
                             >
-                              <Group272 />
+                              <Group272 label={phase.daysLabel} />
                             </div>
                           )}
                         </div>
