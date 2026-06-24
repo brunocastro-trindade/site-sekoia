@@ -81,7 +81,6 @@ export default function MethodologySection() {
         style={{
           maxWidth: 1160,
           background: "#39471d",
-          boxShadow: "0 8px 40px rgba(57, 71, 29, 0.28)",
         }}
       >
         <div className="flex items-stretch">
@@ -158,33 +157,41 @@ export default function MethodologySection() {
                     }}
                   >
                     <div style={{ overflow: "hidden" }}>
-                      <div className="px-6 pb-5">
+                      <div className="px-6 pb-4">
 
-                        {/* Paragraphs */}
-                        {phase.paragraphs.map((p, i) => (
-                          <p
-                            key={i}
-                            className="text-[#39471D] text-[13px] leading-[1.6] mb-3"
-                            style={font.book}
-                          >
-                            {p}
-                          </p>
-                        ))}
+                        {/* Scrollable text area — capped so the section never overlaps elements below */}
+                        <div
+                          style={{
+                            maxHeight: 120,
+                            overflowY: "auto",
+                            scrollbarWidth: "thin",
+                            scrollbarColor: "#a0a320 transparent",
+                          }}
+                        >
+                          {phase.paragraphs.map((p, i) => (
+                            <p
+                              key={i}
+                              className="text-[#39471D] text-[13px] leading-[1.6] mb-3"
+                              style={font.book}
+                            >
+                              {p}
+                            </p>
+                          ))}
 
-                        {/* Bullet list — Card 1 only */}
-                        {phase.bullets && phase.bullets.length > 0 && (
-                          <ul
-                            className="text-[#39471D] text-[13px] leading-[1.6] list-none p-0 mb-4"
-                            style={font.book}
-                          >
-                            {phase.bullets.map((b, i) => (
-                              <li key={i}>• {b}</li>
-                            ))}
-                          </ul>
-                        )}
+                          {phase.bullets && phase.bullets.length > 0 && (
+                            <ul
+                              className="text-[#39471D] text-[13px] leading-[1.6] list-none p-0 mb-0"
+                              style={font.book}
+                            >
+                              {phase.bullets.map((b, i) => (
+                                <li key={i}>• {b}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
 
-                        {/* Footer: phase icon + badge label + days badge (Card 1 only) */}
-                        <div className="flex items-center gap-[10px] mt-3">
+                        {/* Footer: always fully visible, outside the scroll area */}
+                        <div className="flex items-center gap-[10px] mt-2">
                           <div className="size-[30px] shrink-0">
                             <PhaseIcon />
                           </div>
