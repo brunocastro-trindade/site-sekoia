@@ -27,7 +27,7 @@ const PHASES: PhaseData[] = [
     Icon: Group273,
     badge: "Planejamento estratégico",
     showDays: true,
-    daysLabel: "entre 25 a 35 dias",
+    daysLabel: "  Entre 25 a 35 dias",
     paragraphs: [
       "Na primeira fase, chamada Setup Estratégico, realizamos toda a estruturação necessária para construir suas campanhas:",
     ],
