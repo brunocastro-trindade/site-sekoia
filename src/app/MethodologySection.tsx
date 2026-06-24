@@ -75,7 +75,7 @@ export default function MethodologySection() {
     setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <div className="w-full flex justify-center px-5 py-[18px] bg-white">
+    <div className="w-full flex justify-center px-5 py-[12px] bg-white">
       <div
         className="w-full rounded-[20px] overflow-hidden"
         style={{
@@ -99,7 +99,7 @@ export default function MethodologySection() {
           </div>
 
           {/* ── Right: accordion cards ── */}
-          <div className="flex-1 flex flex-col gap-[8px] px-4 py-4">
+          <div className="flex-1 flex flex-col gap-[8px] px-4 py-3">
             {PHASES.map((phase) => {
               const isOpen = openId === phase.id;
               const PhaseIcon = phase.Icon;
@@ -119,7 +119,7 @@ export default function MethodologySection() {
                   <button
                     type="button"
                     onClick={() => toggle(phase.id)}
-                    className="w-full flex items-center justify-between px-6 py-4 text-left"
+                    className="w-full flex items-center justify-between px-6 py-3 text-left"
                     style={{ background: "transparent", border: "none", cursor: "pointer" }}
                   >
                     <span
@@ -157,12 +157,12 @@ export default function MethodologySection() {
                     }}
                   >
                     <div style={{ overflow: "hidden" }}>
-                      <div className="px-6 pb-4">
+                      <div className="px-6 pb-3">
 
                         {/* Scrollable text area — capped so the section never overlaps elements below */}
                         <div
                           style={{
-                            maxHeight: 120,
+                            maxHeight: 90,
                             overflowY: "auto",
                             scrollbarWidth: "thin",
                             scrollbarColor: "#a0a320 transparent",
@@ -191,7 +191,7 @@ export default function MethodologySection() {
                         </div>
 
                         {/* Footer: always fully visible, outside the scroll area */}
-                        <div className="flex items-center gap-[10px] mt-2">
+                        <div className="flex items-center gap-[10px] mt-1">
                           <div className="size-[30px] shrink-0">
                             <PhaseIcon />
                           </div>
