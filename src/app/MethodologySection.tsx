@@ -43,6 +43,7 @@ const PHASES: PhaseData[] = [
     title: "2ª fase — Rampagem",
     Icon: Group274,
     badge: "Lançamento e otimização",
+    showDays: true,
     paragraphs: [
       "Na fase de Rampagem, iniciamos a veiculação das campanhas e coletamos dados essenciais para identificar oportunidades de otimização e crescimento.",
       "Durante este período, realizamos testes de públicos, criativos, ofertas e segmentações, analisando constantemente o comportamento dos usuários e o desempenho das campanhas.",
@@ -54,6 +55,7 @@ const PHASES: PhaseData[] = [
     title: "3ª fase — Ongoing",
     Icon: Group275,
     badge: "Gestão contínua",
+    showDays: true,
     paragraphs: [
       "Na fase de Ongoing, as campanhas entram em um processo contínuo de gestão, monitoramento e otimização.",
       "Nossa equipe acompanha diariamente os indicadores de performance, realiza ajustes estratégicos, testa novas oportunidades de crescimento e busca constantemente aumentar o volume de conversões com o melhor custo possível.",
