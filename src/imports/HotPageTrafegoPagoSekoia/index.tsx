@@ -441,7 +441,7 @@ export default function HotPageTrafegoPagoSekoia() {
           </div>
         ))}
       </div>
-      <div className="absolute h-[20.915px] left-[166px] top-[402px] w-[942.216px]">
+      <div className="absolute h-[20.915px] left-[166px] top-[382px] w-[942.216px]">
         <div className="absolute inset-[-26.34%_0_-10.97%_0]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 942.298 28.7175">
             <path d={svgPaths.p13e36500} fill="var(--stroke-0, #A0A320)" id="Vector 1" />
