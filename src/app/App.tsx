@@ -4,8 +4,9 @@ import ContactForm from "./ContactForm";
 import { Canvas } from "../components/Canvas";
 
 // Coordenadas dentro do canvas de 1440×4259 (espaço Figma)
-const METH_TOP = 2385;
-const METH_HEIGHT = 385;
+// Copy CTA banner termina em y=2408; "Seja o próximo case" começa em y≈2771
+const METH_TOP = 2410;
+const METH_HEIGHT = 360; // cobre até y=2770, justo antes do próximo bloco
 const FORM_TOP = 3091;
 const FORM_HEIGHT = 750;
 

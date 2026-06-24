@@ -111,10 +111,10 @@ function Heading() {
 
 function Link1() {
   return (
-    <div className="absolute bg-[#39471d] bottom-[1892px] left-[1070px] rounded-[10px] top-[2250px] w-[185px]" data-name="Link">
+    <div className="absolute bg-[#39471d] h-[58px] left-[1070px] rounded-[10px] top-[2250px] w-[185px]" data-name="Link">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%+9px)] top-1/2 w-px" data-name="Rectangle" />
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[58px] left-[calc(50%+9px)] top-1/2 w-px" data-name="Rectangle" />
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[96.5px] not-italic text-[#fffefc] text-[16px] text-center top-[29.5px] whitespace-nowrap">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-0 right-0 not-italic text-[#fffefc] text-[16px] text-center top-[29px] whitespace-nowrap">
         <p className="leading-[22.4px]">Fale com a Sekoia!</p>
       </div>
     </div>
@@ -127,7 +127,7 @@ function Copy() {
       <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2218px_9.79%_1851px_9.65%] rounded-[15px]" data-name="Background+Border" />
       <Heading />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[631px] not-italic text-[#39471d] text-[14px] top-[2282.5px] w-[425px]">
-        <p className="leading-[21px]">Com o gráfego pago seu negócio se torna muito mais estratégico e inteligente, visando a captação e nutrição de novos leads com conteúdos ricos e muito mais!</p>
+        <p className="leading-[21px]">Com o tráfego pago seu negócio se torna muito mais estratégico e inteligente, visando a captação e nutrição de novos leads com conteúdos ricos e muito mais!</p>
       </div>
       <Link1 />
     </div>
@@ -516,33 +516,9 @@ export default function HotPageTrafegoPagoSekoia() {
       <Link2 />
       <Link3 />
       <Link4 />
-      <div className="-translate-x-1/2 absolute h-[220px] left-[calc(50%-1px)] top-[2385px] w-[1160px]" data-name="Background+Shadow">
-        <div className="absolute inset-[-9.09%_-3.02%_-22.73%_-3.02%]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1230 290">
-            <g filter="url(#filter0_d_1_318)" id="Background+Shadow">
-              <path d={svgPaths.p213dbe00} fill="var(--fill-0, #39471D)" />
-            </g>
-            <defs>
-              <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="290" id="filter0_d_1_318" width="1230" x="0" y="0">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset dy="15" />
-                <feGaussianBlur stdDeviation="17.5" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.19 0" />
-                <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_318" />
-                <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_318" mode="normal" result="shape" />
-              </filter>
-            </defs>
-          </svg>
-        </div>
-      </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[159px] not-italic text-[26px] text-white top-[2495.5px] w-[235px]">
         <p className="leading-[31.2px]">Conheça a metodologia que vamos aplicar no seu negócio!</p>
       </div>
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2433px_22.12%_1465px_68.33%] rounded-[15px]" data-name="Background+Border" />
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2433px_33.06%_1465px_28.75%] rounded-[15px]" data-name="Background+Border" />
-      <div className="absolute bg-[#f7f7f7] border border-[#c5c5c5] border-solid inset-[2433px_11.22%_1465px_79.24%] rounded-[15px]" data-name="Background+Border" />
       <div className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[0] left-[434px] not-italic text-[#39471d] text-[14px] top-[2493px] w-[510px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">Na primeira fase, chamada Setup Estratégico, realizamos toda a estruturação necessária para construir suas campanhas:</p>
         <p className="leading-[21px] mb-0">​</p>
@@ -586,7 +562,6 @@ export default function HotPageTrafegoPagoSekoia() {
       </div>
       <Group12 />
       <Group13 />
-      <Group14 />
     </div>
   );
 }

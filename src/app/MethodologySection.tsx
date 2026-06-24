@@ -69,7 +69,7 @@ export default function MethodologySection() {
     setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <div className="w-full flex justify-center px-5 py-[50px] bg-white">
+    <div className="w-full flex justify-center px-5 py-[18px] bg-white">
       <div
         className="w-full rounded-[20px] overflow-hidden"
         style={{
