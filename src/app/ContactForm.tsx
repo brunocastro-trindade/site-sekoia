@@ -167,6 +167,26 @@ export default function ContactForm() {
           <p className="text-red-300 text-[14px] text-center" style={font.book}>{message}</p>
         )}
       </form>
+
+      {/* CTA button — fica logo abaixo do formulário */}
+      <button
+        type="button"
+        className="w-full mt-5 py-[18px] text-center text-[16px]"
+        style={{
+          maxWidth: 1160,
+          background: "#1fcb41",
+          borderRadius: 20,
+          color: "#fffefc",
+          fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif",
+          fontWeight: 700,
+          letterSpacing: "0.02em",
+          whiteSpace: "nowrap",
+          cursor: "pointer",
+          border: "none",
+        }}
+      >
+        SOLICITE SEU ORÇAMENTO, AGORA MESMO!
+      </button>
     </div>
   );
 }

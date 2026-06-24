@@ -535,7 +535,6 @@ export default function HotPageTrafegoPagoSekoia() {
       <Copy />
       <Link2 />
       <Link3 />
-      <Link4 />
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[159px] not-italic text-[26px] text-white top-[2495.5px] w-[235px]">
         <p className="leading-[31.2px]">Conheça a metodologia que vamos aplicar no seu negócio!</p>
       </div>
