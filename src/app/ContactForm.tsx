@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { submitLead } from "../lib/leads";
+import { openWhatsApp } from "../lib/contact";
 
 const inputClass =
   "w-full bg-[#f7f7f7] border border-[#c5c5c5] rounded-[10px] px-4 py-[10px] text-[14px] text-[#39471D] placeholder-[#c5c5c5] outline-none focus:border-[#a0a320] transition-colors disabled:opacity-60";
@@ -168,9 +169,10 @@ export default function ContactForm() {
         )}
       </form>
 
-      {/* CTA button — fica logo abaixo do formulário */}
+      {/* CTA button — fica logo abaixo do formulário; abre o WhatsApp */}
       <button
         type="button"
+        onClick={() => openWhatsApp()}
         className="w-full mt-5 py-[18px] text-center text-[16px]"
         style={{
           maxWidth: 1160,

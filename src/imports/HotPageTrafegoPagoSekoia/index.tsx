@@ -1,5 +1,6 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
+import { openWhatsApp } from "../../lib/contact";
 
 const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
 
@@ -127,6 +128,7 @@ function Copy() {
 
       {/* CTA button */}
       <button
+        onClick={() => openWhatsApp()}
         className="shrink-0 flex items-center justify-center text-white text-[16px] rounded-[10px] whitespace-nowrap"
         style={{
           fontFamily: "'Gotham:Bold','Montserrat',sans-serif",
@@ -146,7 +148,11 @@ function Copy() {
 
 function Link2() {
   return (
-    <div className="absolute bg-[#39471d] h-[58px] left-[1076px] rounded-[10px] top-[2863px] w-[223px]" data-name="Link">
+    <div
+      onClick={() => openWhatsApp("Olá! Vim pelo site da Sekoia e gostaria de falar com um especialista.")}
+      className="absolute bg-[#39471d] h-[58px] left-[1076px] rounded-[10px] top-[2863px] w-[223px] cursor-pointer"
+      data-name="Link"
+    >
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[9px] not-italic text-[#fffefc] text-[16px] top-[29px] whitespace-nowrap">
         <p className="leading-[22.4px]">Fale com um especialista</p>
       </div>
@@ -156,7 +162,11 @@ function Link2() {
 
 function Link3() {
   return (
-    <div className="absolute bg-[#1fcb41] h-[58px] left-[1076px] rounded-[10px] top-[2937px] w-[223px]" data-name="Link">
+    <div
+      onClick={() => openWhatsApp()}
+      className="absolute bg-[#1fcb41] h-[58px] left-[1076px] rounded-[10px] top-[2937px] w-[223px] cursor-pointer"
+      data-name="Link"
+    >
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[7px] not-italic text-[#fffefc] text-[16px] top-[29px] whitespace-nowrap">
         <p className="leading-[22.4px]">Nos chame no WhatsApp</p>
       </div>
@@ -167,6 +177,7 @@ function Link3() {
 function Link4() {
   return (
     <div
+      onClick={() => openWhatsApp()}
       className="absolute flex items-center justify-center"
       style={{
         top: 3843,
@@ -388,7 +399,7 @@ function Group13() {
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[3969px] whitespace-nowrap">
         <p className="leading-[21px] mb-0">agencia@sekoia.xxx</p>
-        <p className="leading-[21px]">+55 (47) 9 9xxx-xxxx</p>
+        <p className="leading-[21px]">+55 (47) 99215-6393</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] not-italic right-[150px] text-[#39471d] text-[14px] text-right top-[3969px] whitespace-nowrap">
         <p className="leading-[21px] mb-0">Todos os direitos reservados</p>
