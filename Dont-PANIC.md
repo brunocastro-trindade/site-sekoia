@@ -32,6 +32,17 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-06-30 — Logo + header interativo (navegação por âncoras + WhatsApp)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** criada a logo `src/components/SekoiaLogo.tsx` (SVG) e inserida no
+  slot do header. Em `src/imports/HotPageTrafegoPagoSekoia/index.tsx`: itens do
+  menu (Soluções/Orçamentos/Contato) agora rolam para as seções via
+  `scrollToFigmaY` (compensando a escala do Canvas); CTA "Quero uma equipe
+  profissional" passou a abrir o WhatsApp. Os demais CTAs da página já abriam o
+  WhatsApp via `openWhatsApp`.
+- **Por quê:** adicionar a logo e tornar a barra de navegação funcional, sem sair
+  do escopo do layout original.
+
 ### 2026-06-19 — Captação de leads via Supabase
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** formulário de contato passou a ser controlado e a persistir leads.

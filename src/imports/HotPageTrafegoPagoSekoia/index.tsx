@@ -1,8 +1,25 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
 import { openWhatsApp } from "../../lib/contact";
+import { SekoiaLogo } from "../../components/SekoiaLogo";
 
 const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
+
+// Coordenadas Y (espaço Figma de 1440×4259) das seções da landing.
+const SECTIONS = {
+  solucoes: 500, // cards Estratégia / Performance / Escala / Inteligência (top 549)
+  orcamentos: 3010, // "SOLICITE UM ORÇAMENTO" (top 3060) + formulário
+  contato: 3880, // bloco de contato do rodapé (top 3911)
+} as const;
+
+/**
+ * Rola a janela até uma coordenada Y do canvas do Figma, compensando a escala
+ * aplicada pelo <Canvas> em viewports menores que 1440px.
+ */
+function scrollToFigmaY(y: number) {
+  const scale = window.innerWidth < 1440 ? window.innerWidth / 1440 : 1;
+  window.scrollTo({ top: Math.max(0, y * scale - 24), behavior: "smooth" });
+}
 
 function Group3() {
   return (
@@ -20,22 +37,46 @@ function OverlayBorderOverlayBlur() {
 
 function Group() {
   return (
-    <div className="absolute flex items-center justify-center bg-[#39471d] border border-[#39471d] border-solid h-[49px] left-[994px] rounded-[10px] shadow-[0px_0px_15px_0px_rgba(255,255,255,0.21)] top-[52px] w-[276px]" data-name="Link">
+    <button
+      type="button"
+      onClick={() => openWhatsApp()}
+      aria-label="Quero uma equipe profissional — falar no WhatsApp"
+      className="absolute flex items-center justify-center bg-[#39471d] border border-[#39471d] border-solid h-[49px] left-[994px] rounded-[10px] shadow-[0px_0px_15px_0px_rgba(255,255,255,0.21)] top-[52px] w-[276px] cursor-pointer transition-transform hover:scale-[1.03]"
+      data-name="Link"
+    >
       <p className="font-['Figtree:ExtraBold',sans-serif] font-extrabold text-[17px] text-white whitespace-nowrap">Quero uma equipe profissional</p>
-    </div>
+    </button>
   );
 }
 
 function Menu() {
   return (
     <div className="[word-break:break-word] absolute contents font-['Figtree:Medium',sans-serif] font-medium leading-[0] left-[557px] text-[#39471d] text-[16px] top-[69px]" data-name="Menu">
-      <div className="-translate-x-full -translate-y-1/2 absolute flex flex-col justify-center left-[623px] text-right top-[79px] whitespace-nowrap">
+      <div
+        onClick={() => scrollToFigmaY(SECTIONS.solucoes)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.solucoes)}
+        className="-translate-x-full -translate-y-1/2 absolute flex flex-col justify-center left-[623px] text-right top-[79px] whitespace-nowrap cursor-pointer hover:opacity-70 transition-opacity"
+      >
         <p className="leading-[20px]">Soluções</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col justify-center left-[722.2px] text-center top-[79px] whitespace-nowrap">
+      <div
+        onClick={() => scrollToFigmaY(SECTIONS.orcamentos)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.orcamentos)}
+        className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col justify-center left-[722.2px] text-center top-[79px] whitespace-nowrap cursor-pointer hover:opacity-70 transition-opacity"
+      >
         <p className="leading-[20px]">Orçamentos</p>
       </div>
-      <div className="-translate-y-1/2 absolute flex flex-col h-[19px] justify-center left-[822.2px] top-[79.5px] w-[59.883px]">
+      <div
+        onClick={() => scrollToFigmaY(SECTIONS.contato)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.contato)}
+        className="-translate-y-1/2 absolute flex flex-col h-[19px] justify-center left-[822.2px] top-[79.5px] w-[59.883px] cursor-pointer hover:opacity-70 transition-opacity"
+      >
         <p className="leading-[20px]">Contato</p>
       </div>
     </div>
@@ -457,7 +498,9 @@ export default function HotPageTrafegoPagoSekoia() {
       <OverlayBorderOverlayBlur />
       <Group />
       <Menu />
-      <div className="absolute h-[65px] left-[170px] top-[46px] w-[263px]" data-name="HORIZONTAL_LOGOTIPO SEKOIA_7 2" />
+      <div className="absolute flex items-center h-[65px] left-[170px] top-[46px] w-[290px]" data-name="HORIZONTAL_LOGOTIPO SEKOIA_7 2">
+        <SekoiaLogo color="#39471d" height={52} />
+      </div>
       <div className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[0] left-[calc(50%-570px)] not-italic text-[#39471d] text-[115px] top-[195px] whitespace-nowrap">
         <p className="font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0">+vendas.</p>
         <p className="font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0 text-[#a0a320]">+previsibilidade.</p>
