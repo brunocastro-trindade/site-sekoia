@@ -1,6 +1,7 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
 import { openWhatsApp } from "../../lib/contact";
+import { SequoiaVideo } from "../../components/SequoiaVideo";
 
 const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
 
@@ -584,15 +585,7 @@ export default function HotPageTrafegoPagoSekoia() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[26px] top-[1495px] whitespace-nowrap">
         <p className="leading-[31.2px]">Como podemos te ajudar com Tráfego pago</p>
       </div>
-      <video
-        src="/sequoia.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute h-[430px] left-[830px] top-[1547px] w-[469px] object-cover rounded-[15px]"
-        data-name="image 39"
-      />
+      <SequoiaVideo className="absolute h-[430px] left-[830px] top-[1547px] w-[469px]" />
       {/* Faixa verde — banda de fundo (estendida para cobrir qualquer viewport) */}
       <div className="-translate-x-1/2 absolute flex h-[109.518px] items-center justify-center left-[calc(50%-1.39px)] top-[2034.77px] w-[1487.218px]">
         <div className="flex-none rotate-[2.3deg] skew-x-[-0.44deg]">

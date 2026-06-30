@@ -32,6 +32,15 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-06-30 — Remoção do fundo do vídeo (integração à página)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** criado `src/components/SequoiaVideo.tsx` — reproduz o vídeo e, via
+  canvas (chroma key), substitui o fundo cinza dessaturado por branco em tempo
+  real, deixando o vídeo integrado à página branca sem caixa. Processa em
+  resolução reduzida, ~24fps, e pausa fora da tela. `HotPageTrafegoPagoSekoia`
+  passou a usar `<SequoiaVideo>` no lugar do `<video>` direto.
+- **Por quê:** o usuário queria o vídeo "sem placeholder quadrado", integrado.
+
 ### 2026-06-30 — Vídeo na seção "Como podemos te ajudar"
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** adicionado `public/sequoia.mp4` e substituído o placeholder cinza
