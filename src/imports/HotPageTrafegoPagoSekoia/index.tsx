@@ -584,7 +584,15 @@ export default function HotPageTrafegoPagoSekoia() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[26px] top-[1495px] whitespace-nowrap">
         <p className="leading-[31.2px]">Como podemos te ajudar com Tráfego pago</p>
       </div>
-      <div className="absolute bg-[rgba(0,0,0,0.2)] h-[430px] left-[830px] top-[1547px] w-[469px]" data-name="image 39" />
+      <video
+        src="/sequoia.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute h-[430px] left-[830px] top-[1547px] w-[469px] object-cover rounded-[15px]"
+        data-name="image 39"
+      />
       {/* Faixa verde — banda de fundo (estendida para cobrir qualquer viewport) */}
       <div className="-translate-x-1/2 absolute flex h-[109.518px] items-center justify-center left-[calc(50%-1.39px)] top-[2034.77px] w-[1487.218px]">
         <div className="flex-none rotate-[2.3deg] skew-x-[-0.44deg]">

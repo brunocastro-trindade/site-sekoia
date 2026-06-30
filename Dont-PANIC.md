@@ -32,6 +32,13 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-06-30 — Vídeo na seção "Como podemos te ajudar"
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** adicionado `public/sequoia.mp4` e substituído o placeholder cinza
+  (`data-name="image 39"`, 469×430) por um `<video>` autoplay/muted/loop com
+  `object-cover` e cantos arredondados, encaixado no mesmo espaço.
+- **Por quê:** preencher o placeholder com o vídeo da sequoia.
+
 ### 2026-06-30 — Fundo de doodles no topo da landing
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** adicionado `public/doodle-bg.png` e uma camada de fundo no topo do
