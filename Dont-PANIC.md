@@ -32,6 +32,13 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-06-30 — Fundo de doodles no topo da landing
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** adicionado `public/doodle-bg.png` e uma camada de fundo no topo do
+  componente `HotPageTrafegoPagoSekoia` (height 900, opacity 0.14, com fade via
+  mask-image). Fica só no hero; o restante da landing segue branco.
+- **Por quê:** restaurar o padrão de doodles no topo conforme o design original.
+
 ### 2026-06-30 — Logo oficial (PNG) + centralização do CTA
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** substituída a logo SVG recriada pela oficial

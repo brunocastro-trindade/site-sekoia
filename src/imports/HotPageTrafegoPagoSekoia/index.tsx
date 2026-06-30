@@ -493,6 +493,21 @@ export default function HotPageTrafegoPagoSekoia() {
 
   return (
     <div className="bg-white relative size-full" data-name="Hot Page - Tráfego pago - Sekoia">
+      {/* Fundo de doodles apenas no topo da landing (hero); desaparece num fade
+          para o branco. O restante da página segue com fundo branco. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 right-0 top-0 z-0"
+        style={{
+          height: 900,
+          backgroundImage: "url(/doodle-bg.png)",
+          backgroundRepeat: "repeat",
+          backgroundSize: "550px auto",
+          opacity: 0.14,
+          WebkitMaskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, black 72%, transparent 100%)",
+        }}
+      />
       <Group3 />
       <OverlayBorderOverlayBlur />
       <Group />
