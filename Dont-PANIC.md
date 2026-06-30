@@ -32,6 +32,15 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-06-30 — Logo oficial (PNG) + centralização do CTA
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** substituída a logo SVG recriada pela oficial
+  `public/logo-sekoia.png` (263×65), inserida via `<img>` no slot do header;
+  removido `src/components/SekoiaLogo.tsx` (não usado). Botão "Quero uma equipe
+  profissional" reajustado (fonte 15px + padding) para o texto ficar centralizado
+  e bem encaixado.
+- **Por quê:** usar o arquivo de logo oficial e melhorar o encaixe do texto no CTA.
+
 ### 2026-06-30 — Logo + header interativo (navegação por âncoras + WhatsApp)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** criada a logo `src/components/SekoiaLogo.tsx` (SVG) e inserida no
