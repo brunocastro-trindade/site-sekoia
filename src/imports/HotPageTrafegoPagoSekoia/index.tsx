@@ -372,7 +372,22 @@ function ItemLinkXWowImage11062B923D540Bee594407B17F142805A44A15Mv2Png() {
 }
 
 function ItemLinkInstagramWowImageE1Aa082F7C0747168D9Cf43E77046142Png() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - Instagram → wow-image → e1aa082f7c0747168d9cf43e77046142.png" />;
+  return (
+    <a
+      href="https://www.instagram.com/sekoia.ag/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram da Sekoia"
+      className="relative shrink-0 size-[30px] text-[#39471d] hover:opacity-70 transition-opacity"
+      data-name="Item → Link - Instagram"
+    >
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5.5" />
+        <circle cx="12" cy="12" r="4.2" />
+        <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none" />
+      </svg>
+    </a>
+  );
 }
 
 function ItemLinkFacebookWowImage4057345Bcf57474B96976284050C00DfPng() {
@@ -439,12 +454,14 @@ function Group13() {
         <p className="leading-[21px]">Sekoia Marketing</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[3969px] whitespace-nowrap">
-        <p className="leading-[21px] mb-0">agencia@sekoia.xxx</p>
+        <p className="leading-[21px] mb-0">
+          <a href="mailto:contato@sekoiamarketing.com.br" className="hover:underline">contato@sekoiamarketing.com.br</a>
+        </p>
         <p className="leading-[21px]">+55 (47) 99215-6393</p>
       </div>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] not-italic right-[150px] text-[#39471d] text-[14px] text-right top-[3969px] whitespace-nowrap">
         <p className="leading-[21px] mb-0">Todos os direitos reservados</p>
-        <p className="leading-[21px]">CNPJ 40.593.876/0001-90</p>
+        <p className="leading-[21px]">CNPJ 66.526.186/0001-25</p>
       </div>
       <Group5 />
     </div>

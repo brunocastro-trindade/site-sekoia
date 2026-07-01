@@ -32,6 +32,13 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-01 — Atualização dos dados do rodapé
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** rodapé (`HotPageTrafegoPagoSekoia`) — e-mail para
+  `contato@sekoiamarketing.com.br` (link mailto), CNPJ para `66.526.186/0001-25`
+  (validado), e ícone do Instagram ligado a `https://www.instagram.com/sekoia.ag/`.
+- **Por quê:** dados de contato oficiais da Sekoia.
+
 ### 2026-06-30 — Remoção do fundo do vídeo (integração à página)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** criado `src/components/SequoiaVideo.tsx` — reproduz o vídeo e, via
