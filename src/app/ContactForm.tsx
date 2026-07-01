@@ -4,6 +4,9 @@ import { openWhatsApp } from "../lib/contact";
 // no sistema do Namtab, que dispara o webhook). Embutido via iframe.
 const NAMTAB_FORM_URL = "https://web.namtab.io/form/sekoia-marketing-149";
 
+// Largura enxuta, próxima à do próprio formulário, para um enquadramento justo.
+const BLOCK_WIDTH = 560;
+
 const font = {
   bold: { fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif" } as React.CSSProperties,
 };
@@ -11,32 +14,36 @@ const font = {
 export default function ContactForm() {
   return (
     <div className="w-full flex flex-col items-center px-4 py-10 bg-white">
-      {/* Card da marca envolvendo o formulário do Namtab */}
+      {/* Moldura leve que abraça o formulário: cantos arredondados recortam o
+          iframe, borda sutil e sombra suave (visual flutuante e moderno). */}
       <div
-        className="w-full rounded-[15px] p-4 sm:p-6"
-        style={{ maxWidth: 1160, background: "#39471D" }}
+        className="w-full overflow-hidden bg-white"
+        style={{
+          maxWidth: BLOCK_WIDTH,
+          borderRadius: 20,
+          border: "1px solid #ececec",
+          boxShadow: "0 14px 44px rgba(57, 71, 29, 0.14)",
+        }}
       >
-        <div className="rounded-[10px] overflow-hidden bg-white">
-          <iframe
-            src={NAMTAB_FORM_URL}
-            title="Formulário de contato Sekoia"
-            width="100%"
-            height="560"
-            loading="lazy"
-            style={{ border: "none", display: "block", width: "100%" }}
-          />
-        </div>
+        <iframe
+          src={NAMTAB_FORM_URL}
+          title="Formulário de contato Sekoia"
+          width="100%"
+          height="560"
+          loading="lazy"
+          style={{ border: "none", display: "block", width: "100%" }}
+        />
       </div>
 
-      {/* CTA button — fica logo abaixo do formulário; abre o WhatsApp */}
+      {/* CTA button — mesma largura do formulário; abre o WhatsApp */}
       <button
         type="button"
         onClick={() => openWhatsApp()}
-        className="w-full mt-5 py-[18px] text-center text-[16px]"
+        className="w-full mt-5 py-[16px] text-center text-[15px]"
         style={{
-          maxWidth: 1160,
+          maxWidth: BLOCK_WIDTH,
           background: "#1fcb41",
-          borderRadius: 20,
+          borderRadius: 16,
           color: "#fffefc",
           ...font.bold,
           letterSpacing: "0.02em",

@@ -32,6 +32,14 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-01 — Reenquadramento do form Namtab (visual leve/moderno)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `ContactForm.tsx` — trocado o card verde largo (1160px) por uma
+  moldura enxuta (~560px) que abraça o form: cantos 20px recortando o iframe,
+  borda sutil + sombra suave, CTA alinhado à mesma largura. Altura do iframe
+  ajustada para 560 (folga com o rodapé).
+- **Por quê:** enquadramento justo à largura do formulário, mais moderno e leve.
+
 ### 2026-07-01 — Migração Supabase → Namtab (iframe) na captação de leads
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `ContactForm.tsx` reescrito — o formulário custom foi substituído
