@@ -2,6 +2,7 @@ import HotPageTrafegoPagoSekoia from "../imports/HotPageTrafegoPagoSekoia";
 import MethodologySection from "./MethodologySection";
 import ContactForm from "./ContactForm";
 import { Canvas } from "../components/Canvas";
+import { WhatsAppFab } from "../components/WhatsAppFab";
 
 // Coordenadas dentro do canvas de 1440×4259 (espaço Figma)
 // Copy CTA banner termina em y=2408; "Seja o próximo case" começa em y≈2771
@@ -12,6 +13,7 @@ const FORM_HEIGHT = 750;
 
 export default function App() {
   return (
+    <>
     <Canvas>
       {/* Landing page completa do Figma */}
       <HotPageTrafegoPagoSekoia />
@@ -64,5 +66,8 @@ export default function App() {
         <ContactForm />
       </div>
     </Canvas>
+
+    <WhatsAppFab />
+    </>
   );
 }

@@ -32,6 +32,15 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-01 — Botão flutuante do WhatsApp + links do rodapé
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** novo `src/components/WhatsAppFab.tsx` (botão fixo, animação bob em
+  `globals.css`, renderizado fora do `<Canvas>` em `App.tsx` para o `fixed`
+  funcionar) → abre o WhatsApp principal. `contact.ts` ganhou
+  `WHATSAPP_NUMBER_FOOTER` (5547991603130) e `openWhatsAppNumber()`. Links do
+  rodapé Cursos/Mentoria/Palestras/Contato passaram a abrir esse número.
+- **Por quê:** CTA flutuante persistente + contato dedicado nos links do rodapé.
+
 ### 2026-07-01 — Atualização dos dados do rodapé
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** rodapé (`HotPageTrafegoPagoSekoia`) — e-mail para

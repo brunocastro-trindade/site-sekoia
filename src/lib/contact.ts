@@ -27,3 +27,16 @@ export function whatsappLink(message: string = WHATSAPP_DEFAULT_MESSAGE): string
 export function openWhatsApp(message?: string): void {
   window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
 }
+
+/**
+ * Número de WhatsApp usado pelos links do rodapé (Cursos/Mentoria/Palestras/Contato).
+ * 55 (Brasil) + 47 (DDD) + 991603130.
+ */
+export const WHATSAPP_NUMBER_FOOTER = "5547991603130";
+
+/** Abre o WhatsApp de um número específico (ex.: o do rodapé). */
+export function openWhatsAppNumber(number: string, message?: string): void {
+  const base = `https://wa.me/${number}`;
+  const url = message ? `${base}?text=${encodeURIComponent(message)}` : base;
+  window.open(url, "_blank", "noopener,noreferrer");
+}

@@ -77,3 +77,18 @@ body {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* ── Botão flutuante do WhatsApp (sobe e desce continuamente) ── */
+@keyframes wa-fab-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.wa-fab-bob {
+  animation: wa-fab-bob 2.2s ease-in-out infinite;
+}
+.wa-fab-bob:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab-bob { animation: none; }
+}

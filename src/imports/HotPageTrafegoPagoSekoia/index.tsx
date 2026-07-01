@@ -1,6 +1,6 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
-import { openWhatsApp } from "../../lib/contact";
+import { openWhatsApp, openWhatsAppNumber, WHATSAPP_NUMBER_FOOTER } from "../../lib/contact";
 import { SequoiaVideo } from "../../components/SequoiaVideo";
 
 const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
@@ -430,16 +430,16 @@ function Group5() {
       <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-336.49px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[38.349px]">
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Blog</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-247.66px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[55.78px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-247.66px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[55.78px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Cursos</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-142.55px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[72.049px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-142.55px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[72.049px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Mentoria</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-32.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[73.211px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-32.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[73.211px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Palestras</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%+72.11px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[66.239px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%+72.11px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[66.239px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Contato</p>
       </div>
       <ListRedesSociais />
