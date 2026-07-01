@@ -32,6 +32,17 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-01 — Migração Supabase → Namtab (iframe) na captação de leads
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `ContactForm.tsx` reescrito — o formulário custom foi substituído
+  por um iframe do Namtab (`https://web.namtab.io/form/sekoia-marketing-149`)
+  dentro de um card da marca; CTA de WhatsApp mantido. **Removidos** todo o código
+  de Supabase: `src/lib/leads.ts`, `supabase/functions/submit-lead`, a migração,
+  `.env.example` e a dependência `@supabase/supabase-js`. Doc de captação de leads
+  reescrita para o fluxo Namtab.
+- **Por quê:** simplificar (sem backend próprio); leads passam a cair direto no
+  Namtab via webhook. Também resolve o bloqueio anterior (Supabase sem `.env`).
+
 ### 2026-07-01 — Botão flutuante do WhatsApp + links do rodapé
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** novo `src/components/WhatsAppFab.tsx` (botão fixo, animação bob em
