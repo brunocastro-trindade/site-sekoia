@@ -1,7 +1,7 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
 import { openWhatsApp, openWhatsAppNumber, WHATSAPP_NUMBER_FOOTER } from "../../lib/contact";
-import { TreeScrollVideo } from "../../components/TreeScrollVideo";
+import { TreeVideo } from "../../components/TreeVideo";
 
 const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
 
@@ -603,7 +603,7 @@ export default function HotPageTrafegoPagoSekoia() {
         <p className="leading-[31.2px]">Como podemos te ajudar com Tráfego pago</p>
       </div>
       <div className="absolute left-[933px] top-[1505px] w-[262px] h-[465px] rounded-[16px] overflow-hidden">
-        <TreeScrollVideo />
+        <TreeVideo />
       </div>
       {/* Faixa verde — banda de fundo (estendida para cobrir qualquer viewport) */}
       <div className="-translate-x-1/2 absolute flex h-[109.518px] items-center justify-center left-[calc(50%-1.39px)] top-[2034.77px] w-[1487.218px]">

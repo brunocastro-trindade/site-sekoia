@@ -32,6 +32,15 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Vídeo contínuo + favicon escuro
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** o vídeo da árvore voltou a ser **contínuo** (autoplay em loop, sem
+  scrub): novo `src/components/TreeVideo.tsx` (toca só quando visível), removido
+  `TreeScrollVideo.tsx`. `tree.mp4` reencodado sem all-intra → **8.5MB→2.6MB**.
+  Favicon recolorido de branco para **verde-escuro #39471D** (ffmpeg geq),
+  visível em abas claras.
+- **Por quê:** preferência por reprodução contínua e favicon escuro/legível.
+
 ### 2026-07-02 — Vídeo da árvore com scroll-scrubbing (cascata)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** substituído o vídeo da seção "Como podemos te ajudar" pelo novo
