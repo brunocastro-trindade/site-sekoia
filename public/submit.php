@@ -9,6 +9,11 @@
  * Auto-teste: acesse /submit.php no navegador (GET) para confirmar que o PHP roda.
  */
 
+// Debug temporário: transforma página em branco (erro fatal) em mensagem legível.
+// Remover depois de validar o envio em produção.
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
+
 header('Content-Type: application/json; charset=utf-8');
 
 const NAMTAB_ENDPOINT = 'https://qbdofrofxcnkcfhyroot.supabase.co/functions/v1/submit-form-data';
