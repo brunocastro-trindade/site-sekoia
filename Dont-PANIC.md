@@ -32,6 +32,20 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Layout mobile dedicado (iteração 1: essencial)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `App.tsx` passou a detectar largura (`useIsMobile`, breakpoint 900px)
+  e renderizar `MobileApp` (novo) no celular, mantendo o canvas desktop intacto
+  acima de 900px. `MobileApp.tsx`: reflow real (coluna única) com header sticky +
+  menu hambúrguer (âncoras), hero + cards, bloco "Tráfego pago"/vídeo, o
+  `ContactForm` reaproveitado, e rodapé. Reusa `TreeVideo` e helpers de WhatsApp.
+- **Ganhos medidos (375px):** sem scroll horizontal; corpo 7px→15px; CTA 22px→55px
+  de toque; inputs 22px→43px.
+- **Escopo:** iteração 1 (essencial). Faltam metodologia/tickers/"seja o próximo
+  case" no mobile (próximas iterações).
+- **Nota:** `behavior:'smooth'` não anima no preview do harness (só instant) — em
+  navegador real o scroll do menu funciona (target verificado via window.scrollTo).
+
 ### 2026-07-02 — Correção: proxy PHP → Serverless da Vercel
 - **Autor/PR:** solicitado pelo dono do repositório (form dava HTTP 405).
 - **Diagnóstico:** o site roda na **Vercel** (domínio Hostinger via DNS), que
