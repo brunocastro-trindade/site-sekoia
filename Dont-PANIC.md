@@ -32,6 +32,16 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Correção: proxy PHP → Serverless da Vercel
+- **Autor/PR:** solicitado pelo dono do repositório (form dava HTTP 405).
+- **Diagnóstico:** o site roda na **Vercel** (domínio Hostinger via DNS), que
+  **não executa PHP** — servia `submit.php` como estático (GET = fonte crua,
+  POST = 405). Confirmado por headers `Server: Vercel`.
+- **Mudou:** removido `public/submit.php`; criado `api/submit.js` (Serverless
+  Function da Vercel, mesma lógica de proxy → Namtab); `ContactForm` agora posta
+  em `/api/submit`. Doc atualizada.
+- **Por quê:** proxy tem que rodar no ambiente real (Vercel), não em PHP.
+
 ### 2026-07-02 — Form da marca conectado ao Namtab via proxy PHP
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** substituído o iframe do Namtab por um **formulário próprio** (visual

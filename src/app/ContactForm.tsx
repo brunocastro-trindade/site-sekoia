@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import { openWhatsApp } from "../lib/contact";
 
-// O formulário é da marca (visual da empresa) e envia para o Namtab através do
-// proxy /submit.php (que repassa servidor-a-servidor, sem esbarrar em CORS).
-const SUBMIT_ENDPOINT = "/submit.php";
+// O formulário é da marca (visual da empresa) e envia para o Namtab através de
+// uma Serverless Function na Vercel (/api/submit), que repassa servidor-a-servidor
+// (sem esbarrar em CORS). A Vercel não executa PHP — por isso não usamos submit.php.
+const SUBMIT_ENDPOINT = "/api/submit";
 
 const inputClass =
   "w-full bg-[#f7f7f7] border border-[#c5c5c5] rounded-[10px] px-4 py-[10px] text-[14px] text-[#39471D] placeholder-[#c5c5c5] outline-none focus:border-[#a0a320] transition-colors disabled:opacity-60";
