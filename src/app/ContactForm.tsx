@@ -62,7 +62,7 @@ export default function ContactForm() {
       });
       const data = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
       if (!res.ok || !data.success) {
-        throw new Error(data.error || "Falha ao enviar. Tente novamente.");
+        throw new Error(data.error || `Falha ao enviar (HTTP ${res.status}). Tente novamente.`);
       }
       setStatus("success");
       setMessage("Recebemos seus dados! Em breve entraremos em contato.");
