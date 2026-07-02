@@ -6,7 +6,7 @@ import Group275 from "../imports/Group275-1";
 
 const font = {
   bold: { fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif", fontWeight: 700 } as React.CSSProperties,
-  book: { fontFamily: "'Gotham:Book', 'Montserrat', sans-serif", fontWeight: 400 } as React.CSSProperties,
+  book: { fontFamily: "'Gotham:Medium', 'Montserrat', sans-serif", fontWeight: 500 } as React.CSSProperties,
 };
 
 type PhaseData = {

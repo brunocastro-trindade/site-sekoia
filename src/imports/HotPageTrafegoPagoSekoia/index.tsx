@@ -57,7 +57,7 @@ function Menu() {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.solucoes)}
-        className="-translate-x-full -translate-y-1/2 absolute flex flex-col justify-center left-[623px] text-right top-[79px] whitespace-nowrap cursor-pointer hover:opacity-70 transition-opacity"
+        className="-translate-x-full -translate-y-1/2 absolute flex flex-col justify-center items-center left-[631px] text-center top-[79px] whitespace-nowrap cursor-pointer bg-white rounded-full px-[14px] py-[5px] shadow-[0px_1px_4px_rgba(0,0,0,0.12)] hover:opacity-80 transition-opacity"
       >
         <p className="leading-[20px]">Soluções</p>
       </div>
@@ -66,7 +66,7 @@ function Menu() {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.orcamentos)}
-        className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col justify-center left-[722.2px] text-center top-[79px] whitespace-nowrap cursor-pointer hover:opacity-70 transition-opacity"
+        className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col justify-center items-center left-[726px] text-center top-[79px] whitespace-nowrap cursor-pointer bg-white rounded-full px-[14px] py-[5px] shadow-[0px_1px_4px_rgba(0,0,0,0.12)] hover:opacity-80 transition-opacity"
       >
         <p className="leading-[20px]">Orçamentos</p>
       </div>
@@ -75,7 +75,7 @@ function Menu() {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.contato)}
-        className="-translate-y-1/2 absolute flex flex-col h-[19px] justify-center left-[822.2px] top-[79.5px] w-[59.883px] cursor-pointer hover:opacity-70 transition-opacity"
+        className="-translate-y-1/2 absolute flex flex-col justify-center items-center left-[822.2px] top-[79.5px] whitespace-nowrap cursor-pointer bg-white rounded-full px-[14px] py-[5px] shadow-[0px_1px_4px_rgba(0,0,0,0.12)] hover:opacity-80 transition-opacity"
       >
         <p className="leading-[20px]">Contato</p>
       </div>
@@ -113,7 +113,7 @@ function Group2() {
 function Group6() {
   return (
     <div className="absolute contents left-[150px] top-[1170px]">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[169.66px] not-italic text-[#39471d] text-[14px] top-[1306px] w-[1100.69px] whitespace-pre-wrap">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[169.66px] not-italic text-[#39471d] text-[14px] top-[1306px] w-[1100.69px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">Suas vendas dependem apenas de indicações ou prospecção ativa? Sua empresa investe em marketing digital, mas não gera oportunidades reais de negócio? Você sente que sua marca não está alcançando as pessoas certas? Acredita que poderia vender mais, mas não sabe como escalar seus resultados? Seus anúncios não geram retorno consistente? Sua equipe comercial recebe poucos leads ou contatos sem potencial de compra?</p>
         <p className="leading-[21px] mb-0">Se a resposta for sim para alguma dessas perguntas, você está no lugar certo. Afinal, se chegou até aqui, provavelmente está buscando uma forma mais inteligente e previsível de atrair clientes para sua empresa.</p>
         <p className="leading-[21px] mb-0">​</p>
@@ -127,7 +127,7 @@ function Group6() {
 function Group7() {
   return (
     <div className="-translate-x-1/2 absolute contents left-[calc(50%-236px)] top-[1547px]">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[170px] not-italic text-[#39471d] text-[14px] top-[1762.5px] w-[624px] whitespace-pre-wrap">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[170px] not-italic text-[#39471d] text-[14px] top-[1762.5px] w-[624px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">O Tráfego Pago é uma das formas mais rápidas e eficientes de gerar oportunidades de negócio para sua empresa, pois permite que sua marca seja encontrada exatamente pelas pessoas que possuem interesse nos seus produtos ou serviços.</p>
         <p className="leading-[21px] mb-0">​</p>
         <p className="leading-[21px] mb-0">Por meio de campanhas segmentadas e estratégias orientadas por dados, seus anúncios são exibidos para o público ideal, aumentando significativamente as chances de conversão.</p>
@@ -162,7 +162,7 @@ function Copy() {
       {/* Description */}
       <p
         className="flex-1 text-[#39471d] text-[14px] leading-[1.55]"
-        style={{ fontFamily: "'Gotham:Book','Montserrat',sans-serif", fontWeight: 400 }}
+        style={{ fontFamily: "'Gotham:Medium','Montserrat',sans-serif", fontWeight: 400 }}
       >
         Com o tráfego pago seu negócio se torna muito mais estratégico e inteligente, visando a captação e nutrição de novos leads com conteúdos ricos e muito mais!
       </p>
@@ -349,16 +349,16 @@ function Group12() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[199px] not-italic text-[16px] text-white top-[3737px] whitespace-nowrap">
         <p className="leading-[20px]">Aceito receber e-mails personalizados com estratégias e materiais sobre marketing digital</p>
       </div>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3181px] whitespace-nowrap">Nome</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3259px] whitespace-nowrap">E-mail</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3337px] whitespace-nowrap">Cargo</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3415px] whitespace-nowrap">Quanto sua empresa investe em marketing mensalmente?</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3494px] whitespace-nowrap">Qual é o tipo de ajuda que você procura? Conte um pouco sobre o problema que está enfrentando hoje.</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[454px] not-italic text-[#c5c5c5] text-[14px] top-[3259px] whitespace-nowrap">Telefone/WhatsApp</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[454px] not-italic text-[#c5c5c5] text-[14px] top-[3337px] whitespace-nowrap">Nº de funcionários</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[749px] not-italic text-[#c5c5c5] text-[14px] top-[3181px] whitespace-nowrap">Sobrenome</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[749px] not-italic text-[#c5c5c5] text-[14px] top-[3260px] whitespace-nowrap">Empresa</p>
-      <p className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[21px] left-[749px] not-italic text-[#c5c5c5] text-[14px] top-[3338px] whitespace-nowrap">www.site.com.br</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3181px] whitespace-nowrap">Nome</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3259px] whitespace-nowrap">E-mail</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3337px] whitespace-nowrap">Cargo</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3415px] whitespace-nowrap">Quanto sua empresa investe em marketing mensalmente?</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[179px] not-italic text-[#c5c5c5] text-[14px] top-[3494px] whitespace-nowrap">Qual é o tipo de ajuda que você procura? Conte um pouco sobre o problema que está enfrentando hoje.</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[454px] not-italic text-[#c5c5c5] text-[14px] top-[3259px] whitespace-nowrap">Telefone/WhatsApp</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[454px] not-italic text-[#c5c5c5] text-[14px] top-[3337px] whitespace-nowrap">Nº de funcionários</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[749px] not-italic text-[#c5c5c5] text-[14px] top-[3181px] whitespace-nowrap">Sobrenome</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[749px] not-italic text-[#c5c5c5] text-[14px] top-[3260px] whitespace-nowrap">Empresa</p>
+      <p className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[21px] left-[749px] not-italic text-[#c5c5c5] text-[14px] top-[3338px] whitespace-nowrap">www.site.com.br</p>
     </div>
   );
 }
@@ -424,22 +424,22 @@ function Group5() {
   return (
     <div className="-translate-x-1/2 absolute contents left-1/2 top-[4054.5px]">
       <div className="absolute border-[#39471d] border-dashed border-t h-[10px] left-[150px] top-[4054.5px] w-[1138.838px]" data-name="HorizontalBorder" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[4094.5px] w-[184.771px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[4094.5px] w-[184.771px]">
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Política de Privacidade</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-336.49px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[38.349px]">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-336.49px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[38.349px]">
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Blog</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-247.66px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[55.78px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-247.66px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[55.78px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Cursos</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-142.55px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[72.049px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-142.55px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[72.049px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Mentoria</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%-32.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[73.211px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-32.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[73.211px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Palestras</p>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[calc(50%+72.11px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[66.239px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%+72.11px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[66.239px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Contato</p>
       </div>
       <ListRedesSociais />
@@ -453,13 +453,13 @@ function Group13() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[20px] top-[3921.5px] whitespace-nowrap">
         <p className="leading-[21px]">Sekoia Marketing</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[3969px] whitespace-nowrap">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[3969px] whitespace-nowrap">
         <p className="leading-[21px] mb-0">
           <a href="mailto:contato@sekoiamarketing.com.br" className="hover:underline">contato@sekoiamarketing.com.br</a>
         </p>
         <p className="leading-[21px]">+55 (47) 99215-6393</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] not-italic right-[150px] text-[#39471d] text-[14px] text-right top-[3969px] whitespace-nowrap">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] not-italic right-[150px] text-[#39471d] text-[14px] text-right top-[3969px] whitespace-nowrap">
         <p className="leading-[21px] mb-0">Todos os direitos reservados</p>
         <p className="leading-[21px]">CNPJ 66.526.186/0001-25</p>
       </div>
@@ -538,7 +538,7 @@ export default function HotPageTrafegoPagoSekoia() {
         className="absolute h-[65px] left-[170px] top-[46px] w-[263px] object-contain"
         data-name="HORIZONTAL_LOGOTIPO SEKOIA_7 2"
       />
-      <div className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[0] left-[calc(50%-570px)] not-italic text-[#39471d] text-[115px] top-[195px] whitespace-nowrap">
+      <div className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[0] left-[calc(50%-570px)] not-italic text-[#39471d] text-[115px] top-[195px] whitespace-nowrap">
         <p className="font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0">+vendas.</p>
         <p className="font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0 text-[#a0a320]">+previsibilidade.</p>
         <p className="font-['Gotham_Black:Regular',sans-serif] leading-[1.133]">+escala.</p>
@@ -556,7 +556,7 @@ export default function HotPageTrafegoPagoSekoia() {
             className="sek-card absolute flex h-[235px] w-[270px] items-center justify-center rounded-[30px] bg-[#fafafa] shadow-[inset_-4px_-4px_8px_-2px_rgba(0,0,0,0.25),inset_4px_4px_8px_-2px_rgba(0,0,0,0.25)]"
             style={{ left: card.left, "--i": i } as CSSProperties}
           >
-            <span className="sek-card-label relative font-['Gotham:Book',sans-serif] text-[20px] text-black whitespace-nowrap">
+            <span className="sek-card-label relative font-['Gotham:Medium',sans-serif] text-[20px] text-black whitespace-nowrap">
               {card.label}
             </span>
           </div>
@@ -570,7 +570,7 @@ export default function HotPageTrafegoPagoSekoia() {
         </div>
       </div>
       <div className="-translate-x-1/2 absolute bg-[rgba(255,255,255,0.8)] border border-[#a0a320] border-solid h-[21px] left-[calc(50%-0.5px)] rounded-[40px] top-[823px] w-[153px]" />
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Book',sans-serif] justify-center leading-[0] left-1/2 not-italic text-[#a0a320] text-[10px] text-center top-[834.5px] whitespace-nowrap">
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-1/2 not-italic text-[#a0a320] text-[10px] text-center top-[834.5px] whitespace-nowrap">
         <p className="leading-[0.863]">DOMINE OS SEU MERCADO</p>
       </div>
       <div className="-translate-x-1/2 absolute h-[220px] left-1/2 top-[914px] w-[1140px]" data-name="Background+Shadow">
@@ -641,7 +641,7 @@ export default function HotPageTrafegoPagoSekoia() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[159px] not-italic text-[26px] text-white top-[2495.5px] w-[235px]">
         <p className="leading-[31.2px]">Conheça a metodologia que vamos aplicar no seu negócio!</p>
       </div>
-      <div className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[0] left-[434px] not-italic text-[#39471d] text-[14px] top-[2493px] w-[510px] whitespace-pre-wrap">
+      <div className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[0] left-[434px] not-italic text-[#39471d] text-[14px] top-[2493px] w-[510px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">Na primeira fase, chamada Setup Estratégico, realizamos toda a estruturação necessária para construir suas campanhas:</p>
         <p className="leading-[21px] mb-0">​</p>
         <p className="leading-[21px]">
@@ -653,7 +653,7 @@ export default function HotPageTrafegoPagoSekoia() {
           <br aria-hidden />• Planejamento da estratégia de mídia e investimento.
         </p>
       </div>
-      <div className="[word-break:break-word] absolute font-['Gotham:Book',sans-serif] leading-[0] left-[158px] not-italic text-[#39471d] text-[14px] top-[2855px] w-[868px] whitespace-pre-wrap">
+      <div className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[0] left-[158px] not-italic text-[#39471d] text-[14px] top-[2855px] w-[868px] whitespace-pre-wrap">
         <p className="leading-[21px] mb-0">A solução de Tráfego Pago da SEKOIA já ajudou empresas a conquistarem mais visibilidade, oportunidades comerciais e crescimento sustentável através da mídia digital.</p>
         <p className="leading-[21px] mb-0">​</p>
         <p className="leading-[21px] mb-0">Nosso cliente Brumix Concreto ampliou significativamente a qualidade dos leads gerados, enquanto outro cliente conquistou um crescimento significativo no volume de oportunidades comerciais através das campanhas de mídia paga.</p>

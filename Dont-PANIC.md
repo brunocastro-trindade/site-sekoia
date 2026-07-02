@@ -32,6 +32,15 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Remove FAB Instagram, pills no menu, texto mais legível
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** removido `InstagramFab` (só o WhatsApp flutua agora). No header, os
+  itens Soluções/Orçamentos/Contato ganharam um **pill branco** (rounded-full,
+  padding pequeno, sombra leve). Legibilidade: corpo do texto migrou de
+  `Gotham:Book` → `Gotham:Medium` (mais encorpado; cor #39471d mantida por já ter
+  bom contraste) em `index.tsx` (27×) e `MethodologySection.tsx`.
+- **Por quê:** simplificar os flutuantes, destacar o menu e melhorar a leitura.
+
 ### 2026-07-02 — Vídeo contínuo + favicon escuro
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** o vídeo da árvore voltou a ser **contínuo** (autoplay em loop, sem

@@ -3,7 +3,6 @@ import MethodologySection from "./MethodologySection";
 import ContactForm from "./ContactForm";
 import { Canvas } from "../components/Canvas";
 import { WhatsAppFab } from "../components/WhatsAppFab";
-import { InstagramFab } from "../components/InstagramFab";
 
 // Coordenadas dentro do canvas de 1440×4259 (espaço Figma)
 // Copy CTA banner termina em y=2408; "Seja o próximo case" começa em y≈2771
@@ -69,7 +68,6 @@ export default function App() {
     </Canvas>
 
     <WhatsAppFab />
-    <InstagramFab />
     </>
   );
 }
