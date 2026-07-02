@@ -32,6 +32,20 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Vídeo da árvore com scroll-scrubbing (cascata)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** substituído o vídeo da seção "Como podemos te ajudar" pelo novo
+  (`public/tree.mp4`, reencodado all-intra p/ scrub suave, fundo clareado via
+  ffmpeg). Novo `src/components/TreeScrollVideo.tsx`: no desktop amarra
+  `video.currentTime` à rolagem (semente→árvore cresce); no mobile (<900px ou
+  ponteiro grosso) cai para autoplay em loop. Quadro trocado para retrato
+  (262×465, `rounded-16`). **Removidos** `SequoiaVideo.tsx` e `sequoia.mp4`.
+- **Por quê:** animação em cascata guiada pela rolagem, alinhada à ideia de
+  crescimento da Sekoia.
+- **Nota:** `tree.mp4` ~8.5MB (all-intra = qualidade + seek suave). Se acumular
+  vídeos, considerar Git LFS/CDN. Remover o `SequoiaVideo` também eliminou o loop
+  de canvas que travava os screenshots do preview.
+
 ### 2026-07-01 — Mitigação mobile (piso de escala) + form Namtab mais largo
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `Canvas.tsx` ganhou piso de escala `MIN_SCALE=0.5` — em telas <720px
