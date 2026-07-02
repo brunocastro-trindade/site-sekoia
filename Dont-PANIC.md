@@ -32,6 +32,21 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Form da marca conectado ao Namtab via proxy PHP
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** substituído o iframe do Namtab por um **formulário próprio** (visual
+  da empresa, 8 campos) em `ContactForm.tsx`, que envia via `fetch` para
+  `public/submit.php` — um proxy que repassa ao Namtab servidor-a-servidor
+  (contorna o CORS restrito do Namtab). Doc de leads reescrita.
+- **Descoberta (engenharia reversa):** Namtab é app Lovable+Supabase; o form usa
+  `get-form-data?slug=sekoia-marketing-149` (agencia_id 149, campos 1326-1333) e
+  `submit-form-data`. Testei um POST real → `{success:true}` (lead "TESTE" no
+  Namtab, pode apagar).
+- **Por quê:** visual 100% da marca mantendo o lead caindo no Namtab.
+- **Notas:** não é possível "pilotar" o iframe cross-origin (Same-Origin Policy);
+  por isso o form próprio + proxy. Endpoints do Namtab são não-documentados
+  (risco de mudança). `submit.php` exige PHP+cURL (ok na Hostinger).
+
 ### 2026-07-02 — Remove FAB Instagram, pills no menu, texto mais legível
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** removido `InstagramFab` (só o WhatsApp flutua agora). No header, os

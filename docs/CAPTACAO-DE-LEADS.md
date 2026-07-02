@@ -1,58 +1,69 @@
 # Captação de Leads — Site Sekoia
 
-A captação de leads é feita pelo **Namtab** (ferramenta de formulários/CRM),
-embutido na landing via **iframe**. Quem preenche vira lead direto no sistema do
-Namtab, que dispara o **webhook** configurado lá. Além disso, os CTAs abrem o
+A captação usa um **formulário próprio (identidade da empresa)** que envia os
+leads para o **Namtab** através de um proxy PHP no servidor. Os CTAs abrem o
 **WhatsApp**.
 
-> Histórico: antes essa captação passava por Supabase (Edge Function + Postgres).
-> Migramos para o Namtab para simplificar (sem backend próprio) — todo o código
-> de Supabase foi removido.
+> Evolução: Supabase próprio → iframe do Namtab → **form da marca + proxy → Namtab**.
+> Motivo da última mudança: manter o visual da empresa e ainda cair no Namtab.
 
-## 1. Formulário (Namtab via iframe)
-
-- **Onde:** `src/app/ContactForm.tsx` renderiza um iframe dentro de um card da
-  marca (verde-escuro), na seção de contato da landing.
-- **URL do formulário:** `https://web.namtab.io/form/sekoia-marketing-149`
-  (constante `NAMTAB_FORM_URL` no componente).
-- **Fluxo:** pessoa preenche no iframe → vira lead no Namtab → webhook do Namtab
-  dispara. Nada trafega pelo código do site além de exibir o formulário.
+## 1. Arquitetura
 
 ```
-Pessoa preenche  →  iframe Namtab  →  lead no Namtab  →  webhook
-                    (ContactForm.tsx)     (sistema Namtab)
+Form da marca (React)  --POST /submit.php-->  Proxy PHP  --POST-->  Namtab (Supabase)
+   src/app/ContactForm.tsx        public/submit.php        submit-form-data (agencia 149)
 ```
 
-### Trocar o formulário
+Por que o proxy: o endpoint do Namtab só libera CORS para `web.namtab.io`, então
+o navegador **não** pode postar direto do nosso domínio. O `submit.php` faz a
+chamada **servidor-a-servidor** (CORS não se aplica), repassando o lead.
 
-Para apontar para outro formulário do Namtab, edite `NAMTAB_FORM_URL` em
-`src/app/ContactForm.tsx`. O gerenciamento dos campos, validação, notificações e
-webhook fica todo no painel do Namtab.
+## 2. Arquivos
 
-### Observações
+| Arquivo | Papel |
+|---|---|
+| `src/app/ContactForm.tsx` | Formulário da marca (8 campos), validação, envio, feedback. |
+| `public/submit.php` | Proxy: valida, anti-spam (honeypot) e repassa ao Namtab. |
+| `src/lib/contact.ts` | Número de WhatsApp + `openWhatsApp()` (CTAs). |
 
-- O iframe do Namtab tem o **visual padrão da ferramenta** (dentro de um card
-  verde da marca). Ajustes de estilo do formulário são feitos no Namtab.
-- **Altura:** fixada em `560px`. Se o formulário do Namtab ficar maior, ele rola
-  internamente; dá para ajustar a altura no componente.
-- **LGPD/cookies:** por ser um iframe de terceiro (namtab.io), convém mencionar
-  na Política de Privacidade.
+## 3. Mapeamento dos campos (form → Namtab)
 
-## 2. CTAs de WhatsApp
+Descoberto via `get-form-data?slug=sekoia-marketing-149`. `agencia_id = 149`.
 
-Os botões de chamada para ação abrem o WhatsApp. Número e gerador de link ficam
-em **`src/lib/contact.ts`**:
+| Campo (form) | id Namtab | Obrigatório |
+|---|---|---|
+| Nome | 1326 | ✅ |
+| Cargo | 1327 | |
+| Email | 1328 | ✅ |
+| Telefone | 1329 | |
+| Empresa | 1330 | |
+| Tipo/segmento | 1331 | |
+| Como podemos te ajudar? | 1332 | |
+| Investimento | 1333 | |
 
+Payload enviado ao Namtab:
+`POST submit-form-data { agencia_id: 149, campos: [{ id, nome, valor, campo_extra:false }] }`
+
+## 4. Requisitos de deploy (Hostinger)
+
+- `submit.php` precisa de **PHP com cURL** (padrão na hospedagem compartilhada
+  Hostinger). Ele vai para a **raiz** do site (é copiado do `public/` para o
+  `dist/`), acessível em `https://seudominio/submit.php`.
+- **Não há variáveis de ambiente** no frontend. Endpoint e `agencia_id` estão no
+  `submit.php`.
+- Em ambiente sem PHP (ex.: `npm run dev` do Vite) o envio real não funciona — só
+  a UI/validação. Teste o envio no site publicado.
+
+## 5. Manutenção / riscos
+
+- Os endpoints do Namtab são **internos/não-documentados** (engenharia reversa do
+  app público). Se o Namtab mudar o contrato, o `submit.php` pode precisar de
+  ajuste. Para trocar de formulário, rode `get-form-data?slug=<novo-slug>` e
+  atualize `AGENCIA_ID` e o mapa de ids no `submit.php`.
+- Plano B à prova de quebra: voltar ao iframe oficial do Namtab.
+
+## 6. CTAs de WhatsApp
+
+Em `src/lib/contact.ts`:
 - `WHATSAPP_NUMBER` — `5547992156393` (CTAs principais e botão flutuante).
-- `WHATSAPP_NUMBER_FOOTER` — `5547991603130` (links Cursos/Mentoria/Palestras/
-  Contato do rodapé).
-- `openWhatsApp(mensagem?)` / `openWhatsAppNumber(numero, mensagem?)`.
-
-CTAs ligados: botão verde "SOLICITE SEU ORÇAMENTO", header "Quero uma equipe
-profissional", botão flutuante (`WhatsAppFab`), e os links do rodapé.
-
-## 3. Deploy
-
-O site é estático (Vite/React) — o `npm run build` gera o `dist/`, que sobe para
-a Hostinger (ver `docs/DEPLOY-HOSTINGER.md`). Como o formulário é um iframe
-externo, **não há variáveis de ambiente nem backend** para configurar.
+- `WHATSAPP_NUMBER_FOOTER` — `5547991603130` (links do rodapé).
