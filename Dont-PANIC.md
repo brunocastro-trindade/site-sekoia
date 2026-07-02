@@ -32,6 +32,18 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-01 — Botão flutuante do Instagram
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** novo `src/components/InstagramFab.tsx` (fixo, gradiente do Instagram,
+  animação bob defasada) empilhado acima do WhatsApp em `App.tsx`; abre
+  `instagram.com/sekoia.ag`.
+- **Por quê:** CTA social flutuante persistente.
+- **Nota (responsividade):** o site usa um canvas fixo de 1440px escalado por
+  transform (`scale = largura/1440`). Não quebra/estoura em nenhum tamanho, mas
+  não tem reflow real — em telas pequenas tudo encolhe (texto ~3.6px a 375px,
+  ~7.5px a 768px) e o form fica pequeno. Bom de 1280px+. Os FABs ficam fora do
+  canvas (60px fixos), então seguem usáveis em qualquer tela.
+
 ### 2026-07-01 — Reenquadramento do form Namtab (visual leve/moderno)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `ContactForm.tsx` — trocado o card verde largo (1160px) por uma
