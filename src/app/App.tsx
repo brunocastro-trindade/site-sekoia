@@ -10,7 +10,7 @@ import { InstagramFab } from "../components/InstagramFab";
 const METH_TOP = 2410;
 const METH_HEIGHT = 360; // cobre até y=2770, justo antes do próximo bloco
 const FORM_TOP = 3091;
-const FORM_HEIGHT = 750;
+const FORM_HEIGHT = 800;
 
 export default function App() {
   return (

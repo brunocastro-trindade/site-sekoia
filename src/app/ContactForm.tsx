@@ -4,8 +4,9 @@ import { openWhatsApp } from "../lib/contact";
 // no sistema do Namtab, que dispara o webhook). Embutido via iframe.
 const NAMTAB_FORM_URL = "https://web.namtab.io/form/sekoia-marketing-149";
 
-// Largura enxuta, próxima à do próprio formulário, para um enquadramento justo.
-const BLOCK_WIDTH = 560;
+// Largura do bloco de contato — acompanha a largura de conteúdo do site (faixas
+// e header usam ~1140px), preenchendo as laterais e evitando espaço branco vazio.
+const BLOCK_WIDTH = 1140;
 
 const font = {
   bold: { fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif" } as React.CSSProperties,
@@ -29,7 +30,7 @@ export default function ContactForm() {
           src={NAMTAB_FORM_URL}
           title="Formulário de contato Sekoia"
           width="100%"
-          height="560"
+          height="620"
           loading="lazy"
           style={{ border: "none", display: "block", width: "100%" }}
         />

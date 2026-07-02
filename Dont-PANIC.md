@@ -32,6 +32,18 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-01 — Mitigação mobile (piso de escala) + form Namtab mais largo
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `Canvas.tsx` ganhou piso de escala `MIN_SCALE=0.5` — em telas <720px
+  o conteúdo não encolhe além de 50% e habilita rolagem horizontal (sizer com
+  dimensões visuais). `index.html` explicita `user-scalable=yes, maximum-scale=5`
+  (pinch-zoom). `ContactForm.tsx`: iframe do Namtab alargado (560→1140) e mais
+  alto (560→620) para preencher as laterais e evitar scroll interno; máscara do
+  form em `App.tsx` 750→800.
+- **Por quê:** melhorar leitura no mobile (opção 2) e o pedido de form mais largo.
+- **Caveat:** o form do Namtab pode centralizar os campos (largura interna própria
+  da ferramenta); para os campos ocuparem toda a largura, ajustar no painel Namtab.
+
 ### 2026-07-01 — Botão flutuante do Instagram
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** novo `src/components/InstagramFab.tsx` (fixo, gradiente do Instagram,
