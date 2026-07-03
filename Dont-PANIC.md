@@ -32,6 +32,17 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Instalação do Meta Pixel
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `index.html` — script do Meta Pixel (ID `1217330763796782`) no
+  `<head>` com `init` + `track PageView`; o `<noscript><img>` foi para o `<body>`
+  (no `<head>` o parse5 do Vite rejeita `img` dentro de `noscript` —
+  `disallowed-content-in-noscript-in-head`).
+- **Validação:** rede confirmou `fbevents.js` 200, `signals/config/<id>` 200 e
+  `facebook.com/tr?...ev=PageView` 200; `fbq.version` = 2.9.349 (lib real).
+- **Nota:** `<meta robots noindex,nofollow>` segue no head (não afeta o pixel,
+  mas impede indexação — avaliar remover para SEO).
+
 ### 2026-07-02 — Layout mobile dedicado (iteração 1: essencial)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `App.tsx` passou a detectar largura (`useIsMobile`, breakpoint 900px)
