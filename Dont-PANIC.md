@@ -32,6 +32,15 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Eventos do Meta Pixel (Lead + Contact)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** novo `src/lib/pixel.ts` (`trackPixel` seguro, com `declare global`
+  para `window.fbq`). `Lead` disparado no envio bem-sucedido do formulário
+  (`ContactForm.tsx`); `Contact` em todos os CTAs de WhatsApp
+  (`openWhatsApp`/`openWhatsAppNumber` em `contact.ts`).
+- **Validação:** interceptando `fbq`, confirmado `Contact` no clique do WhatsApp e
+  `Lead` no submit com sucesso (fetch mockado). PageView já disparava no load.
+
 ### 2026-07-02 — Mobile iteração 3: metodologia, ticker e "seja o próximo case"
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `MethodologySection.tsx` agora exporta `PHASES` (reuso). `MobileApp.tsx`

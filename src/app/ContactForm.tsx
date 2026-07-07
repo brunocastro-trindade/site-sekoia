@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { openWhatsApp } from "../lib/contact";
+import { trackPixel } from "../lib/pixel";
 
 // O formulário é da marca (visual da empresa) e envia para o Namtab através de
 // uma Serverless Function na Vercel (/api/submit), que repassa servidor-a-servidor
@@ -65,6 +66,7 @@ export default function ContactForm() {
       if (!res.ok || !data.success) {
         throw new Error(data.error || `Falha ao enviar (HTTP ${res.status}). Tente novamente.`);
       }
+      trackPixel("Lead");
       setStatus("success");
       setMessage("Recebemos seus dados! Em breve entraremos em contato.");
       setForm(initialForm);
