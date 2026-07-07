@@ -20,7 +20,7 @@ type PhaseData = {
   bullets?: string[];
 };
 
-const PHASES: PhaseData[] = [
+export const PHASES: PhaseData[] = [
   {
     id: 1,
     title: "1ª fase do Tráfego pago na Sekoia",

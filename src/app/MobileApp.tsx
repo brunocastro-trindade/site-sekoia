@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ContactForm from "./ContactForm";
+import { PHASES } from "./MethodologySection";
 import { TreeVideo } from "../components/TreeVideo";
 import { openWhatsApp, openWhatsAppNumber, WHATSAPP_NUMBER_FOOTER } from "../lib/contact";
 
@@ -23,6 +24,85 @@ const NAV: [string, string][] = [
   ["Orçamentos", "orcamentos"],
   ["Contato", "contato"],
 ];
+
+/** Faixa "ticker" horizontal contínua (versão mobile, sem diagonal). */
+function MobileTicker() {
+  const unit = Array(8).fill("A SEKOIA PODE TE AJUDAR").join("  •  ");
+  return (
+    <div className="overflow-hidden py-3" style={{ background: OLIVE }}>
+      <div className="sek-ticker" style={{ width: "max-content" }}>
+        <span className="whitespace-nowrap px-3 text-[13px]" style={{ color: GREEN, ...gotham("Bold") }}>{unit}</span>
+        <span className="whitespace-nowrap px-3 text-[13px]" aria-hidden="true" style={{ color: GREEN, ...gotham("Bold") }}>{unit}</span>
+      </div>
+    </div>
+  );
+}
+
+/** Metodologia em accordion vertical (texto completo, sem cap de altura). */
+function MobileMethodology() {
+  const [openId, setOpenId] = useState<number | null>(1);
+  return (
+    <section className="px-5 py-8">
+      <div className="rounded-[20px] p-5" style={{ background: GREEN }}>
+        <h2 className="mb-4 text-[20px] text-white" style={gotham("Bold")}>
+          Conheça a metodologia que vamos aplicar no seu negócio!
+        </h2>
+        <div className="flex flex-col gap-3">
+          {PHASES.map((phase) => {
+            const isOpen = openId === phase.id;
+            const Icon = phase.Icon;
+            return (
+              <div key={phase.id} className="overflow-hidden rounded-[15px] bg-[#f7f7f7]">
+                <button
+                  type="button"
+                  onClick={() => setOpenId(isOpen ? null : phase.id)}
+                  className="flex w-full items-center justify-between px-5 py-4 text-left"
+                >
+                  <span className="pr-3 text-[15px] text-[#39471d]" style={gotham("Bold")}>{phase.title}</span>
+                  <span
+                    aria-hidden="true"
+                    style={{ fontSize: 26, lineHeight: 1, color: GREEN, flexShrink: 0, transition: "transform .4s cubic-bezier(0.16,1,0.3,1)", transform: isOpen ? "rotate(45deg)" : "none" }}
+                  >
+                    +
+                  </span>
+                </button>
+                <div style={{ display: "grid", gridTemplateRows: isOpen ? "1fr" : "0fr", transition: "grid-template-rows .5s cubic-bezier(0.16,1,0.3,1)" }}>
+                  <div style={{ overflow: "hidden" }}>
+                    <div className="px-5 pb-5">
+                      {phase.paragraphs.map((p, i) => (
+                        <p key={i} className="mb-2 text-[14px] leading-relaxed text-[#39471d]" style={gotham("Medium")}>{p}</p>
+                      ))}
+                      {phase.bullets && (
+                        <ul className="m-0 list-none p-0 text-[14px] leading-relaxed text-[#39471d]" style={gotham("Medium")}>
+                          {phase.bullets.map((b, i) => (
+                            <li key={i}>• {b}</li>
+                          ))}
+                        </ul>
+                      )}
+                      <div className="mt-4 flex flex-wrap items-center gap-3">
+                        <div className="size-[28px] shrink-0">
+                          <Icon />
+                        </div>
+                        {phase.badge && (
+                          <span className="text-[13px] text-[#39471d]" style={gotham("Bold")}>{phase.badge}</span>
+                        )}
+                        {phase.showDays && (
+                          <span className="rounded-full px-3 py-1 text-[12px] text-[#39471d]" style={{ background: "rgba(160,163,32,0.25)", ...gotham("Bold") }}>
+                            {phase.daysLabel}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /**
  * Layout mobile dedicado (reflow real): coluna única, texto legível e botões
@@ -167,6 +247,51 @@ export function MobileApp() {
         >
           Fale com um especialista
         </button>
+      </section>
+
+      {/* ── Ticker ── */}
+      <MobileTicker />
+
+      {/* ── Metodologia ── */}
+      <MobileMethodology />
+
+      {/* ── Seja o próximo case ── */}
+      <section className="px-5 py-8">
+        <h2 className="text-[22px]" style={gotham("Bold")}>
+          Seja o próximo case de Tráfego pago com a Sekoia
+        </h2>
+        <p className="mt-3 text-[15px] leading-relaxed" style={gotham("Medium")}>
+          A solução de Tráfego Pago da SEKOIA já ajudou empresas a conquistarem mais
+          visibilidade, oportunidades comerciais e crescimento sustentável através da
+          mídia digital.
+        </p>
+        <p className="mt-3 text-[15px] leading-relaxed" style={gotham("Medium")}>
+          Nosso cliente Brumix Concreto ampliou significativamente a qualidade dos leads
+          gerados, enquanto outro cliente conquistou um crescimento significativo no
+          volume de oportunidades comerciais através das campanhas de mídia paga.
+        </p>
+        <p className="mt-3 text-[15px] leading-relaxed" style={gotham("Medium")}>
+          Conte com o Tráfego Pago da SEKOIA para atrair mais clientes, aumentar suas
+          vendas e acelerar os resultados do seu negócio.
+        </p>
+        <div className="mt-6 flex flex-col gap-3">
+          <button
+            type="button"
+            onClick={() => openWhatsApp("Olá! Vim pelo site da Sekoia e gostaria de falar com um especialista.")}
+            className="w-full rounded-[12px] py-4 text-[15px] text-white"
+            style={{ background: GREEN, ...gotham("Bold") }}
+          >
+            Fale com um especialista
+          </button>
+          <button
+            type="button"
+            onClick={() => openWhatsApp()}
+            className="w-full rounded-[12px] py-4 text-[15px] text-white"
+            style={{ background: "#1fcb41", ...gotham("Bold") }}
+          >
+            Nos chame no WhatsApp
+          </button>
+        </div>
       </section>
 
       {/* ── Formulário (reaproveitado) ── */}

@@ -32,6 +32,16 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Mobile iteração 3: metodologia, ticker e "seja o próximo case"
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `MethodologySection.tsx` agora exporta `PHASES` (reuso). `MobileApp.tsx`
+  ganhou 3 seções novas entre o vídeo e o formulário: `MobileTicker` (faixa oliva
+  contínua), `MobileMethodology` (accordion vertical das 3 fases, texto completo
+  sem cap de altura), e "Seja o próximo case" (texto do case + CTAs "Fale com um
+  especialista" / "Nos chame no WhatsApp").
+- **Validação (375px):** sem scroll horizontal; nenhum CTA cortado; accordion
+  abre/fecha (0 → 482px → 0); as 3 seções presentes.
+
 ### 2026-07-02 — Mobile: correção de encaixe dos CTAs (iteração 2)
 - **Autor/PR:** solicitado pelo dono do repositório (análise de CTAs no mobile).
 - **Mudou:** removido `whiteSpace:nowrap` do CTA "SOLICITE SEU ORÇAMENTO..."
