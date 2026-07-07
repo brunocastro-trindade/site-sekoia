@@ -17,7 +17,7 @@ const SECTIONS = {
  * aplicada pelo <Canvas> em viewports menores que 1440px.
  */
 function scrollToFigmaY(y: number) {
-  const scale = window.innerWidth < 1440 ? window.innerWidth / 1440 : 1;
+  const scale = Math.max(window.innerWidth / 1440, 0.5);
   window.scrollTo({ top: Math.max(0, y * scale - 24), behavior: "smooth" });
 }
 
