@@ -179,9 +179,9 @@ export default function ContactForm() {
           color: "#fffefc",
           ...font.bold,
           letterSpacing: "0.02em",
-          whiteSpace: "nowrap",
           cursor: "pointer",
           border: "none",
+          lineHeight: 1.25,
         }}
       >
         SOLICITE SEU ORÇAMENTO, AGORA MESMO!

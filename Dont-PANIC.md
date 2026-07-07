@@ -32,6 +32,16 @@ qualquer pessoa com acesso ao repositório.
 
 ## Histórico
 
+### 2026-07-02 — Mobile: correção de encaixe dos CTAs (iteração 2)
+- **Autor/PR:** solicitado pelo dono do repositório (análise de CTAs no mobile).
+- **Mudou:** removido `whiteSpace:nowrap` do CTA "SOLICITE SEU ORÇAMENTO..."
+  (`ContactForm.tsx`) — estava cortando no celular; agora quebra em 2 linhas.
+  No `MobileApp.tsx`: hero `fontSize` clamp(44→15vw→72) → clamp(30→9.5vw→62) para
+  o "+previsibilidade." caber (antes transbordava); toques do rodapé (links
+  Cursos/…/Contato e Instagram) subidos para ≥44px.
+- **Validação (375px):** sem scroll horizontal; SOLICITE sem corte (h=70, 2 linhas);
+  hero sem overflow (scrollW=clientW); toques do rodapé 44px.
+
 ### 2026-07-02 — Instalação do Meta Pixel
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `index.html` — script do Meta Pixel (ID `1217330763796782`) no

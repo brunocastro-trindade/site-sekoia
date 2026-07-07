@@ -101,7 +101,7 @@ export function MobileApp() {
           <span className="text-[8px]">●</span> Performance &amp; Resultados
         </span>
 
-        <h1 className="mt-4 leading-[0.95]" style={{ fontFamily: "'Gotham Black:Regular', 'Montserrat', sans-serif", fontSize: "clamp(44px, 15vw, 72px)", color: GREEN }}>
+        <h1 className="mt-4 leading-[0.98] break-words" style={{ fontFamily: "'Gotham Black:Regular', 'Montserrat', sans-serif", fontSize: "clamp(30px, 9.5vw, 62px)", color: GREEN }}>
           <span className="block">+vendas.</span>
           <span className="block underline decoration-4 underline-offset-4" style={{ color: OLIVE, textDecorationColor: OLIVE }}>
             +previsibilidade.
@@ -191,7 +191,7 @@ export function MobileApp() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram da Sekoia"
-          className="mt-4 inline-flex"
+          className="mt-3 -ml-2 inline-flex p-2"
           style={{ color: GREEN }}
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -201,9 +201,14 @@ export function MobileApp() {
           </svg>
         </a>
 
-        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[14px]" style={gotham("Medium")}>
+        <div className="mt-4 flex flex-wrap gap-x-5 text-[14px]" style={gotham("Medium")}>
           {["Cursos", "Mentoria", "Palestras", "Contato"].map((l) => (
-            <button key={l} type="button" onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} className="underline">
+            <button
+              key={l}
+              type="button"
+              onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}
+              className="inline-flex min-h-[44px] items-center underline"
+            >
               {l}
             </button>
           ))}
