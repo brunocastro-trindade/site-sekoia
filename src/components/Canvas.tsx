@@ -10,19 +10,17 @@ const MIN_SCALE = 0.5;
 
 /**
  * Escala o canvas de 1440px para caber no viewport.
- * - ≥ 1440px: tamanho real, centralizado.
- * - entre ~720px e 1440px: escala para caber na largura (sem rolagem horizontal).
- * - < 720px (celular): trava no piso MIN_SCALE; o conteúdo fica maior que a tela
- *   e pode ser rolado horizontalmente / ampliado com pinch-zoom.
+ * - sempre escala para preencher a largura (sem margens laterais em branco).
+ * - < 720px (celular): trava no piso MIN_SCALE; o conteúdo pode ser rolado
+ *   horizontalmente / ampliado com pinch-zoom.
  */
 export function Canvas({ children }: { children: ReactNode }) {
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
     const update = () => {
-      const w = window.innerWidth;
-      const fit = w / CANVAS_WIDTH;
-      setScale(w >= CANVAS_WIDTH ? 1 : Math.max(fit, MIN_SCALE));
+      const fit = window.innerWidth / CANVAS_WIDTH;
+      setScale(Math.max(fit, MIN_SCALE));
     };
     update();
     window.addEventListener("resize", update);
@@ -31,7 +29,7 @@ export function Canvas({ children }: { children: ReactNode }) {
 
   const visualW = CANVAS_WIDTH * scale;
   const visualH = CANVAS_HEIGHT * scale;
-  // Está "pisado" quando a largura visual passou da largura da tela.
+  // "pisado" só quando MIN_SCALE segura a escala (mobile < 720px).
   const floored =
     typeof window !== "undefined" && visualW > window.innerWidth + 0.5;
 
@@ -43,15 +41,12 @@ export function Canvas({ children }: { children: ReactNode }) {
         overflowY: "hidden",
       }}
     >
-      {/* Sizer com as dimensões VISUAIS reais: recorta as faixas largas (tickers)
-          e define a área de rolagem horizontal correta. */}
       <div
         style={{
           width: visualW,
           height: visualH,
           overflow: "hidden",
           position: "relative",
-          margin: scale >= 1 ? "0 auto" : undefined,
         }}
       >
         <div
