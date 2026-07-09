@@ -3,16 +3,18 @@ import { useEffect, useState, type ReactNode } from "react";
 const CANVAS_WIDTH = 1440;
 const CANVAS_HEIGHT = 4259;
 
-// Piso de escala: em telas pequenas o canvas não encolhe além disto, para o
-// conteúdo não ficar microscópico. Quando o piso "segura" a escala, o conteúdo
-// fica mais largo que a tela e habilitamos rolagem horizontal + pinch-zoom.
+// Piso de escala: em telas pequenas o canvas não encolhe além disto (evita
+// conteúdo microscópico). Teto: em telas largas (ex.: Macs 16"/monitores) o
+// canvas ESCALA PARA CIMA e preenche a largura em vez de ficar 1440px centralizado
+// com faixas brancas nas laterais — mas não passa do teto, para não ficar gigante.
 const MIN_SCALE = 0.5;
+const MAX_SCALE = 1.5;
 
 /**
- * Escala o canvas de 1440px para caber no viewport.
- * - sempre escala para preencher a largura (sem margens laterais em branco).
- * - < 720px (celular): trava no piso MIN_SCALE; o conteúdo pode ser rolado
- *   horizontalmente / ampliado com pinch-zoom.
+ * Escala o canvas de 1440px para preencher o viewport.
+ * - entre ~720px e ~2160px: escala para caber/preencher a largura (fit-to-width).
+ * - < 720px: trava no piso MIN_SCALE (rolagem horizontal / pinch-zoom).
+ * - > ~2160px: trava no teto MAX_SCALE e centraliza (margens pequenas).
  */
 export function Canvas({ children }: { children: ReactNode }) {
   const [scale, setScale] = useState(1);
@@ -20,7 +22,7 @@ export function Canvas({ children }: { children: ReactNode }) {
   useEffect(() => {
     const update = () => {
       const fit = window.innerWidth / CANVAS_WIDTH;
-      setScale(Math.max(fit, MIN_SCALE));
+      setScale(Math.min(MAX_SCALE, Math.max(fit, MIN_SCALE)));
     };
     update();
     window.addEventListener("resize", update);
@@ -47,6 +49,7 @@ export function Canvas({ children }: { children: ReactNode }) {
           height: visualH,
           overflow: "hidden",
           position: "relative",
+          margin: "0 auto",
         }}
       >
         <div
