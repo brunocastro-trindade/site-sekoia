@@ -31,6 +31,16 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-07-02 — SEO: indexável + meta + dados estruturados
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `index.html` — `robots` de `noindex,nofollow` → `index,follow`; título
+  e `meta description` corretos da Sekoia; Open Graph/Twitter; JSON-LD
+  `ProfessionalService` (nome, contato, Instagram, knowsAbout). canonical.
+- **Análise:** a ideia do "pill com palavras-chave escondidas" NÃO ajuda SEO
+  (Google ignora meta keywords desde 2009; texto oculto = risco de penalidade). O
+  bloqueio real era o `noindex`. O widget pill não foi construído (não selecionado).
+- **Próximos:** sitemap.xml/robots.txt, imagem OG 1200×630, Search Console.
+
 
 ### 2026-07-02 — Eventos do Meta Pixel (Lead + Contact)
 - **Autor/PR:** solicitado pelo dono do repositório.
