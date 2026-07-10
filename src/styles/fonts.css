@@ -1,113 +1,77 @@
-/* ── Google Fonts imports ── */
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;800&family=Montserrat:wght@400;700;900&family=Bebas+Neue&display=swap');
+/* ── Google Fonts (Figtree + Montserrat como fallback) ── */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;800&family=Montserrat:wght@400;700;900&display=swap');
 
-/* ── Gotham unified family (para font-family padrão do site) ── */
-@font-face {
-  font-family: 'Gotham';
-  font-weight: 100;
-  src: url('/fonts/Gotham-Thin.otf') format('opentype');
-}
-@font-face {
-  font-family: 'Gotham';
-  font-weight: 200;
-  src: url('/fonts/Gotham-XLight.otf') format('opentype');
-}
-@font-face {
-  font-family: 'Gotham';
-  font-weight: 300;
-  src: url('/fonts/Gotham-Light.otf') format('opentype');
-}
+/* ── Gotham (família padrão do site) — WOFF2 ── */
 @font-face {
   font-family: 'Gotham';
   font-weight: 400;
-  src: url('/fonts/Gotham-Book.otf') format('opentype');
+  font-display: swap;
+  src: url('/fonts/Gotham-Book.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-weight: 500;
-  src: url('/fonts/Gotham-Medium.otf') format('opentype');
+  font-display: swap;
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-weight: 700;
-  src: url('/fonts/Gotham-Bold.otf') format('opentype');
+  font-display: swap;
+  src: url('/fonts/Gotham-Bold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Gotham';
   font-weight: 900;
-  src: url('/fonts/Gotham-Black.otf') format('opentype');
+  font-display: swap;
+  src: url('/fonts/Gotham-Black.woff2') format('woff2');
 }
 
-/*
- * Map every Figma-exported font family name to a real loaded font.
- * Using font-weight range (100 900) so the alias fires regardless of
- * what weight the element declares — critical for Gotham_Black:Regular
- * where the element has no explicit font-weight set.
- */
-
-/* Gotham Black */
+/* ── Aliases exportados do Figma (apontam para os mesmos WOFF2) ── */
 @font-face {
   font-family: 'Gotham Black:Regular';
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/Gotham-Black.otf') format('opentype');
+  src: url('/fonts/Gotham-Black.woff2') format('woff2');
 }
-
 @font-face {
   font-family: 'Gotham_Black:Regular';
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/Gotham-Black.otf') format('opentype');
+  src: url('/fonts/Gotham-Black.woff2') format('woff2');
 }
-
-/* Gotham Book */
 @font-face {
   font-family: 'Gotham:Book';
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/Gotham-Book.otf') format('opentype');
+  src: url('/fonts/Gotham-Book.woff2') format('woff2');
 }
-
-/* Gotham Bold */
 @font-face {
   font-family: 'Gotham:Bold';
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/Gotham-Bold.otf') format('opentype');
+  src: url('/fonts/Gotham-Bold.woff2') format('woff2');
 }
-
-/* Gotham Medium */
 @font-face {
   font-family: 'Gotham:Medium';
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/Gotham-Medium.otf') format('opentype');
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2');
 }
-
-/* Gotham Light */
-@font-face {
-  font-family: 'Gotham:Light';
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/Gotham-Light.otf') format('opentype');
-}
-
-/* Rogoro Regular */
 @font-face {
   font-family: 'Rogoro:Regular';
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('/fonts/rogoro-regular.otf') format('opentype');
+  src: url('/fonts/rogoro-regular.woff2') format('woff2');
 }
 
-/* Figtree ExtraBold */
+/* ── Figtree (WOFF2 do Google Fonts) ── */
 @font-face {
   font-family: 'Figtree:ExtraBold';
   font-weight: 100 900;
@@ -116,8 +80,6 @@
   src: local('Figtree ExtraBold'), local('Figtree-ExtraBold'),
        url('https://fonts.gstatic.com/s/figtree/v6/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5ewkEU.woff2') format('woff2');
 }
-
-/* Figtree Medium */
 @font-face {
   font-family: 'Figtree:Medium';
   font-weight: 100 900;
@@ -126,8 +88,6 @@
   src: local('Figtree Medium'), local('Figtree-Medium'),
        url('https://fonts.gstatic.com/s/figtree/v6/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5ewkEU.woff2') format('woff2');
 }
-
-/* Figtree Regular */
 @font-face {
   font-family: 'Figtree:Regular';
   font-weight: 100 900;

@@ -27,11 +27,10 @@ export function TreeVideo({ className }: { className?: string }) {
     <video
       ref={videoRef}
       src={TREE_VIDEO_URL}
-      autoPlay
       muted
       loop
       playsInline
-      preload="auto"
+      preload="none"
       aria-hidden="true"
       className={className}
       style={{ objectFit: "cover", display: "block", width: "100%", height: "100%" }}

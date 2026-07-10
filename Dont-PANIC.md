@@ -31,6 +31,19 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-07-03 — Perf + a11y (code review): vídeo, cache, aria-label, fontes
+- **Autor/PR:** solicitado pelo dono do repositório (code review).
+- **Mudou:**
+  - `TreeVideo`: `preload="auto"`→`"none"` (+ removido `autoPlay`; o IO já dá play
+    ao aparecer) — defere o download de 2,6MB do vídeo.
+  - `vercel.json` (novo): Cache-Control longo/immutable para /assets, /fonts e
+    mídias (revisitas mais rápidas).
+  - `ContactForm`: `aria-label` nos 8 campos (leitores de tela).
+  - Fontes: OTF→WOFF2 nas 5 usadas (Gotham Book/Medium/Bold/Black + Rogoro,
+    −67%: ~683KB→222KB) via wawoff2; removidas as itálicas/pesos não usados e
+    Bebas Neue. `public/fonts` caiu de ~3MB para 236KB.
+- **Validação:** build ok; WOFF2 com assinatura wOF2; sem refs .otf/.ttf restantes.
+
 ### 2026-07-03 — Eventos GA4 (generate_lead + contact) espelhando o Pixel
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `src/lib/pixel.ts` ganhou `trackGA` (window.gtag) e os helpers

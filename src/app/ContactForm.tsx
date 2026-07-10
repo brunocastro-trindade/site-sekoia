@@ -97,23 +97,24 @@ export default function ContactForm() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} placeholder="Nome*"    value={form.nome}  onChange={update("nome")}  disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="Cargo"    value={form.cargo} onChange={update("cargo")} disabled={loading} />
+          <input className={inputClass} style={font.book} aria-label="Nome" placeholder="Nome*"    value={form.nome}  onChange={update("nome")}  disabled={loading} />
+          <input className={inputClass} style={font.book} aria-label="Cargo" placeholder="Cargo"    value={form.cargo} onChange={update("cargo")} disabled={loading} />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} placeholder="E-mail*" type="email" value={form.email}    onChange={update("email")}    disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="Telefone/WhatsApp"    value={form.telefone} onChange={update("telefone")} disabled={loading} />
+          <input className={inputClass} style={font.book} aria-label="E-mail" placeholder="E-mail*" type="email" value={form.email}    onChange={update("email")}    disabled={loading} />
+          <input className={inputClass} style={font.book} aria-label="Telefone ou WhatsApp" placeholder="Telefone/WhatsApp"    value={form.telefone} onChange={update("telefone")} disabled={loading} />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} placeholder="Empresa"              value={form.empresa} onChange={update("empresa")} disabled={loading} />
-          <input className={inputClass} style={font.book} placeholder="Segmento / tipo de negócio" value={form.tipo} onChange={update("tipo")} disabled={loading} />
+          <input className={inputClass} style={font.book} aria-label="Empresa" placeholder="Empresa"              value={form.empresa} onChange={update("empresa")} disabled={loading} />
+          <input className={inputClass} style={font.book} aria-label="Segmento ou tipo de negócio" placeholder="Segmento / tipo de negócio" value={form.tipo} onChange={update("tipo")} disabled={loading} />
         </div>
 
         <input
           className={inputClass}
           style={font.book}
+          aria-label="Investimento mensal em marketing"
           placeholder="Quanto sua empresa investe em marketing mensalmente?"
           value={form.investimento}
           onChange={update("investimento")}
@@ -123,6 +124,7 @@ export default function ContactForm() {
         <textarea
           className={`${inputClass} resize-none`}
           style={{ ...font.book, minHeight: 110 }}
+          aria-label="Como podemos te ajudar"
           placeholder="Como podemos te ajudar? Conte um pouco sobre o problema que está enfrentando hoje."
           value={form.ajuda}
           onChange={update("ajuda")}
