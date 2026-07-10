@@ -4,7 +4,7 @@
 // usado por todos os CTAs da landing.
 // ============================================================================
 
-import { trackPixel } from "./pixel";
+import { trackContact } from "./pixel";
 
 /**
  * Número de WhatsApp em formato E.164 (sem "+", só dígitos), como o wa.me espera.
@@ -27,7 +27,7 @@ export function whatsappLink(message: string = WHATSAPP_DEFAULT_MESSAGE): string
 
 /** Abre o WhatsApp numa nova aba (handler reutilizável para onClick). */
 export function openWhatsApp(message?: string): void {
-  trackPixel("Contact");
+  trackContact();
   window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
 }
 
@@ -39,7 +39,7 @@ export const WHATSAPP_NUMBER_FOOTER = "5547991603130";
 
 /** Abre o WhatsApp de um número específico (ex.: o do rodapé). */
 export function openWhatsAppNumber(number: string, message?: string): void {
-  trackPixel("Contact");
+  trackContact();
   const base = `https://wa.me/${number}`;
   const url = message ? `${base}?text=${encodeURIComponent(message)}` : base;
   window.open(url, "_blank", "noopener,noreferrer");

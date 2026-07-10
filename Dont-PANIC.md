@@ -31,6 +31,14 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-07-03 — Eventos GA4 (generate_lead + contact) espelhando o Pixel
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `src/lib/pixel.ts` ganhou `trackGA` (window.gtag) e os helpers
+  combinados `trackLead()` / `trackContact()` que disparam Meta + GA4 juntos.
+  `ContactForm` usa `trackLead()` (Pixel Lead + GA4 generate_lead); `contact.ts`
+  usa `trackContact()` (Pixel Contact + GA4 contact {method:whatsapp}).
+- **Validação:** build ok, refs limpas. Runtime GA confere via DebugView/Tempo real.
+
 ### 2026-07-03 — Google Analytics 4 (gtag.js)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `index.html` — adicionado o gtag.js do GA4 (ID `G-WL23JBFN9W`) no
