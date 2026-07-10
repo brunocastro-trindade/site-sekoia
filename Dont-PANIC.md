@@ -31,6 +31,12 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-07-03 — Google Analytics 4 (gtag.js)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `index.html` — adicionado o gtag.js do GA4 (ID `G-WL23JBFN9W`) no
+  `<head>`, junto do Meta Pixel. Nenhuma outra alteração de código.
+- **Validação:** gtag presente no dist; verificar gtag.js 200 e config ao vivo.
+
 ### 2026-07-02 — SEO: indexável + meta + dados estruturados
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `index.html` — `robots` de `noindex,nofollow` → `index,follow`; título
