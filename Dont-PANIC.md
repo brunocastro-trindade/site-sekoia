@@ -31,6 +31,14 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-07-03 — Comprime doodle-bg (PNG→WebP)
+- **Autor/PR:** solicitado pelo dono do repositório.
+- **Mudou:** `public/doodle-bg.png` (244KB) → `doodle-bg.webp` (107KB, −56%,
+  WebP lossless com alpha, via ffmpeg); referência em `HotPageTrafegoPagoSekoia`
+  atualizada. Removido o PNG.
+- **Por quê:** reduzir peso do fundo de doodles (aparece só no topo, a 14% de
+  opacidade) sem perda de qualidade.
+
 ### 2026-07-03 — Perf + a11y (code review): vídeo, cache, aria-label, fontes
 - **Autor/PR:** solicitado pelo dono do repositório (code review).
 - **Mudou:**

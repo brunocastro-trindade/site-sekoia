@@ -518,7 +518,7 @@ export default function HotPageTrafegoPagoSekoia() {
         className="pointer-events-none absolute left-0 right-0 top-0 z-0"
         style={{
           height: 900,
-          backgroundImage: "url(/doodle-bg.png)",
+          backgroundImage: "url(/doodle-bg.webp)",
           backgroundRepeat: "repeat",
           backgroundSize: "550px auto",
           opacity: 0.14,
