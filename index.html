@@ -6,6 +6,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <!-- Fontes críticas (acima da dobra): baixa em paralelo ao CSS, evita a cadeia CSS→fonte -->
+  <link rel="preload" href="/fonts/Gotham-Black.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Gotham-Book.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/figtree-var.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Resolve DNS/TLS dos terceiros de analytics antes dos scripts pedirem -->
+  <link rel="preconnect" href="https://connect.facebook.net" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
   <title>Sekoia Marketing — Agência de Tráfego Pago e Marketing Digital</title>
   <meta name="description"
     content="A Sekoia é uma agência de marketing especializada em tráfego pago no Google e Meta Ads. Geramos mais leads, vendas e previsibilidade para o seu negócio." />
@@ -68,7 +77,35 @@
     }(window, document, 'script',
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1217330763796782');
-    fbq('track', 'PageView');
+
+    // PageView com event_id compartilhado: o mesmo id vai no fbq (navegador) e
+    // em /api/meta-capi (servidor) — o Meta desduplica o par por event_id.
+    (function () {
+      var eid = (self.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : 'pv_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+      fbq('track', 'PageView', {}, { eventID: eid });
+      var sendCapi = function () {
+        // Pequeno atraso para o fbevents.js criar o cookie _fbp, que o servidor
+        // lê da request e repassa à CAPI (melhora o casamento de identidade).
+        setTimeout(function () {
+          try {
+            fetch('/api/meta-capi', {
+              method: 'POST',
+              keepalive: true,
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                event_name: 'PageView',
+                event_id: eid,
+                event_source_url: location.href
+              })
+            }).catch(function () { });
+          } catch (e) { /* tracking nunca quebra a página */ }
+        }, 1200);
+      };
+      if (document.readyState === 'complete') sendCapi();
+      else addEventListener('load', sendCapi);
+    })();
   </script>
   <!-- End Meta Pixel Code -->
 

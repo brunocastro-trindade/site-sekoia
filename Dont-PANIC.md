@@ -31,6 +31,71 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-07-14 — CAPI própria com desduplicação por event_id (Meta Pixel)
+- **Autor/PR:** solicitado pelo dono do repositório, após aviso do Events
+  Manager sobre cobertura da chave de desduplicação no PageView.
+- **Contexto/diagnóstico:** o CSV de amostras do Meta mostrava PageViews com
+  IDs `ob3_plugin-set_*` chegando ora só pelo navegador, ora só pelo servidor,
+  sem pares casados. O código do site não envia nada server-side; a origem do
+  canal servidor é a **"Configuração automática da API de Conversões"
+  (OpenBridge 3)** ativa no Events Manager — confirmado no
+  `signals/config/1217330763796782`, que traz endpoints de gateway first-party
+  (AWS/Cloud Run). Os pares não casam tipicamente por bloqueio assimétrico
+  (adblock bloqueia `facebook.com/tr`, o gateway passa).
+- **Mudou:**
+  - `api/meta-capi.js` (novo): função Vercel que recebe
+    `{event_name, event_id, event_source_url, user_data}` e reenvia à Graph API
+    (`/v23.0/<pixel>/events`) com o MESMO `event_id` (allowlist: PageView, Lead,
+    Contact). Hasheia em SHA-256 email/telefone normalizados (advanced
+    matching), extrai `_fbp`/`_fbc` dos cookies first-party da request, IP do
+    `x-forwarded-for` e user-agent; fallback do `fbc` a partir do `fbclid` da
+    URL. Exige `META_CAPI_ACCESS_TOKEN` (env da Vercel); `META_CAPI_TEST_CODE`
+    opcional para validar em "Testar eventos".
+  - `pixel.ts`: `trackLead`/`trackContact` geram `event_id`
+    (crypto.randomUUID), passam ao `fbq` (4º argumento `{eventID}`) e disparam
+    POST fire-and-forget a `/api/meta-capi` (keepalive; nunca quebra a página).
+    `trackLead` agora recebe `{email, phone}` do formulário para matching.
+  - `index.html`: PageView inline com o mesmo esquema — `eventID` no `fbq` e
+    envio à CAPI ~1,2s após o `load` (dá tempo do fbevents criar o `_fbp`).
+  - `ContactForm.tsx`: `trackLead({email, phone})`.
+  - **Moeda/ROAS** (aviso "Como definir a moeda" do Events Manager): Lead e
+    Contact agora enviam `value` + `currency: "BRL"` nos dois canais (fbq e
+    `custom_data` da CAPI, validado no servidor: número finito ≥ 0 + código de
+    3 letras) e no GA4. Os valores estimados ficam nas constantes `LEAD_VALUE`
+    e `CONTACT_VALUE` em `pixel.ts` (default 0 — **ajustar** para o valor médio
+    real de um lead/contato, senão o ROAS aparece zerado).
+- **Validação:** harness Node com fetch mockado (8 casos, 25 asserts): payload,
+  hashes, normalização BR do telefone (DDI 55), fbp/fbc, fallback fbclid,
+  allowlist, 503 sem token, 502 quando a Graph recusa. Build ok; no preview o
+  POST `/api/meta-capi` dispara no load e falha em silêncio sem a função.
+- **Pós-deploy (manual, no Events Manager):** gerar o token (Configurações →
+  API de Conversões → configuração manual), setar `META_CAPI_ACCESS_TOKEN` na
+  Vercel e **desativar a Configuração automática (OpenBridge)** — senão haverá
+  um terceiro canal enviando eventos. Validar com "Testar eventos".
+
+### 2026-07-14 — Perf: Figtree 404 corrigido (self-host), preloads, vídeo −59%
+- **Autor/PR:** solicitado pelo dono do repositório (rodada 2 de performance).
+- **Mudou:**
+  - `fonts.css`: a URL gstatic v6 do Figtree retornava **404** — o menu e os
+    CTAs do hero estavam caindo no fallback sans-serif. Baixado o Figtree v9
+    variável (300–900, subset latin, 20KB) para `public/fonts/figtree-var.woff2`
+    e os 3 aliases `Figtree:*` apontados para ele. Removido o `@import` do
+    Google Fonts (Figtree+Montserrat) — era uma cadeia render-blocking e nenhuma
+    das famílias planas era usada (Montserrat só como fallback de stack).
+  - `index.html`: `preload` de Gotham-Black, Gotham-Book e figtree-var
+    (fontes acima da dobra baixam em paralelo ao CSS, sem cadeia CSS→fonte);
+    `preconnect` para connect.facebook.net e googletagmanager.com.
+  - `public/tree.mp4`: re-encodado 720×1280@2,1Mbps → **540×960 CRF28**
+    (2,6MB → 1,05MB, −59%). Exibição máx. é ~393px de largura (desktop
+    262px×escala 1,5; mobile 280px), então 540p cobre até 2x DPR.
+- **Não mudou:** `doodle-bg.webp` (108KB lossless) — testado lossy q60/q80
+  (154–180KB) e downscale 412px (170KB): ambos saíram MAIORES; line-art denso
+  comprime melhor em lossless. O arquivo atual já está próximo do ótimo.
+- **Validação:** build ok; preview do dist: 3 fontes preloaded chegam antes do
+  CSS, `document.fonts.check` true para todas as famílias (Figtree renderiza de
+  fato agora), zero requests a googleapis/gstatic, sem 404/erros de console;
+  vídeo toca ao entrar no viewport (IO) e pausa ao sair.
+
 ### 2026-07-03 — Comprime doodle-bg (PNG→WebP)
 - **Autor/PR:** solicitado pelo dono do repositório.
 - **Mudou:** `public/doodle-bg.png` (244KB) → `doodle-bg.webp` (107KB, −56%,

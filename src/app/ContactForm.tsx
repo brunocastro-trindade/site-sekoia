@@ -66,7 +66,7 @@ export default function ContactForm() {
       if (!res.ok || !data.success) {
         throw new Error(data.error || `Falha ao enviar (HTTP ${res.status}). Tente novamente.`);
       }
-      trackLead();
+      trackLead({ email: form.email, phone: form.telefone });
       setStatus("success");
       setMessage("Recebemos seus dados! Em breve entraremos em contato.");
       setForm(initialForm);
