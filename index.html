@@ -15,7 +15,7 @@
   <!-- Resolve DNS/TLS dos terceiros de analytics antes dos scripts pedirem -->
   <link rel="preconnect" href="https://connect.facebook.net" />
   <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <title>Sekoia Marketing — Agência de Tráfego Pago e Marketing Digital</title>
+  <title>Sekoia Marketing : Agência de Tráfego Pago e Marketing Digital</title>
   <meta name="description"
     content="A Sekoia é uma agência de marketing especializada em tráfego pago no Google e Meta Ads. Geramos mais leads, vendas e previsibilidade para o seu negócio." />
   <meta name="robots" content="index, follow" />
@@ -38,7 +38,13 @@
     content="Agência especializada em tráfego pago no Google e Meta Ads. Mais leads, vendas e previsibilidade." />
   <meta name="twitter:image" content="https://sekoiamarketing.com.br/og-image.png" />
 
-  <!-- Dados estruturados (JSON-LD) — sinaliza aos buscadores quem é a Sekoia -->
+  <!-- Dados estruturados (JSON-LD) — sinaliza aos buscadores quem é a Sekoia.
+       PENDENTE: incluir "address" (PostalAddress com streetAddress/addressLocality/
+       postalCode) e trocar areaServed "BR" pela cidade/região real. Sem o endereço
+       físico o Google trata a Sekoia como negócio sem localização e ela fica fora
+       do pack local, que é onde está a busca com intenção comercial.
+       Não preenchemos com dado inventado de propósito: endereço falso em schema é
+       violação de diretriz e pode gerar ação manual. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,8 +56,18 @@
     "description": "Agência de marketing especializada em tráfego pago no Google e Meta Ads, focada em geração de leads, vendas e crescimento previsível.",
     "email": "contato@sekoiamarketing.com.br",
     "telephone": "+55-47-99215-6393",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "telephone": "+55-47-99215-6393",
+      "email": "contato@sekoiamarketing.com.br",
+      "availableLanguage": "Portuguese"
+    },
     "areaServed": "BR",
-    "sameAs": ["https://www.instagram.com/sekoia.ag/"],
+    "sameAs": [
+      "https://www.instagram.com/sekoia.ag/",
+      "https://www.linkedin.com/company/sekoia-marketing/"
+    ],
     "knowsAbout": [
       "Tráfego pago",
       "Google Ads",

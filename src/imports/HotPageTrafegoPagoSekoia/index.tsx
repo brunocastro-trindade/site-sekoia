@@ -1,15 +1,16 @@
 import { useEffect, type CSSProperties } from "react";
 import svgPaths from "./svg-7xdo32rulj";
-import { openWhatsApp, openWhatsAppNumber, WHATSAPP_NUMBER_FOOTER } from "../../lib/contact";
+import { openWhatsApp } from "../../lib/contact";
 import { TreeVideo } from "../../components/TreeVideo";
 
 const TICKER_UNIT = Array(30).fill("A SEKOIA PODE TE AJUDAR").join(" - ") + " - ";
 
 // Coordenadas Y (espaço Figma de 1440×4259) das seções da landing.
+// "contato" não entra aqui: o rodapé deixou de ser parte do canvas do Figma e
+// agora é o <FooterSekoia />, renderizado em fluxo normal depois do <Canvas>.
 const SECTIONS = {
   solucoes: 500, // cards Estratégia / Performance / Escala / Inteligência (top 549)
   orcamentos: 3010, // "SOLICITE UM ORÇAMENTO" (top 3060) + formulário
-  contato: 3880, // bloco de contato do rodapé (top 3911)
 } as const;
 
 /**
@@ -19,6 +20,14 @@ const SECTIONS = {
 function scrollToFigmaY(y: number) {
   const scale = Math.max(window.innerWidth / 1440, 0.5);
   window.scrollTo({ top: Math.max(0, y * scale - 24), behavior: "smooth" });
+}
+
+/**
+ * Rola até o rodapé. Como ele vive fora do canvas escalado, o alvo é o próprio
+ * elemento (#contato) e não uma coordenada do Figma.
+ */
+function scrollToFooter() {
+  document.getElementById("contato")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function Group3() {
@@ -71,10 +80,10 @@ function Menu() {
         <p className="leading-[20px]">Orçamentos</p>
       </div>
       <div
-        onClick={() => scrollToFigmaY(SECTIONS.contato)}
+        onClick={scrollToFooter}
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => e.key === "Enter" && scrollToFigmaY(SECTIONS.contato)}
+        onKeyDown={(e) => e.key === "Enter" && scrollToFooter()}
         className="-translate-y-1/2 absolute flex flex-col justify-center items-center left-[822.2px] top-[79.5px] whitespace-nowrap cursor-pointer bg-white rounded-full px-[14px] py-[5px] shadow-[0px_1px_4px_rgba(0,0,0,0.12)] hover:opacity-80 transition-opacity"
       >
         <p className="leading-[20px]">Contato</p>
@@ -363,114 +372,15 @@ function Group12() {
   );
 }
 
-function ItemLinkPinterestWowImage11062B283A2164806C4D4Fb90048B444Dec715Mv2Png() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - Pinterest → wow-image → 11062b_283a2164806c4d4fb90048b444dec715~mv2.png" />;
-}
 
-function ItemLinkXWowImage11062B923D540Bee594407B17F142805A44A15Mv2Png() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - X      → wow-image → 11062b_923d540bee594407b17f142805a44a15~mv2.png" />;
-}
 
-function ItemLinkInstagramWowImageE1Aa082F7C0747168D9Cf43E77046142Png() {
-  return (
-    <a
-      href="https://www.instagram.com/sekoia.ag/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Instagram da Sekoia"
-      className="relative shrink-0 size-[30px] text-[#39471d] hover:opacity-70 transition-opacity"
-      data-name="Item → Link - Instagram"
-    >
-      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5.5" />
-        <circle cx="12" cy="12" r="4.2" />
-        <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none" />
-      </svg>
-    </a>
-  );
-}
 
-function ItemLinkFacebookWowImage4057345Bcf57474B96976284050C00DfPng() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - Facebook → wow-image → 4057345bcf57474b96976284050c00df.png" />;
-}
 
-function ItemLinkLinkedInWowImageAa0402Eb9Ba2430D9D0620B59556EfcaPng() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - LinkedIn → wow-image → aa0402eb9ba2430d9d0620b59556efca.png" />;
-}
 
-function ItemLinkYouTubeWowImage45Bce1D726F64F1999C49Feae57F6298Png() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - YouTube → wow-image → 45bce1d726f64f1999c49feae57f6298.png" />;
-}
 
-function ItemLinkTikTokWowImage11062B66167D61316D4665841F3397360D54A9Mv2Png() {
-  return <div className="relative shrink-0 size-[30px]" data-name="Item → Link - TikTok → wow-image → 11062b_66167d61316d4665841f3397360d54a9~mv2.png" />;
-}
 
-function ListRedesSociais() {
-  return (
-    <div className="absolute content-stretch flex gap-[10px] inset-[97.13%_10.42%_2.15%_67.79%] items-start" data-name="List - Redes sociais">
-      <ItemLinkPinterestWowImage11062B283A2164806C4D4Fb90048B444Dec715Mv2Png />
-      <ItemLinkXWowImage11062B923D540Bee594407B17F142805A44A15Mv2Png />
-      <ItemLinkInstagramWowImageE1Aa082F7C0747168D9Cf43E77046142Png />
-      <ItemLinkFacebookWowImage4057345Bcf57474B96976284050C00DfPng />
-      <ItemLinkLinkedInWowImageAa0402Eb9Ba2430D9D0620B59556EfcaPng />
-      <ItemLinkYouTubeWowImage45Bce1D726F64F1999C49Feae57F6298Png />
-      <ItemLinkTikTokWowImage11062B66167D61316D4665841F3397360D54A9Mv2Png />
-    </div>
-  );
-}
 
-function Group5() {
-  return (
-    <div className="-translate-x-1/2 absolute contents left-1/2 top-[4054.5px]">
-      <div className="absolute border-[#39471d] border-dashed border-t h-[10px] left-[150px] top-[4054.5px] w-[1138.838px]" data-name="HorizontalBorder" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[4094.5px] w-[184.771px]">
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Política de Privacidade</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-336.49px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[38.349px]">
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Blog</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-247.66px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[55.78px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Cursos</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-142.55px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[72.049px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Mentoria</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%-32.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[73.211px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Palestras</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%+72.11px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[66.239px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Contato</p>
-      </div>
-      {/* Landing de captação em subdomínio próprio (projeto Vercel separado). */}
-      <a href="https://form.sekoiamarketing.com.br/" target="_blank" rel="noopener noreferrer" className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%+239.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[193px] cursor-pointer hover:opacity-70 transition-opacity">
-        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Central de Oportunidades</p>
-      </a>
-      <ListRedesSociais />
-    </div>
-  );
-}
 
-function Group13() {
-  return (
-    <div className="-translate-x-1/2 absolute contents left-1/2 top-[3911px]">
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[20px] top-[3921.5px] whitespace-nowrap">
-        <p className="leading-[21px]">Sekoia Marketing</p>
-      </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[14px] top-[3969px] whitespace-nowrap">
-        <p className="leading-[21px] mb-0">
-          <a href="mailto:contato@sekoiamarketing.com.br" className="hover:underline">contato@sekoiamarketing.com.br</a>
-        </p>
-        <p className="leading-[21px]">+55 (47) 99215-6393</p>
-      </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] not-italic right-[150px] text-[#39471d] text-[14px] text-right top-[3969px] whitespace-nowrap">
-        <p className="leading-[21px] mb-0">Todos os direitos reservados</p>
-        <p className="leading-[21px]">CNPJ 66.526.186/0001-25</p>
-      </div>
-      <Group5 />
-    </div>
-  );
-}
 
 function Group4() {
   return (
@@ -542,11 +452,15 @@ export default function HotPageTrafegoPagoSekoia() {
         className="absolute h-[65px] left-[170px] top-[46px] w-[263px] object-contain"
         data-name="HORIZONTAL_LOGOTIPO SEKOIA_7 2"
       />
-      <div className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[0] left-[calc(50%-570px)] not-italic text-[#39471d] text-[115px] top-[195px] whitespace-nowrap">
-        <p className="font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0">+vendas.</p>
-        <p className="font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0 text-[#a0a320]">+previsibilidade.</p>
-        <p className="font-['Gotham_Black:Regular',sans-serif] leading-[1.133]">+escala.</p>
-      </div>
+      {/* H1 da página. Os <p> viraram <span class="block"> porque <p> dentro de
+          <h1> é HTML inválido. A última linha existe para o H1 conter o termo
+          de busca real — o slogan sozinho não carrega nenhum. */}
+      <h1 className="[word-break:break-word] absolute font-['Gotham:Medium',sans-serif] leading-[0] left-[calc(50%-570px)] not-italic text-[#39471d] text-[115px] top-[195px] whitespace-nowrap">
+        <span className="block font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0">+vendas.</span>
+        <span className="block font-['Gotham_Black:Regular',sans-serif] leading-[78.1050033569336%] mb-0 text-[#a0a320]">+previsibilidade.</span>
+        <span className="block font-['Gotham_Black:Regular',sans-serif] leading-[1.133]">+escala.</span>
+        <span className="block font-['Gotham:Bold',sans-serif] text-[20px] leading-[24px] mt-[8px]">Agência de tráfego pago no Google e Meta Ads</span>
+      </h1>
       <Group2 />
       <div className="-translate-x-1/2 absolute left-1/2 top-[549px] w-[1140px] h-[235px]">
         {[
@@ -598,14 +512,14 @@ export default function HotPageTrafegoPagoSekoia() {
           </svg>
         </div>
       </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Rogoro:Regular',sans-serif] justify-center leading-[0] left-[calc(50%-1.5px)] not-italic text-[85px] text-center text-white top-[1023px] whitespace-nowrap">
-        <p className="leading-[108px]">Tráfego pago</p>
-      </div>
+      <h2 className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Rogoro:Regular',sans-serif] justify-center leading-[0] left-[calc(50%-1.5px)] not-italic text-[85px] text-center text-white top-[1023px] whitespace-nowrap">
+        <span className="block leading-[108px]">Tráfego pago</span>
+      </h2>
       <Group6 />
       <Group7 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[26px] top-[1495px] whitespace-nowrap">
-        <p className="leading-[31.2px]">Como podemos te ajudar com Tráfego pago</p>
-      </div>
+      <h2 className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[150px] not-italic text-[#39471d] text-[26px] top-[1495px] whitespace-nowrap">
+        <span className="block leading-[31.2px]">Como podemos te ajudar com Tráfego pago</span>
+      </h2>
       <div className="absolute left-[933px] top-[1505px] w-[262px] h-[465px] rounded-[16px] overflow-hidden">
         <TreeVideo />
       </div>
@@ -680,14 +594,15 @@ export default function HotPageTrafegoPagoSekoia() {
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[476px] not-italic text-[#39471d] text-[16px] top-[2700px] whitespace-nowrap">
         <p className="leading-[24px]">Planejamento estratégico</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[139px] not-italic text-[#39471d] text-[26px] top-[2787px] whitespace-nowrap">
-        <p className="leading-[31.2px]">Seja o próximo case de Tráfego pago com a Sekoia</p>
-      </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[calc(50%-402px)] not-italic text-[#39471d] text-[26px] top-[3060px] whitespace-nowrap">
-        <p className="leading-[31.2px]">INTERESSADO NESTE SERVIÇO? SOLICITE UM ORÇAMENTO</p>
-      </div>
+      <h2 className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[139px] not-italic text-[#39471d] text-[26px] top-[2787px] whitespace-nowrap">
+        <span className="block leading-[31.2px]">Seja o próximo case de Tráfego pago com a Sekoia</span>
+      </h2>
+      <h2 className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Bold',sans-serif] justify-center leading-[0] left-[calc(50%-402px)] not-italic text-[#39471d] text-[26px] top-[3060px] whitespace-nowrap">
+        <span className="block leading-[31.2px]">INTERESSADO NESTE SERVIÇO? SOLICITE UM ORÇAMENTO</span>
+      </h2>
       <Group12 />
-      <Group13 />
+      {/* Rodapé antigo do Figma removido: substituído pelo <FooterSekoia />,
+          renderizado fora do Canvas em App.tsx (footer padrão da marca). */}
     </div>
   );
 }

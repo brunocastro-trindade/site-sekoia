@@ -1,7 +1,20 @@
 import { useEffect, useState, type ReactNode } from "react";
 
 const CANVAS_WIDTH = 1440;
+
+/**
+ * Altura real do artboard do Figma. Continua 4259 porque todas as posições
+ * absolutas dos filhos são relativas a ela — mudar isto deslocaria a página.
+ */
 const CANVAS_HEIGHT = 4259;
+
+/**
+ * Altura efetivamente exibida. O trecho abaixo de 3891 era o rodapé do Figma,
+ * hoje substituído pelo <FooterSekoia /> em fluxo normal — cortamos para não
+ * sobrar uma faixa branca de ~370px entre o formulário e o novo rodapé.
+ * 3891 = fim da máscara branca do formulário (FORM_TOP 3091 + FORM_HEIGHT 800).
+ */
+const VISIBLE_HEIGHT = 3891;
 
 // Piso de escala: em telas pequenas o canvas não encolhe além disto (evita
 // conteúdo microscópico). Teto: em telas largas (ex.: Macs 16"/monitores) o
@@ -30,7 +43,7 @@ export function Canvas({ children }: { children: ReactNode }) {
   }, []);
 
   const visualW = CANVAS_WIDTH * scale;
-  const visualH = CANVAS_HEIGHT * scale;
+  const visualH = VISIBLE_HEIGHT * scale;
   // "pisado" só quando MIN_SCALE segura a escala (mobile < 720px).
   const floored =
     typeof window !== "undefined" && visualW > window.innerWidth + 0.5;

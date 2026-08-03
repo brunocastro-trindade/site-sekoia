@@ -2,7 +2,7 @@ import { useState } from "react";
 import ContactForm from "./ContactForm";
 import { PHASES } from "./MethodologySection";
 import { TreeVideo } from "../components/TreeVideo";
-import { openWhatsApp, openWhatsAppNumber, WHATSAPP_NUMBER_FOOTER } from "../lib/contact";
+import { openWhatsApp } from "../lib/contact";
 
 const GREEN = "#39471d";
 const OLIVE = "#a0a320";
@@ -187,6 +187,10 @@ export function MobileApp() {
             +previsibilidade.
           </span>
           <span className="block">+escala.</span>
+          {/* Linha que carrega o termo de busca — o slogan sozinho não tem nenhum. */}
+          <span className="mt-3 block text-[16px] leading-[20px]" style={{ ...gotham("Bold"), color: GREEN }}>
+            Agência de tráfego pago no Google e Meta Ads
+          </span>
         </h1>
 
         <p className="mt-5 text-[15px] leading-relaxed" style={gotham("Medium")}>
@@ -302,55 +306,8 @@ export function MobileApp() {
         <ContactForm />
       </section>
 
-      {/* ── Rodapé ── */}
-      <footer id="contato" className="mt-2 border-t border-[#e5e5e5] px-5 py-10">
-        <p className="text-[18px]" style={gotham("Bold")}>Sekoia Marketing</p>
-        <a href="mailto:contato@sekoiamarketing.com.br" className="mt-2 block text-[14px] hover:underline" style={gotham("Medium")}>
-          contato@sekoiamarketing.com.br
-        </a>
-        <p className="text-[14px]" style={gotham("Medium")}>+55 (47) 99215-6393</p>
-        <p className="mt-2 text-[13px]" style={{ ...gotham("Medium"), color: "#6b7355" }}>CNPJ 66.526.186/0001-25</p>
-
-        <a
-          href="https://www.instagram.com/sekoia.ag/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram da Sekoia"
-          className="mt-3 -ml-2 inline-flex p-2"
-          style={{ color: GREEN }}
-        >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5.5" />
-            <circle cx="12" cy="12" r="4.2" />
-            <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none" />
-          </svg>
-        </a>
-
-        <div className="mt-4 flex flex-wrap gap-x-5 text-[14px]" style={gotham("Medium")}>
-          {["Cursos", "Mentoria", "Palestras", "Contato"].map((l) => (
-            <button
-              key={l}
-              type="button"
-              onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}
-              className="inline-flex min-h-[44px] items-center underline"
-            >
-              {l}
-            </button>
-          ))}
-          {/* Landing de captação em subdomínio próprio (projeto Vercel separado). */}
-          <a
-            href="https://form.sekoiamarketing.com.br/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center underline"
-          >
-            Central de Oportunidades
-          </a>
-        </div>
-        <p className="mt-5 text-[12px]" style={{ ...gotham("Medium"), color: "#9aa088" }}>
-          Todos os direitos reservados
-        </p>
-      </footer>
+      {/* Rodapé antigo removido: agora é o <FooterSekoia />, renderizado em
+          App.tsx e compartilhado com as demais landings da marca. */}
     </div>
   );
 }
