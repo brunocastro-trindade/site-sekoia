@@ -337,6 +337,15 @@ export function MobileApp() {
               {l}
             </button>
           ))}
+          {/* Landing de captação em subdomínio próprio (projeto Vercel separado). */}
+          <a
+            href="https://form.sekoiamarketing.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center underline"
+          >
+            Central de Oportunidades
+          </a>
         </div>
         <p className="mt-5 text-[12px]" style={{ ...gotham("Medium"), color: "#9aa088" }}>
           Todos os direitos reservados

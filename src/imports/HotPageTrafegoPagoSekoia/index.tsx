@@ -442,6 +442,10 @@ function Group5() {
       <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%+72.11px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[66.239px] cursor-pointer hover:opacity-70 transition-opacity" role="button" tabIndex={0} onClick={() => openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)} onKeyDown={(e) => e.key === "Enter" && openWhatsAppNumber(WHATSAPP_NUMBER_FOOTER)}>
         <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Contato</p>
       </div>
+      {/* Landing de captação em subdomínio próprio (projeto Vercel separado). */}
+      <a href="https://form.sekoiamarketing.com.br/" target="_blank" rel="noopener noreferrer" className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Gotham:Medium',sans-serif] justify-center leading-[0] left-[calc(50%+239.7px)] not-italic text-[#39471d] text-[14px] text-center top-[4094.5px] w-[193px] cursor-pointer hover:opacity-70 transition-opacity">
+        <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[21px] underline">Central de Oportunidades</p>
+      </a>
       <ListRedesSociais />
     </div>
   );
