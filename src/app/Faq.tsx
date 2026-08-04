@@ -1,27 +1,36 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
+// `m` + LazyMotion em vez de `motion`: o componente `motion` arrasta o motor de
+// animação inteiro para o bundle principal. Aqui só usamos height/rotate/cor,
+// que o feature pack `domAnimation` cobre — e ele custa uma fração do tamanho.
+import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
+import { ChevronDown } from "lucide-react";
 
 const GREEN = "#39471d";
+const OLIVE = "#a0a320";
 
 const gotham = (w: "Black" | "Bold" | "Medium" | "Book" = "Medium") =>
   ({ fontFamily: `'Gotham:${w}', 'Montserrat', sans-serif` } as CSSProperties);
 
 /**
- * Perguntas frequentes.
+ * Perguntas frequentes, em accordion animado.
  *
  * Serve a dois propósitos e por isso o formato é rígido:
  *
  * 1. Citabilidade por buscas de IA (AI Overviews, ChatGPT, Perplexity). Cada
  *    resposta é autocontida — faz sentido lida isoladamente, sem depender do
- *    resto da página — e fica na faixa de ~130-170 palavras, que é onde as
- *    citações se concentram. As perguntas são headings de verdade (<h3>) e em
- *    forma interrogativa, que é como a consulta chega.
+ *    resto da página. As perguntas são headings de verdade (<h3>) e em forma
+ *    interrogativa, que é como a consulta chega.
  *
  * 2. Fonte única do JSON-LD FAQPage abaixo. O Google exige que o schema
  *    corresponda ao texto visível; gerar os dois do mesmo array impede que
  *    divirjam quando alguém editar uma resposta.
  *
- * As respostas são deliberadamente visíveis, não em accordion: conteúdo atrás
- * de tabs/accordion tem menos chance de ser indexado como resposta.
+ * IMPORTANTE para quem for mexer na animação: o painel de resposta NUNCA é
+ * desmontado. A animação é só de `height`, com o texto sempre presente no DOM.
+ * Se alguém trocar isto por <AnimatePresence> (que desmonta o conteúdo fechado),
+ * as respostas somem do HTML pré-renderizado e o FAQ perde exatamente a função
+ * de SEO que justifica ele existir. Conteúdo atrás de accordion já é mais fraco
+ * para indexação; fora do DOM ele é nulo.
  */
 const FAQ: { q: string; a: string }[] = [
   {
@@ -46,38 +55,100 @@ const FAQ: { q: string; a: string }[] = [
   },
 ];
 
-export function Faq() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  };
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
+function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
+  // O primeiro item nasce aberto: garante que exista resposta visível já no
+  // carregamento, sem depender de clique.
+  const [open, setOpen] = useState(index === 0);
+  const reduce = useReducedMotion();
+
+  const panelId = `faq-panel-${index}`;
+  const triggerId = `faq-trigger-${index}`;
+  const transition = reduce ? { duration: 0 } : { duration: 0.32, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
-    <section id="faq" className="bg-white px-5 py-12 md:px-8 md:py-16">
+    <m.div
+      className="overflow-hidden rounded-[14px] border border-[#e3e5db] bg-white"
+      initial={false}
+      animate={{
+        borderColor: open ? OLIVE : "#e3e5db",
+        boxShadow: open ? "0 6px 24px rgba(57,71,29,0.10)" : "0 0 0 rgba(0,0,0,0)",
+      }}
+      transition={transition}
+    >
+      <h3>
+        <button
+          type="button"
+          id={triggerId}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((v) => !v)}
+          className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
+        >
+          <span className="text-[16px] leading-snug md:text-[18px]" style={{ ...gotham("Bold"), color: GREEN }}>
+            {q}
+          </span>
+          <m.span
+            aria-hidden="true"
+            className="flex size-8 shrink-0 items-center justify-center rounded-full"
+            initial={false}
+            animate={{
+              rotate: open ? 180 : 0,
+              backgroundColor: open ? OLIVE : "#f1f2ec",
+              color: open ? "#ffffff" : GREEN,
+            }}
+            transition={transition}
+          >
+            <ChevronDown className="size-4" />
+          </m.span>
+        </button>
+      </h3>
+
+      {/* Sempre montado — ver nota no topo do arquivo. */}
+      <m.div
+        id={panelId}
+        role="region"
+        aria-labelledby={triggerId}
+        initial={false}
+        animate={{ height: open ? "auto" : 0 }}
+        transition={transition}
+        style={{ overflow: "hidden" }}
+      >
+        <p
+          className="px-5 pb-5 text-[15px] leading-relaxed text-[#4a4a4a] md:px-6 md:pb-6"
+          style={gotham("Medium")}
+        >
+          {a}
+        </p>
+      </m.div>
+    </m.div>
+  );
+}
+
+export function Faq() {
+  return (
+    <section id="faq" className="bg-[#fafbf7] px-5 py-12 md:px-8 md:py-16">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-[22px] md:text-[30px]" style={{ ...gotham("Bold"), color: GREEN }}>
           Perguntas frequentes sobre tráfego pago
         </h2>
 
-        <dl className="mt-8">
-          {FAQ.map(({ q, a }) => (
-            <div key={q} className="border-t border-[#e5e5e5] py-6 first:border-t-0 first:pt-0">
-              <dt>
-                <h3 className="text-[17px] md:text-[19px] leading-snug" style={{ ...gotham("Bold"), color: GREEN }}>
-                  {q}
-                </h3>
-              </dt>
-              <dd className="mt-3 text-[15px] leading-relaxed text-[#4a4a4a]" style={gotham("Medium")}>
-                {a}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <LazyMotion features={domAnimation} strict>
+          <div className="mt-8 flex flex-col gap-3">
+            {FAQ.map(({ q, a }, i) => (
+              <FaqItem key={q} q={q} a={a} index={i} />
+            ))}
+          </div>
+        </LazyMotion>
       </div>
 
       {/* Gerado do mesmo array que renderiza o texto acima — não podem divergir. */}
