@@ -1,12 +1,3 @@
-// Vercel Serverless Function: opt-in de newsletter do rodapé.
-// Endpoint público: POST /api/newsletter  { email, origem? }
-//
-// Espelha o caminho de /api/submit (mesmo endpoint Namtab, mesma agência) para
-// que o "Assinado!" do rodapé corresponda a um registro real — o formulário do
-// footer não pode confirmar uma inscrição que não aconteceu.
-//
-// O registro entra no Namtab identificado como newsletter (e não como lead de
-// orçamento) pelo valor do campo Nome e pelo campo "Como podemos te ajudar?".
 
 const NAMTAB_ENDPOINT =
   "https://qbdofrofxcnkcfhyroot.supabase.co/functions/v1/submit-form-data";
@@ -27,7 +18,7 @@ async function readBody(req) {
 }
 
 export default async function handler(req, res) {
-  // Auto-teste: GET confirma que a function está ativa.
+  /
   if (req.method === "GET") {
     return res.status(200).json({ ok: true, message: "api/newsletter ativo", runtime: "vercel" });
   }
@@ -37,7 +28,7 @@ export default async function handler(req, res) {
 
   const b = await readBody(req);
 
-  // Anti-spam: honeypot preenchido = descarta silenciosamente.
+
   if (b.website_hp) return res.status(200).json({ success: true });
 
   const email = String(b.email || "").trim();
@@ -48,7 +39,7 @@ export default async function handler(req, res) {
 
   const origem = String(b.origem || "rodape").trim().slice(0, 80);
 
-  // Mesmos IDs de campo do /api/submit — o Namtab espera esse contrato.
+
   const campos = [
     { id: 1326, nome: "Nome", valor: "Newsletter (rodapé)", campo_extra: false },
     { id: 1327, nome: "Cargo", valor: "", campo_extra: false },

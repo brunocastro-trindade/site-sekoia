@@ -1,4 +1,5 @@
 import { renderToString } from "react-dom/server";
+import { ThemeProvider } from "next-themes";
 import App from "./app/App";
 
 /**
@@ -19,5 +20,9 @@ import App from "./app/App";
  * de hidratação por causa da troca desktop/mobile, ao custo de um repaint.
  */
 export function render(): string {
-  return renderToString(<App />);
+  return renderToString(
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="sekoia-theme">
+      <App />
+    </ThemeProvider>,
+  );
 }

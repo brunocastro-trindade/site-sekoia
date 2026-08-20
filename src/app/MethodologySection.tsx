@@ -1,20 +1,11 @@
 import { useState } from "react";
-import Group272 from "../imports/Group272-1";
-import Group273 from "../imports/Group273-1";
-import Group274 from "../imports/Group274-1";
-import Group275 from "../imports/Group275-1";
-
-const font = {
-  bold: { fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif", fontWeight: 700 } as React.CSSProperties,
-  book: { fontFamily: "'Gotham:Medium', 'Montserrat', sans-serif", fontWeight: 500 } as React.CSSProperties,
-};
+import { Compass, Rocket, RefreshCw, Plus } from "lucide-react";
 
 type PhaseData = {
   id: number;
   title: string;
-  Icon: React.ComponentType;
+  Icon: React.ComponentType<{ className?: string }>;
   badge?: string;
-  showDays?: boolean;
   daysLabel?: string;
   paragraphs: string[];
   bullets?: string[];
@@ -24,9 +15,8 @@ export const PHASES: PhaseData[] = [
   {
     id: 1,
     title: "1ª fase do Tráfego pago na Sekoia",
-    Icon: Group273,
+    Icon: Compass,
     badge: "Planejamento estratégico",
-    showDays: true,
     daysLabel: "Entre 25 a 35 dias",
     paragraphs: [
       "Na primeira fase, chamada Setup Estratégico, realizamos toda a estruturação necessária para construir suas campanhas:",
@@ -43,9 +33,8 @@ export const PHASES: PhaseData[] = [
   {
     id: 2,
     title: "2ª fase — Rampagem",
-    Icon: Group274,
+    Icon: Rocket,
     badge: "Lançamento e otimização",
-    showDays: true,
     daysLabel: "Em até 90 dias",
     paragraphs: [
       "Na fase de Rampagem, iniciamos a veiculação das campanhas e coletamos dados essenciais para identificar oportunidades de otimização e crescimento.",
@@ -56,9 +45,8 @@ export const PHASES: PhaseData[] = [
   {
     id: 3,
     title: "3ª fase — Ongoing",
-    Icon: Group275,
+    Icon: RefreshCw,
     badge: "Gestão contínua",
-    showDays: true,
     daysLabel: "entre 25 a 35 dias",
     paragraphs: [
       "Na fase de Ongoing, as campanhas entram em um processo contínuo de gestão, monitoramento e otimização.",
@@ -69,160 +57,86 @@ export const PHASES: PhaseData[] = [
 ];
 
 export default function MethodologySection() {
-  const [openId, setOpenId] = useState<number | null>(null);
+  const [openId, setOpenId] = useState<number | null>(1);
 
   const toggle = (id: number) =>
     setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <div className="w-full flex justify-center px-5 py-[12px] bg-white">
-      <div
-        className="w-full rounded-[20px] overflow-hidden"
-        style={{
-          maxWidth: 1160,
-          background: "#39471d",
-        }}
-      >
-        <div className="flex items-stretch">
+    <section id="metodologia" className="px-5 py-16 md:px-8 md:py-24">
+      <div className="mx-auto max-w-5xl">
+        <span className="eyebrow">Como trabalhamos</span>
+        <h2 className="mt-4 max-w-lg text-[28px] leading-tight text-foreground md:text-[38px]">
+          Conheça a metodologia que vamos aplicar no seu negócio!
+        </h2>
 
-          {/* ── Left: heading ── */}
-          <div
-            className="shrink-0 flex items-center px-8 py-8"
-            style={{ width: 250 }}
-          >
-            <h2
-              className="text-white text-[22px] leading-[1.35]"
-              style={font.bold}
-            >
-              Conheça a metodologia que vamos aplicar no seu negócio!
-            </h2>
-          </div>
+        <div className="mt-10 flex flex-col gap-4">
+          {PHASES.map((phase) => {
+            const isOpen = openId === phase.id;
+            const PhaseIcon = phase.Icon;
 
-          {/* ── Right: accordion cards ── */}
-          <div className="flex-1 flex flex-col gap-[8px] px-4 py-3">
-            {PHASES.map((phase) => {
-              const isOpen = openId === phase.id;
-              const PhaseIcon = phase.Icon;
+            return (
+              <div
+                key={phase.id}
+                className={`overflow-hidden rounded-2xl border transition-colors ${
+                  isOpen ? "border-accent-bright/40 bg-secondary/50" : "border-border/40 bg-background/60"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggle(phase.id)}
+                  className="flex w-full items-center gap-4 px-5 py-5 text-left md:px-7"
+                >
+                  <span className="section-index text-2xl">0{phase.id}</span>
+                  <span className="flex-1 text-[17px] font-semibold text-foreground">{phase.title}</span>
+                  <Plus
+                    aria-hidden="true"
+                    className={`size-5 shrink-0 text-accent-bright transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                  />
+                </button>
 
-              return (
                 <div
-                  key={phase.id}
-                  className="rounded-[15px] bg-[#f7f7f7] border border-[#c5c5c5] overflow-hidden"
                   style={{
-                    transition: "box-shadow 0.35s ease",
-                    boxShadow: isOpen
-                      ? "0 4px 20px rgba(57, 71, 29, 0.20)"
-                      : "none",
+                    display: "grid",
+                    gridTemplateRows: isOpen ? "1fr" : "0fr",
+                    transition: "grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                   }}
                 >
-                  {/* Header — always visible, click to toggle */}
-                  <button
-                    type="button"
-                    onClick={() => toggle(phase.id)}
-                    className="w-full flex items-center justify-between px-6 py-3 text-left"
-                    style={{ background: "transparent", border: "none", cursor: "pointer" }}
-                  >
-                    <span
-                      className="text-[#39471D] text-[17px] leading-[1.3]"
-                      style={font.bold}
-                    >
-                      {phase.title}
-                    </span>
-                    {/* + rotates to × when open */}
-                    <span
-                      aria-hidden="true"
-                      style={{
-                        display: "block",
-                        marginLeft: 16,
-                        color: "#39471d",
-                        fontSize: 24,
-                        lineHeight: 1,
-                        fontFamily: "sans-serif",
-                        fontWeight: 300,
-                        flexShrink: 0,
-                        transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
-                        transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-                      }}
-                    >
-                      +
-                    </span>
-                  </button>
+                  <div className="overflow-hidden">
+                    <div className="px-5 pb-6 text-muted-foreground md:px-7">
+                      {phase.paragraphs.map((p, i) => (
+                        <p key={i} className="mb-3 text-[14px] leading-relaxed">
+                          {p}
+                        </p>
+                      ))}
 
-                  {/* Animated content wrapper (CSS grid trick — smooth with no JS height calc) */}
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateRows: isOpen ? "1fr" : "0fr",
-                      transition: "grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-                    }}
-                  >
-                    <div style={{ overflow: "hidden" }}>
-                      <div className="px-6 pb-3">
-
-                        {/* Scrollable text area — capped so the section never overlaps elements below */}
-                        <div
-                          style={{
-                            maxHeight: 90,
-                            overflowY: "auto",
-                            scrollbarWidth: "thin",
-                            scrollbarColor: "#a0a320 transparent",
-                          }}
-                        >
-                          {phase.paragraphs.map((p, i) => (
-                            <p
-                              key={i}
-                              className="text-[#39471D] text-[13px] leading-[1.6] mb-3"
-                              style={font.book}
-                            >
-                              {p}
-                            </p>
+                      {phase.bullets && (
+                        <ul className="mb-3 list-none p-0 text-[14px] leading-relaxed">
+                          {phase.bullets.map((b, i) => (
+                            <li key={i}>• {b}</li>
                           ))}
+                        </ul>
+                      )}
 
-                          {phase.bullets && phase.bullets.length > 0 && (
-                            <ul
-                              className="text-[#39471D] text-[13px] leading-[1.6] list-none p-0 mb-0"
-                              style={font.book}
-                            >
-                              {phase.bullets.map((b, i) => (
-                                <li key={i}>• {b}</li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-
-                        {/* Footer: always fully visible, outside the scroll area */}
-                        <div className="flex items-center gap-[10px] mt-1">
-                          <div className="size-[30px] shrink-0">
-                            <PhaseIcon />
-                          </div>
-                          {phase.badge && (
-                            <span
-                              className="text-[#39471D] text-[13px] whitespace-nowrap"
-                              style={font.bold}
-                            >
-                              {phase.badge}
-                            </span>
-                          )}
-                          {phase.showDays && (
-                            <div
-                              className="relative shrink-0"
-                              style={{ width: 157, height: 31 }}
-                            >
-                              <Group272 label={phase.daysLabel} />
-                            </div>
-                          )}
-                        </div>
-
+                      <div className="mt-3 flex flex-wrap items-center gap-3">
+                        <PhaseIcon className="size-5 text-accent-bright" />
+                        {phase.badge && (
+                          <span className="text-[13px] font-semibold text-foreground">{phase.badge}</span>
+                        )}
+                        {phase.daysLabel && (
+                          <span className="rounded-full bg-accent-bright/10 px-3 py-1 text-[12px] font-semibold text-accent-bright">
+                            {phase.daysLabel}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

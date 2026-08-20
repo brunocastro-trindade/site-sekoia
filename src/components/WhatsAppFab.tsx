@@ -21,14 +21,14 @@ export function WhatsAppFab() {
         width: 60,
         height: 60,
         borderRadius: "50%",
-        background: "#25D366",
+        background: "#c6ff4d",
         border: "none",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.28)",
-        color: "#ffffff",
+        boxShadow: "0 0 32px -4px rgba(198,255,77,0.7)",
+        color: "#0a0d06",
       }}
     >
       <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor" aria-hidden="true">
