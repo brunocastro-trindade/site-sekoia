@@ -1,42 +1,19 @@
-// Vercel Serverless Function: Meta Conversions API com desduplicação.
-// Recebe do navegador o MESMO event_id que o fbq disparou e reenvia o evento
-// servidor-a-servidor à Graph API — o Meta casa os pares por event_name +
-// event_id e conta o evento uma única vez.
-//
-// Endpoint público: POST /api/meta-capi
-// Body: { event_name, event_id, event_source_url?, user_data?: { email?, phone? } }
-//
-// Variáveis de ambiente (Vercel → Settings → Environment Variables):
-//   META_CAPI_ACCESS_TOKEN  (obrigatória) — token gerado no Events Manager:
-//     Configurações do pixel → API de Conversões → Configuração manual → Gerar token.
-//   META_CAPI_TEST_CODE     (opcional) — código de "Testar eventos" do Events
-//     Manager, para validar os envios antes de ir para produção. Remover depois.
-
 import { createHash } from "node:crypto";
-
 const PIXEL_ID = "1217330763796782";
 const GRAPH_URL = `https://graph.facebook.com/v23.0/${PIXEL_ID}/events`;
-
-// Só os eventos que o site realmente dispara — qualquer outro nome é rejeitado.
 const ALLOWED_EVENTS = new Set(["PageView", "Lead", "Contact"]);
 
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
-
-/** E-mail normalizado (minúsculas, sem espaços) e hasheado, como o Meta exige. */
 function hashEmail(email) {
   const e = String(email || "").trim().toLowerCase();
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) ? sha256(e) : null;
 }
-
-/** Telefone normalizado (só dígitos, com DDI; assume Brasil se faltar) e hasheado. */
 function hashPhone(phone) {
   let d = String(phone || "").replace(/\D/g, "");
   if (!d) return null;
   if ((d.length === 10 || d.length === 11) && !d.startsWith("55")) d = "55" + d;
   return d.length >= 10 ? sha256(d) : null;
 }
-
-/** Lê um cookie específico do header Cookie da request. */
 function readCookie(req, name) {
   const m = String(req.headers.cookie || "").match(
     new RegExp(`(?:^|;\\s*)${name}=([^;]+)`),
@@ -44,7 +21,6 @@ function readCookie(req, name) {
   return m ? decodeURIComponent(m[1]) : null;
 }
 
-/** IP real do visitante atrás do proxy da Vercel. */
 function clientIp(req) {
   const fwd = String(req.headers["x-forwarded-for"] || "");
   return fwd.split(",")[0].trim() || null;
@@ -78,7 +54,6 @@ export default async function handler(req, res) {
 
   const token = process.env.META_CAPI_ACCESS_TOKEN;
   if (!token) {
-    // Sem token não há o que enviar; o cliente trata como fire-and-forget.
     return res.status(503).json({ error: "META_CAPI_ACCESS_TOKEN não configurado." });
   }
 
@@ -90,18 +65,14 @@ export default async function handler(req, res) {
   }
 
   const sourceUrl = String(b.event_source_url || "").slice(0, 1024);
-
-  // fbc: cookie _fbc ou, na ausência, derivado do fbclid da URL (formato oficial).
   let fbc = readCookie(req, "_fbc");
   if (!fbc && sourceUrl) {
     try {
       const fbclid = new URL(sourceUrl).searchParams.get("fbclid");
       if (fbclid) fbc = `fb.1.${Date.now()}.${fbclid}`;
-    } catch { /* URL malformada — segue sem fbc */ }
+    } catch
   }
 
-  // custom_data opcional (value/currency) — o Meta usa para ROAS. Só repassa
-  // se vier no formato exigido: número finito ≥ 0 e código de moeda de 3 letras.
   let customData = null;
   if (b.custom_data && typeof b.custom_data === "object") {
     const value = Number(b.custom_data.value);
@@ -119,7 +90,6 @@ export default async function handler(req, res) {
     em: hashEmail(b.user_data?.email) ? [hashEmail(b.user_data.email)] : undefined,
     ph: hashPhone(b.user_data?.phone) ? [hashPhone(b.user_data.phone)] : undefined,
   };
-  // Remove campos vazios — a Graph API rejeita null em alguns deles.
   for (const k of Object.keys(userData)) {
     if (userData[k] == null) delete userData[k];
   }
@@ -149,7 +119,6 @@ export default async function handler(req, res) {
     });
     const data = await r.json().catch(() => ({}));
     if (!r.ok) {
-      // Não vaza token nem detalhes internos; registra no log da Vercel.
       console.error("meta-capi: Graph API recusou", r.status, data?.error?.message);
       return res.status(502).json({ error: "Graph API recusou o evento." });
     }

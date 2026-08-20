@@ -1,11 +1,16 @@
 
   import { createRoot } from "react-dom/client";
+  import { ThemeProvider } from "next-themes";
   import App from "./app/App.tsx";
   import { initGoogleAdsTag } from "./lib/pixel";
+  import { initLenis } from "./lib/lenis";
   import "./styles/index.css";
 
-  // Registra a tag do Google Ads (AW-) no gtag; inerte enquanto GOOGLE_ADS_ID
-  // estiver vazio em src/lib/pixel.ts. Ver docs/CONVERSOES-GOOGLE-ADS.md.
   initGoogleAdsTag();
+  initLenis();
 
-  createRoot(document.getElementById("root")!).render(<App />);
+  createRoot(document.getElementById("root")!).render(
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="sekoia-theme">
+      <App />
+    </ThemeProvider>,
+  );

@@ -1,10 +1,3 @@
-// Injeta no dist/index.html o HTML renderizado em build por src/entry-server.tsx.
-// Roda depois de `vite build` (cliente) e `vite build --ssr` (bundle Node).
-//
-// Objetivo: a resposta inicial de sekoiamarketing.com.br deixar de ser um
-// <div id="root"></div> vazio. Crawlers que não executam JS passam a receber o
-// conteúdo, os headings e o JSON-LD do FAQ.
-
 import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";

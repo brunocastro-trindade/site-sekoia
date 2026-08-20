@@ -8,12 +8,7 @@ import { trackLead } from "../lib/pixel";
 const SUBMIT_ENDPOINT = "/api/submit";
 
 const inputClass =
-  "w-full bg-[#f7f7f7] border border-[#c5c5c5] rounded-[10px] px-4 py-[10px] text-[14px] text-[#39471D] placeholder-[#c5c5c5] outline-none focus:border-[#a0a320] transition-colors disabled:opacity-60";
-
-const font = {
-  bold: { fontFamily: "'Gotham:Bold', 'Montserrat', sans-serif" } as React.CSSProperties,
-  book: { fontFamily: "'Gotham:Medium', 'Montserrat', sans-serif" } as React.CSSProperties,
-};
+  "w-full rounded-xl border border-accent-bright/15 bg-input px-4 py-[10px] text-[14px] text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-accent-bright disabled:opacity-60";
 
 const initialForm = {
   nome: "",
@@ -38,8 +33,8 @@ export default function ContactForm() {
 
   const update =
     (field: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+        setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -80,11 +75,17 @@ export default function ContactForm() {
   const loading = status === "loading";
 
   return (
-    <div className="w-full flex flex-col items-center px-4 py-10 bg-white">
+    <section id="orcamentos" className="px-5 py-16 md:px-8 md:py-24">
+      <div className="mx-auto max-w-4xl text-center">
+        <span className="eyebrow justify-center">Solicite um orçamento</span>
+        <h2 className="mt-4 text-[28px] leading-tight text-foreground md:text-[38px]">
+          Interessado neste serviço? Solicite um orçamento
+        </h2>
+      </div>
+
       <form
         onSubmit={handleSubmit}
-        className="w-full rounded-[15px] p-4 sm:p-6 flex flex-col gap-3"
-        style={{ maxWidth: 1140, background: "#39471D" }}
+        className="glass-card relative mx-auto mt-10 flex w-full max-w-3xl flex-col gap-3 rounded-2xl p-5 sm:p-8"
       >
         {/* Honeypot anti-spam */}
         <input
@@ -96,24 +97,23 @@ export default function ContactForm() {
           className="absolute left-[-9999px] top-0 size-px opacity-0"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} aria-label="Nome" placeholder="Nome*"    value={form.nome}  onChange={update("nome")}  disabled={loading} />
-          <input className={inputClass} style={font.book} aria-label="Cargo" placeholder="Cargo"    value={form.cargo} onChange={update("cargo")} disabled={loading} />
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <input className={inputClass} aria-label="Nome" placeholder="Nome*" value={form.nome} onChange={update("nome")} disabled={loading} />
+          <input className={inputClass} aria-label="Cargo" placeholder="Cargo" value={form.cargo} onChange={update("cargo")} disabled={loading} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} aria-label="E-mail" placeholder="E-mail*" type="email" value={form.email}    onChange={update("email")}    disabled={loading} />
-          <input className={inputClass} style={font.book} aria-label="Telefone ou WhatsApp" placeholder="Telefone/WhatsApp"    value={form.telefone} onChange={update("telefone")} disabled={loading} />
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <input className={inputClass} aria-label="E-mail" placeholder="E-mail*" type="email" value={form.email} onChange={update("email")} disabled={loading} />
+          <input className={inputClass} aria-label="Telefone ou WhatsApp" placeholder="Telefone/WhatsApp" value={form.telefone} onChange={update("telefone")} disabled={loading} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input className={inputClass} style={font.book} aria-label="Empresa" placeholder="Empresa"              value={form.empresa} onChange={update("empresa")} disabled={loading} />
-          <input className={inputClass} style={font.book} aria-label="Segmento ou tipo de negócio" placeholder="Segmento / tipo de negócio" value={form.tipo} onChange={update("tipo")} disabled={loading} />
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <input className={inputClass} aria-label="Empresa" placeholder="Empresa" value={form.empresa} onChange={update("empresa")} disabled={loading} />
+          <input className={inputClass} aria-label="Segmento ou tipo de negócio" placeholder="Segmento / tipo de negócio" value={form.tipo} onChange={update("tipo")} disabled={loading} />
         </div>
 
         <input
           className={inputClass}
-          style={font.book}
           aria-label="Investimento mensal em marketing"
           placeholder="Quanto sua empresa investe em marketing mensalmente?"
           value={form.investimento}
@@ -123,7 +123,7 @@ export default function ContactForm() {
 
         <textarea
           className={`${inputClass} resize-none`}
-          style={{ ...font.book, minHeight: 110 }}
+          style={{ minHeight: 110 }}
           aria-label="Como podemos te ajudar"
           placeholder="Como podemos te ajudar? Conte um pouco sobre o problema que está enfrentando hoje."
           value={form.ajuda}
@@ -132,64 +132,46 @@ export default function ContactForm() {
         />
 
         {/* Consentimento (LGPD) */}
-        <div className="flex items-center gap-3 mt-1">
+        <div className="mt-1 flex items-center gap-3">
           <button
             type="button"
             onClick={() => setChecked(!checked)}
             disabled={loading}
-            className="shrink-0 w-[18px] h-[18px] border-2 border-white rounded-[2px] flex items-center justify-center transition-colors disabled:opacity-60"
-            style={{ background: checked ? "white" : "transparent" }}
+            className="flex size-[18px] shrink-0 items-center justify-center rounded-[4px] border-2 border-accent-bright/50 transition-colors disabled:opacity-60"
+            style={{ background: checked ? "#c6ff4d" : "transparent" }}
             aria-checked={checked}
             role="checkbox"
           >
             {checked && (
               <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-                <path d="M1 4L4 7.5L10 1" stroke="#39471D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M1 4L4 7.5L10 1" stroke="#0a0d06" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             )}
           </button>
-          <span className="text-white text-[13px] leading-[1.4]" style={font.bold}>
+          <span className="text-left text-[13px] leading-[1.4] text-muted-foreground">
             Aceito receber e-mails personalizados com estratégias e materiais sobre marketing digital
           </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 mt-2">
+        <div className="mt-2 flex flex-wrap items-center gap-4">
           <button
             type="submit"
             disabled={loading}
-            className="px-8 py-3 rounded-[10px] text-white text-[15px] transition-opacity disabled:opacity-60"
-            style={{ background: "#a0a320", ...font.bold }}
+            className="rounded-full bg-accent-bright px-8 py-3 text-[15px] font-semibold text-accent-foreground transition-opacity disabled:opacity-60"
           >
             {loading ? "Enviando..." : "Enviar"}
           </button>
-          {status === "success" && (
-            <span className="text-[#cdec6a] text-[14px]" style={font.book}>{message}</span>
-          )}
-          {status === "error" && (
-            <span className="text-red-300 text-[14px]" style={font.book}>{message}</span>
-          )}
+          {status === "success" && <span className="text-[14px] text-accent-bright">{message}</span>}
+          {status === "error" && <span className="text-[14px] text-destructive">{message}</span>}
         </div>
       </form>
-
-      {/* CTA button — abre o WhatsApp */}
       <button
         type="button"
         onClick={() => openWhatsApp()}
-        className="w-full mt-5 py-[16px] text-center text-[15px]"
-        style={{
-          maxWidth: 1140,
-          background: "#1fcb41",
-          borderRadius: 16,
-          color: "#fffefc",
-          ...font.bold,
-          letterSpacing: "0.02em",
-          cursor: "pointer",
-          border: "none",
-          lineHeight: 1.25,
-        }}
+        className="mx-auto mt-5 block w-full max-w-3xl rounded-2xl border border-accent-bright/30 bg-secondary/40 py-4 text-center text-[15px] font-semibold uppercase tracking-[0.2em] text-accent-bright transition-colors hover:bg-accent-bright/10"
       >
-        SOLICITE SEU ORÇAMENTO, AGORA MESMO!
+        Solicite seu orçamento, agora mesmo
       </button>
-    </div>
+    </section>
   );
 }

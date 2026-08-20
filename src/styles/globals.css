@@ -4,9 +4,223 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Cards: entrada em cascata ao entrar na viewport + hover lift ── */
+/* ══════════════════════════════════════════════════════════════════════════
+   Sistema visual "orgânico-técnico": glow orgânico (Verdant), grid tipo
+   blueprint (DISCOVERY), ondas topográficas e blocos sólidos (TrustData).
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Glow orgânico: blobs radiais verde-limão desfocados no fundo ── */
+.organic-glow {
+  position: relative;
+  isolation: isolate;
+}
+.organic-glow::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(38% 42% at 18% 12%, rgba(198, 255, 77, 0.20), transparent 70%),
+    radial-gradient(32% 38% at 82% 28%, rgba(64, 209, 31, 0.16), transparent 70%),
+    radial-gradient(45% 40% at 50% 95%, rgba(57, 71, 29, 0.35), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ── Grid técnico: linhas finas tipo blueprint + marcas de canto ── */
+.grid-overlay {
+  position: relative;
+}
+.grid-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to right, rgba(198, 255, 77, 0.06) 0, rgba(198, 255, 77, 0.06) 1px, transparent 1px, transparent 120px),
+    repeating-linear-gradient(to bottom, rgba(198, 255, 77, 0.06) 0, rgba(198, 255, 77, 0.06) 1px, transparent 1px, transparent 120px);
+}
+
+.corner-ticks::before,
+.corner-ticks::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(198, 255, 77, 0.45);
+}
+.corner-ticks::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.corner-ticks::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* ── Ondas topográficas: contornos concêntricos, estilo neon ── */
+.topo-lines {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23C6FF4D' stroke-opacity='0.12' stroke-width='1.5'%3E%3Ccircle cx='80' cy='60' r='40'/%3E%3Ccircle cx='80' cy='60' r='70'/%3E%3Ccircle cx='80' cy='60' r='100'/%3E%3Ccircle cx='340' cy='320' r='50'/%3E%3Ccircle cx='340' cy='320' r='85'/%3E%3Ccircle cx='340' cy='320' r='120'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 400px 400px;
+}
+
+/* ── Bloco sólido lime (referência TrustData) ── */
+.lime-block {
+  background: linear-gradient(135deg, #c6ff4d, #9fe62e);
+  color: #0a0d06;
+}
+
+/* ── Contraste editorial: itálico serifado sobre o sans-serif bold da marca
+   (referência Pulsewave). Pilha de sistema, sem baixar fonte nova. ── */
+.accent-serif {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ── Número de seção estilo editorial (01, 02, 03...) ── */
+.section-index {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  color: rgba(198, 255, 77, 0.5);
+}
+
+/* ── Rótulo "eyebrow" técnico: uppercase, tracking largo ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent-bright);
+  box-shadow: 0 0 8px 2px color-mix(in srgb, var(--accent-bright) 60%, transparent);
+}
+
+/* ── Fundo fluido colorido do hero (referência Pulsewave), em tons Sekoia.
+   Manchas grandes desfocadas, cada uma com sua própria órbita lenta; a
+   camada some por trás do texto porque o texto fica em z-index mais alto,
+   e ilumina por cima do canvas de ondas via mix-blend-mode: screen (ver
+   prop `backdrop` do GlowyWavesHero). ── */
+.hero-flow-bg {
+  position: absolute;
+  inset: -20%;
+  filter: blur(90px) saturate(1.4);
+  /* Some bem antes da borda de baixo — sem isso o desfoque de 90px vaza
+     pra fora do hero e aparece como uma bolha na próxima seção. */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 75%);
+          mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 75%);
+}
+.hero-flow-bg span {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.75;
+}
+.hero-flow-bg span:nth-child(1) {
+  left: 10%;
+  top: 15%;
+  width: 55%;
+  height: 55%;
+  background: radial-gradient(circle at 30% 30%, #f4ffde, #c6ff4d 55%, transparent 75%);
+  animation: hero-flow-drift-a 26s ease-in-out infinite;
+}
+.hero-flow-bg span:nth-child(2) {
+  right: 5%;
+  top: 30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle at 60% 40%, #40d11f, #1a2410 65%, transparent 78%);
+  animation: hero-flow-drift-b 32s ease-in-out infinite;
+}
+.hero-flow-bg span:nth-child(3) {
+  left: 30%;
+  bottom: 0%;
+  width: 45%;
+  height: 45%;
+  background: radial-gradient(circle at 50% 50%, #a0e63a, #39471d 60%, transparent 78%);
+  animation: hero-flow-drift-c 22s ease-in-out infinite;
+}
+@keyframes hero-flow-drift-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50%      { transform: translate(8%, 6%) rotate(20deg) scale(1.15); }
+}
+@keyframes hero-flow-drift-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50%      { transform: translate(-10%, 4%) rotate(-15deg) scale(1.1); }
+}
+@keyframes hero-flow-drift-c {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50%      { transform: translate(6%, -8%) rotate(12deg) scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-flow-bg span { animation: none; }
+}
+
+/* ── Dissolução ligada ao scroll: a imagem some numa névoa desfocada nas
+   bordas e "condensa" para nítida conforme entra na tela. `animation-timeline:
+   view()` prende a animação diretamente na posição de rolagem — não é uma
+   transição por tempo, é a rolagem em si que avança os frames. Onde o
+   navegador não suporta (Safari < 17.4), cai direto no estado final: sem
+   dissolução, mas a borda em névoa permanece via mask-image estático. ── */
+@keyframes card-dissolve {
+  from {
+    opacity: 0.15;
+    filter: blur(18px) saturate(0.5);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 5%, transparent 35%);
+            mask-image: radial-gradient(circle at 50% 50%, black 5%, transparent 35%);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 72%, transparent 100%);
+            mask-image: radial-gradient(circle at 50% 50%, black 72%, transparent 100%);
+  }
+}
+.scroll-dissolve {
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 72%, transparent 100%);
+          mask-image: radial-gradient(circle at 50% 50%, black 72%, transparent 100%);
+}
+@supports (animation-timeline: view()) {
+  .scroll-dissolve {
+    animation: card-dissolve linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-dissolve { animation: none; }
+}
+
+/* ── Glass card ── */
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Cards: entrada em cascata ao entrar na viewport + hover lift ──
+   opacity fica em 1 mesmo no estado "escondido": se o IntersectionObserver
+   que adiciona .is-visible nunca disparar (aba em segundo plano, JS lento,
+   erro), o pior cenário é um card levemente deslocado — nunca um card
+   invisível para sempre. */
 .sek-card {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(20px) scale(0.97);
   transition:
     opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
@@ -91,4 +305,37 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .wa-fab-bob { animation: none; }
+}
+
+/* ── Título que acende palavra por palavra conforme a rolagem
+   (referência Pulsewave). `view-timeline-name` no invólucro alto marca a
+   régua de rolagem; cada palavra usa essa mesma régua nomeada com uma
+   fatia diferente via `animation-range` (inline, calculada por índice) —
+   por isso todas ficam presas na MESMA barra de progresso, uma acendendo
+   depois da outra, em vez de reagir cada uma à própria visibilidade. ── */
+.reveal-scope {
+  view-timeline-name: --text-reveal;
+  view-timeline-axis: block;
+}
+/* Opacidade plena por padrão — sem isso, num navegador sem suporte a
+   view-timeline (ou se o JS não rodar), o texto ficaria invisível pra
+   sempre. Só some quando o efeito realmente vai rodar. */
+.reveal-word {
+  color: rgb(242, 245, 233);
+  opacity: 1;
+}
+@supports (animation-timeline: view()) {
+  .reveal-word {
+    opacity: 0;
+    animation-name: reveal-word-in;
+    animation-timeline: --text-reveal;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+  }
+}
+@keyframes reveal-word-in {
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word { animation: none; opacity: 1; }
 }

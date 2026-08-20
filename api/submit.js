@@ -1,9 +1,3 @@
-// Vercel Serverless Function: recebe o formulário da marca (mesmo domínio) e
-// repassa o lead para o Namtab servidor-a-servidor (sem esbarrar em CORS).
-// Endpoint público: POST /api/submit
-//
-// Substitui o antigo submit.php (a Vercel não executa PHP).
-
 const NAMTAB_ENDPOINT =
   "https://qbdofrofxcnkcfhyroot.supabase.co/functions/v1/submit-form-data";
 const AGENCIA_ID = 149;
@@ -23,7 +17,6 @@ async function readBody(req) {
 }
 
 export default async function handler(req, res) {
-  // Auto-teste: GET confirma que a function está ativa.
   if (req.method === "GET") {
     return res.status(200).json({ ok: true, message: "api/submit ativo", runtime: "vercel" });
   }
@@ -32,8 +25,6 @@ export default async function handler(req, res) {
   }
 
   const b = await readBody(req);
-
-  // Anti-spam: honeypot preenchido = descarta silenciosamente.
   if (b.website_hp) return res.status(200).json({ success: true });
 
   const nome = String(b.nome || "").trim();

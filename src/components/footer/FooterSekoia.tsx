@@ -1,6 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 import { Footer } from './Footer';
 import sekoiaLogo from './assets/sekoia-logo.png';
+import { siteConfig } from '../../lib/siteConfig';
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg
@@ -41,33 +42,22 @@ const InstagramIcon = ({ className }: { className?: string }) => (
     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
   </svg>
 );
-
-/**
- * Footer da Sekoia já configurado para o site principal.
- *
- * `onSubscribe` NÃO é mock: faz POST em /api/newsletter, que repassa o opt-in
- * ao Namtab servidor-a-servidor (mesmo caminho de /api/submit). O overlay só
- * mostra "Assinado!" quando o servidor confirma — se falhar, mostra o erro.
- */
 export const FooterSekoia = (props: { className?: string }) => (
   <Footer
     className={props.className}
     logoSrc={sekoiaLogo}
-    contact={{
-      email: 'contato@sekoiamarketing.com.br',
-      phone: '+55 (47) 99215-6393',
-      cnpj: '66.526.186/0001-25',
-    }}
+    companyName={siteConfig.fullName}
+    contact={siteConfig.contact}
     usefulLinks={[
       { label: 'Soluções', href: '#solucoes' },
       { label: 'Solicitar orçamento', href: '#orcamentos' },
-      { label: 'Central de Oportunidades', href: 'https://form.sekoiamarketing.com.br/' },
-      { label: 'Google Meu Negócio', href: 'https://googlemeunegocio.sekoiamarketing.com.br/#planos' },
+      { label: 'Central de Oportunidades', href: siteConfig.externalLinks.centralDeOportunidades },
+      { label: 'Google Meu Negócio', href: siteConfig.externalLinks.googleMeuNegocio },
     ]}
     socialLinks={[
-      { label: 'WhatsApp', href: 'https://wa.me/5547992156393', icon: <MessageCircle className="w-5 h-5" /> },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/company/sekoia-marketing/', icon: <LinkedinIcon className="w-5 h-5" /> },
-      { label: 'Instagram', href: 'https://www.instagram.com/sekoia.ag', icon: <InstagramIcon className="w-5 h-5" /> },
+      { label: 'WhatsApp', href: siteConfig.social.whatsapp, icon: <MessageCircle className="w-5 h-5" /> },
+      { label: 'LinkedIn', href: siteConfig.social.linkedin, icon: <LinkedinIcon className="w-5 h-5" /> },
+      { label: 'Instagram', href: siteConfig.social.instagram, icon: <InstagramIcon className="w-5 h-5" /> },
     ]}
     onSubscribe={async (email) => {
       try {
