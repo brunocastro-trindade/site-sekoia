@@ -321,7 +321,7 @@ body {
    view-timeline (ou se o JS não rodar), o texto ficaria invisível pra
    sempre. Só some quando o efeito realmente vai rodar. */
 .reveal-word {
-  color: rgb(242, 245, 233);
+  color: var(--foreground);
   opacity: 1;
 }
 @supports (animation-timeline: view()) {
