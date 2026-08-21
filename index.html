@@ -11,13 +11,22 @@
   })(window,document,'script','dataLayer','GTM-K4S4LR9C');</script>
   <!-- End Google Tag Manager -->
 
-  <!-- Microsoft Clarity -->
+  <!-- Microsoft Clarity — adiado até a página terminar de carregar (idle).
+       Clarity é gravação de sessão/heatmap, não afeta conversão nem atribuição de mídia paga,
+       então não precisa competir por main thread durante o carregamento crítico. -->
   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y5fkfkzd16");
+    (function () {
+      function loadClarity() {
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "y5fkfkzd16");
+      }
+      var schedule = window.requestIdleCallback || function (cb) { setTimeout(cb, 1); };
+      if (document.readyState === 'complete') schedule(loadClarity);
+      else window.addEventListener('load', function () { schedule(loadClarity); });
+    })();
   </script>
   <!-- End Microsoft Clarity -->
 
@@ -27,6 +36,8 @@
 
   <!-- Fontes críticas (acima da dobra): baixa em paralelo ao CSS, evita a cadeia CSS→fonte -->
   <link rel="preload" href="/fonts/Gotham-Black.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Gotham-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Gotham-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/Gotham-Book.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/figtree-var.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -147,15 +158,17 @@
   </script>
   <!-- End Meta Pixel Code -->
 
-  <!-- Google tag (gtag.js) — Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL23JBFN9W"></script>
+  <!-- Google tag (gtag) stub — o GA4 (G-WL23JBFN9W) já é carregado pelo GTM (GTM-K4S4LR9C),
+       então NÃO carregamos gtag.js aqui de novo (evita download duplicado + page_view duplicado).
+       Este stub só garante que window.gtag exista de imediato para os eventos custom
+       disparados em src/lib/pixel.ts (trackGA/trackAdsConversion) antes do GTM terminar de carregar;
+       as chamadas ficam na fila do dataLayer e são processadas quando o gtag.js do GTM chega. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-WL23JBFN9W');
+    window.gtag = gtag;
   </script>
-  <!-- End Google tag -->
+  <!-- End Google tag stub -->
 </head>
 
 <body>
