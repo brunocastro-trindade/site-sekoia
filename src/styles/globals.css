@@ -4,6 +4,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Usada nos fallbacks <noscript> do GTM/Meta Pixel em index.html — substitui
+   atributos style="" inline para que a CSP não precise de style-src 'unsafe-inline'. */
+.noscript-hidden {
+  display: none;
+  visibility: hidden;
+}
+
 /* ══════════════════════════════════════════════════════════════════════════
    Sistema visual "orgânico-técnico": glow orgânico (Verdant), grid tipo
    blueprint (DISCOVERY), ondas topográficas e blocos sólidos (TrustData).
