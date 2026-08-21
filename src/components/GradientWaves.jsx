@@ -258,8 +258,16 @@ const GradientWaves = ({
     let isPageVisible = !document.hidden;
     const t0 = performance.now();
 
+    // O raymarching do fragment shader é caro por pixel; desenhar a 60fps aqui
+    // é desperdício para uma onda que se move devagar. Limitamos o render (a
+    // parte cara, GPU) a ~30fps, mas a suavização do mouse continua a cada rAF
+    // (~60fps) para a interação não ficar com sensação de atraso.
+    const RENDER_INTERVAL_MS = 1000 / 30;
+    let lastRenderTime = t0;
+
     const loop = t => {
-      program.uniforms.iTime.value = (t - t0) * 0.001;
+      raf = requestAnimationFrame(loop);
+
       const tx = enableMouseRef.current ? targetMouse[0] : 0.5;
       const ty = enableMouseRef.current ? targetMouse[1] : 0.5;
       currentMouse[0] += 0.05 * (tx - currentMouse[0]);
@@ -271,8 +279,11 @@ const GradientWaves = ({
       burstTarget *= 0.9;
       program.uniforms.uBurst.value = currentBurst;
 
+      if (t - lastRenderTime < RENDER_INTERVAL_MS) return;
+      lastRenderTime = t;
+
+      program.uniforms.iTime.value = (t - t0) * 0.001;
       renderer.render({ scene: mesh });
-      raf = requestAnimationFrame(loop);
     };
 
     const tryStart = () => {
