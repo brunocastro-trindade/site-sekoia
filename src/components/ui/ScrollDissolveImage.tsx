@@ -8,7 +8,10 @@ import {
   type KeyboardEvent,
   type MouseEvent as ReactMouseEvent,
 } from "react";
-import { Renderer, Triangle, Program, Mesh, Texture } from "ogl";
+// "ogl" (WebGL) é importado dinamicamente dentro do efeito abaixo, só quando o
+// componente está prestes a entrar na viewport — evita empacotar essa lib no
+// bundle principal para quem tem prefers-reduced-motion, sem WebGL, ou nunca
+// rola até essa seção.
 
 const VERTEX = /* glsl */ `
   attribute vec2 uv;
@@ -169,6 +172,7 @@ export function ScrollDissolveImage({
   const [webglOk, setWebglOk] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [imgVisible, setImgVisible] = useState(false);
+  const [nearViewport, setNearViewport] = useState(false);
 
   useEffect(() => {
     setWebglOk(supportsWebGL());
@@ -187,6 +191,26 @@ export function ScrollDissolveImage({
         }
       },
       { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [webglOk, reducedMotion]);
+
+  // Dispara o import da lib WebGL e a montagem do canvas só quando o card está
+  // a ~20% da viewport de distância, em vez de fazer isso incondicionalmente
+  // no mount (a maioria das instâncias começa fora da tela, abaixo do Hero).
+  useEffect(() => {
+    if (!webglOk || reducedMotion) return undefined;
+    const el = containerRef.current;
+    if (!el) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNearViewport(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -266,106 +290,118 @@ export function ScrollDissolveImage({
   );
 
   useEffect(() => {
-    if (!webglOk || reducedMotion) return undefined;
+    if (!webglOk || reducedMotion || !nearViewport) return undefined;
     const host = canvasHostRef.current;
     const container = containerRef.current;
     if (!host || !container) return undefined;
 
-    const renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio || 1, 2) });
-    const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
-    host.appendChild(gl.canvas);
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
 
-    const geometry = new Triangle(gl);
-    const texture = new Texture(gl, { generateMipmaps: false });
+    import("ogl").then(({ Renderer, Triangle, Program, Mesh, Texture }) => {
+      if (cancelled) return;
 
-    const image = new Image();
-    image.crossOrigin = "anonymous";
-    image.src = src;
-    image.onload = () => {
-      texture.image = image;
-      program.uniforms.uImageSize.value = [image.naturalWidth, image.naturalHeight];
-    };
+      const renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio || 1, 2) });
+      const gl = renderer.gl;
+      gl.clearColor(0, 0, 0, 0);
+      host.appendChild(gl.canvas);
 
-    const program = new Program(gl, {
-      vertex: VERTEX,
-      fragment: FRAGMENT,
-      transparent: true,
-      uniforms: {
-        tMap: { value: texture },
-        uImageSize: { value: [1, 1] },
-        uPlaneSize: { value: [1, 1] },
-        uProgress: { value: 0 },
-        uEdge: { value: edge },
-        uMouse: { value: [0, 0] },
-        uHover: { value: 0 },
-        uZoom: { value: 1 },
-        uTintLow: { value: hexToRgb01(duotoneFrom) },
-        uTintHigh: { value: hexToRgb01(duotoneTo) },
-        uDuotone: { value: duotone },
-        uFocus: { value: focus },
-      },
+      const geometry = new Triangle(gl);
+      const texture = new Texture(gl, { generateMipmaps: false });
+
+      const image = new Image();
+      image.crossOrigin = "anonymous";
+      image.src = src;
+      image.onload = () => {
+        texture.image = image;
+        program.uniforms.uImageSize.value = [image.naturalWidth, image.naturalHeight];
+      };
+
+      const program = new Program(gl, {
+        vertex: VERTEX,
+        fragment: FRAGMENT,
+        transparent: true,
+        uniforms: {
+          tMap: { value: texture },
+          uImageSize: { value: [1, 1] },
+          uPlaneSize: { value: [1, 1] },
+          uProgress: { value: 0 },
+          uEdge: { value: edge },
+          uMouse: { value: [0, 0] },
+          uHover: { value: 0 },
+          uZoom: { value: 1 },
+          uTintLow: { value: hexToRgb01(duotoneFrom) },
+          uTintHigh: { value: hexToRgb01(duotoneTo) },
+          uDuotone: { value: duotone },
+          uFocus: { value: focus },
+        },
+      });
+
+      const mesh = new Mesh(gl, { geometry, program });
+
+      let raf = 0;
+      let lastTime = performance.now();
+      let disposed = false;
+
+      const resize = () => {
+        const { clientWidth, clientHeight } = container;
+        renderer.setSize(clientWidth, clientHeight);
+        program.uniforms.uPlaneSize.value = [clientWidth, clientHeight];
+      };
+
+      let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+      const onResize = () => {
+        if (resizeTimer) return;
+        resizeTimer = setTimeout(() => {
+          resize();
+          resizeTimer = null;
+        }, 120);
+      };
+
+      resize();
+      window.addEventListener("resize", onResize);
+
+      const render = (now: number) => {
+        const dt = Math.min((now - lastTime) / 1000, 0.05);
+        lastTime = now;
+
+        const p = program.uniforms.uProgress.value as number;
+        program.uniforms.uProgress.value = damp(p, progressTarget.current, 10, dt);
+
+        const h = program.uniforms.uHover.value as number;
+        const nextHover = damp(h, hoverTarget.current, 8, dt);
+        program.uniforms.uHover.value = nextHover;
+        program.uniforms.uZoom.value = zoom * (1 + parallaxIntensity * nextHover);
+
+        const m = program.uniforms.uMouse.value as [number, number];
+        program.uniforms.uMouse.value = [
+          damp(m[0], mouseTarget.current.x, 10, dt),
+          damp(m[1], mouseTarget.current.y, 10, dt),
+        ];
+
+        renderer.render({ scene: mesh });
+        if (!disposed) raf = requestAnimationFrame(render);
+      };
+      raf = requestAnimationFrame(render);
+
+      cleanup = () => {
+        disposed = true;
+        cancelAnimationFrame(raf);
+        window.removeEventListener("resize", onResize);
+        if (resizeTimer) clearTimeout(resizeTimer);
+        image.onload = null;
+        const loseCtx = gl.getExtension("WEBGL_lose_context");
+        loseCtx?.loseContext();
+        if (gl.canvas.parentNode === host) host.removeChild(gl.canvas);
+      };
     });
 
-    const mesh = new Mesh(gl, { geometry, program });
-
-    let raf = 0;
-    let lastTime = performance.now();
-    let disposed = false;
-
-    const resize = () => {
-      const { clientWidth, clientHeight } = container;
-      renderer.setSize(clientWidth, clientHeight);
-      program.uniforms.uPlaneSize.value = [clientWidth, clientHeight];
-    };
-
-    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
-    const onResize = () => {
-      if (resizeTimer) return;
-      resizeTimer = setTimeout(() => {
-        resize();
-        resizeTimer = null;
-      }, 120);
-    };
-
-    resize();
-    window.addEventListener("resize", onResize);
-
-    const render = (now: number) => {
-      const dt = Math.min((now - lastTime) / 1000, 0.05);
-      lastTime = now;
-
-      const p = program.uniforms.uProgress.value as number;
-      program.uniforms.uProgress.value = damp(p, progressTarget.current, 10, dt);
-
-      const h = program.uniforms.uHover.value as number;
-      const nextHover = damp(h, hoverTarget.current, 8, dt);
-      program.uniforms.uHover.value = nextHover;
-      program.uniforms.uZoom.value = zoom * (1 + parallaxIntensity * nextHover);
-
-      const m = program.uniforms.uMouse.value as [number, number];
-      program.uniforms.uMouse.value = [
-        damp(m[0], mouseTarget.current.x, 10, dt),
-        damp(m[1], mouseTarget.current.y, 10, dt),
-      ];
-
-      renderer.render({ scene: mesh });
-      if (!disposed) raf = requestAnimationFrame(render);
-    };
-    raf = requestAnimationFrame(render);
-
     return () => {
-      disposed = true;
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-      if (resizeTimer) clearTimeout(resizeTimer);
-      image.onload = null;
-      const loseCtx = gl.getExtension("WEBGL_lose_context");
-      loseCtx?.loseContext();
-      if (gl.canvas.parentNode === host) host.removeChild(gl.canvas);
+      cancelled = true;
+      cleanup?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [src, webglOk, reducedMotion]);
+  }, [src, webglOk, reducedMotion, nearViewport]);
 
   const wrapperStyle: CSSProperties = { aspectRatio };
 
