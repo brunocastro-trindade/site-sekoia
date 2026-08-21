@@ -70,7 +70,7 @@ export default async function handler(req, res) {
     try {
       const fbclid = new URL(sourceUrl).searchParams.get("fbclid");
       if (fbclid) fbc = `fb.1.${Date.now()}.${fbclid}`;
-    } catch
+    } catch { /* URL inválida — segue sem fbc sintético */ }
   }
 
   let customData = null;
