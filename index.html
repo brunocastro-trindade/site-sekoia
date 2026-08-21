@@ -3,6 +3,23 @@
 
 <head>
 
+  <!-- Trusted Types: política "default" passa-tudo. Existe só pra satisfazer o
+       require-trusted-types-for do CSP sem quebrar o GTM/Meta Pixel/Clarity —
+       os três atribuem string crua a element.src (script.src = "https://...")
+       internamente, código deles que não editamos. Isso NÃO sanitiza nada de
+       verdade; uma política restritiva de verdade exigiria interceptar/validar
+       cada uso, inviável com scripts de terceiros que mudam sem deploy nosso.
+       Precisa rodar antes de qualquer outro script no <head>. -->
+  <script>
+    if (window.trustedTypes && trustedTypes.createPolicy) {
+      trustedTypes.createPolicy('default', {
+        createHTML: (s) => s,
+        createScript: (s) => s,
+        createScriptURL: (s) => s,
+      });
+    }
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
