@@ -57,7 +57,7 @@ export const Footer: FC<FooterProps> = ({
       <div className="container mx-auto grid grid-cols-1 gap-8 px-8 py-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-12 max-w-7xl">
         <div className="flex flex-col items-start gap-4">
           <div className="flex items-center gap-3">
-            <img src={logoSrc} alt={`Logotipo da ${companyName}`} width={48} height={48} className="h-12 w-auto" />
+            <img src={logoSrc} alt={`Logotipo da ${companyName}`} width={48} height={48} loading="lazy" decoding="async" className="h-12 w-auto" />
             <span className="text-2xl font-['Gotham:Bold',sans-serif] text-accent-bright">{companyName}</span>
           </div>
           <p className="text-sm font-['Gotham:Book',sans-serif] text-muted-foreground opacity-90 leading-relaxed">{description}</p>
