@@ -9,7 +9,7 @@
         { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" },
         { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
         {
-          "key": "Content-Security-Policy-Report-Only",
+          "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' 'sha256-AOxwPmgxD9GD2D6V+rM0dseGzOqZUG/vzDcdysfe/jY=' 'sha256-8tJXzvlql6VpcEAM577P84wxa1rK5k1YOhQqZ3AmKVc=' 'sha256-SllA4xmWzvciw13kYdbG04/l9nNbcnBcjjJk+xZUGN0=' 'sha256-oTtr8vjWsWJ/P2H+J+hyHpOTrOFKoEvy9+XO/OW9evY=' 'sha256-DgvwXzrP7J1+GthYeC19OiVPCt6SZgNWc8T4v8BNdfQ=' 'sha256-xy4o0Ng6aqZKseUadGZmprQgEqalmKLYSi8AHGm0QXY=' 'sha256-RfnIb3tlLhKcoQEcqcbRhVDknPW8hCP84syxSrZN6ek=' 'sha256-C0AKB7FnnemMkOEHAIgKIeggnJra5FmOQbAqfOJazEI=' https://www.googletagmanager.com https://connect.facebook.net https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://www.facebook.com https://*.google-analytics.com https://analytics.google.com https://*.clarity.ms https://fh-118116076e9a4c2a96a99fbb70bea2a0.ecs.us-west-2.on.aws; frame-src https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types default"
         }
       ]
