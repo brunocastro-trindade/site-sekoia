@@ -31,6 +31,27 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-09-01 — Fix: CTA principal do hero cortado no mobile
+- **Autor/PR:** solicitado pelo dono do repositório (consolidação de QA
+  pré-lançamento — auditoria com Playwright em 375/390/414/768/1024/1440px).
+- **Diagnóstico:** o botão "Falar com um especialista" (hero) usa o `Button`
+  padrão do shadcn, que aplica `whitespace-nowrap` + `shrink-0` por padrão. O
+  conteúdo (texto + seta, `uppercase tracking-[0.2em]`) mede ~395px; abaixo de
+  ~415px de viewport isso estoura o container e a seta/borda direita ficam
+  cortadas (confirmado por bounding box: overflow de até 40px em 375px). É a
+  mesma classe de bug já corrigida uma vez em outro componente (ver entrada de
+  2026-07-02 "Mobile: correção de encaixe dos CTAs"), reintroduzida pela
+  reescrita de layout (`d19e4fb`) num componente novo.
+- **Mudou:** `glowy-waves-hero-shadcnui.tsx` — `CtaButton` do `primaryCta` e
+  `secondaryCta` ganharam `h-auto w-full shrink whitespace-normal py-3
+  text-center` abaixo de 640px (quebra em 2 linhas, ocupa a largura
+  disponível) e `sm:h-10 sm:w-auto sm:shrink-0 sm:whitespace-nowrap sm:py-0`
+  a partir de 640px (restaura o pixel exato do layout original).
+- **Validação:** bounding box do botão antes/depois em 6 larguras — sem
+  overflow em nenhuma (375/390/414: antes 40/25/1px de estouro, depois -20px
+  de folga); 768/1024/1440 idênticos ao original (x=32, w=395, h=40). Build
+  de produção (`npm run build`) ok.
+
 ### 2026-07-14 — CAPI própria com desduplicação por event_id (Meta Pixel)
 - **Autor/PR:** solicitado pelo dono do repositório, após aviso do Events
   Manager sobre cobertura da chave de desduplicação no PageView.
