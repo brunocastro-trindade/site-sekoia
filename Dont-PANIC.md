@@ -31,6 +31,37 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-09-01 — Security: CSP enforcing estava bloqueando o Meta Pixel em produção
+- **Autor/PR:** solicitado pelo dono do repositório (consolidação de QA
+  pré-lançamento — auditoria Playwright, só leitura, contra
+  `sekoiamarketing.com.br` em produção).
+- **Diagnóstico:** o CSP virou *enforcing* no commit anterior (`9b0393f`) com
+  `trusted-types default` — isso só autoriza uma Trusted Types Policy chamada
+  literalmente `default`. O próprio `fbevents.js` do Meta tenta criar duas
+  policies com nome próprio (`connect.facebook.net/fbevents` e
+  `facebook.com/signals/iwl`) e leva bloqueio ("violates ... trusted-types
+  default"). Resultado observado ao vivo: o beacon `facebook.com/tr` (o
+  PageView do navegador) **não aparece** no log de rede da página — o Pixel
+  client-side não estava disparando.
+- **Achado relacionado (não é bug de CSP, é infra — fica para o dono do
+  repositório):** `POST /api/meta-capi` responde **503** em produção agora
+  (`curl` no endpoint confirma `tokenConfigured:false`). Ou seja,
+  `META_CAPI_ACCESS_TOKEN` não está setado na Vercel — o canal servidor de
+  CAPI (ver entrada de 2026-07-14) está fora do ar, falhando em silêncio como
+  desenhado. Client-side e server-side do Meta pareciam ambos inativos ao
+  mesmo tempo no momento da auditoria.
+- **Mudou:** `vercel.json` — `trusted-types default` →
+  `trusted-types default connect.facebook.net/fbevents facebook.com/signals/iwl`.
+- **Validação:** reproduzido o erro contra produção antes da mudança (log de
+  console com o texto exato da violação). A mudança em si só tem efeito após
+  deploy (headers do CSP não existem no `vite dev` local, só no
+  `vercel.json`) — **validar contra um preview da Vercel antes deste PR ir
+  pra produção**: repetir a mesma auditoria e confirmar que
+  `facebook.com/tr?...ev=PageView` aparece no log de rede e que os dois erros
+  de Trusted Types somem do console.
+- **Pendente (dono do repositório):** gerar/setar `META_CAPI_ACCESS_TOKEN` na
+  Vercel (ver passo a passo na entrada de 2026-07-14).
+
 ### 2026-09-01 — Fix: CTA principal do hero cortado no mobile
 - **Autor/PR:** solicitado pelo dono do repositório (consolidação de QA
   pré-lançamento — auditoria com Playwright em 375/390/414/768/1024/1440px).
