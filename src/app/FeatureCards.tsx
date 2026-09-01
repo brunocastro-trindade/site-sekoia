@@ -80,12 +80,12 @@ export function FeatureCards() {
               }
             />
             <div className={i % 2 === 1 ? "md:order-1" : ""}>
-              <span className="section-index text-xl">{index}</span>
-              <h3 className="mt-4 text-4xl leading-[1.05] text-foreground md:text-6xl">
+              <span aria-hidden="true" className="section-index text-xl">{index}</span>
+              <h2 className="mt-4 text-4xl leading-[1.05] text-foreground md:text-6xl">
                 <span className="font-semibold">{titleBold}</span>
                 <br />
                 <span className="accent-serif text-accent-bright">{titleItalic}</span>
-              </h3>
+              </h2>
               <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">{description}</p>
 
               <button

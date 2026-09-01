@@ -77,7 +77,7 @@ export const Footer: FC<FooterProps> = ({
                   {contact.phone}
                 </a>
               )}
-              {contact.cnpj && <span className="mt-1 block opacity-70">CNPJ {contact.cnpj}</span>}
+              {contact.cnpj && <span className="mt-1 block opacity-90">CNPJ {contact.cnpj}</span>}
             </address>
           )}
         </div>

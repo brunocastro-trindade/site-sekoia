@@ -21,7 +21,10 @@ export function ServiceRow({ index, title, description, onClick }: ServiceRowPro
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-6">
         <div>
-          <span className="section-index text-sm transition-colors duration-300 group-hover:text-background">
+          <span
+            aria-hidden="true"
+            className="section-index text-sm transition-colors duration-300 group-hover:text-background"
+          >
             {index}
           </span>
           <h3 className="mt-1 text-3xl font-semibold text-foreground transition-colors duration-300 group-hover:text-background md:text-5xl">
