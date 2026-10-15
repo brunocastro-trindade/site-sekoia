@@ -70,5 +70,5 @@ Payload enviado ao Namtab:
 ## 6. CTAs de WhatsApp
 
 Em `src/lib/contact.ts`:
-- `WHATSAPP_NUMBER` — `5547992156393` (CTAs principais e botão flutuante).
-- `WHATSAPP_NUMBER_FOOTER` — `5547991603130` (links do rodapé).
+- `WHATSAPP_NUMBER` — `5547991910816` (CTAs principais e botão flutuante).
+- `WHATSAPP_NUMBER_FOOTER` — `5547991910816` (links do rodapé).
