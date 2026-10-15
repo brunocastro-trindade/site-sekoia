@@ -31,6 +31,105 @@ qualquer pessoa com acesso ao repositório.
 ---
 
 ## Histórico
+### 2026-09-01 — A11y: checkbox de consentimento sem nome acessível, heading fora de ordem, numerais quase invisíveis no tema claro
+- **Autor/PR:** solicitado pelo dono do repositório (consolidação de QA
+  pré-lançamento — varredura axe-core em desktop/mobile × claro/escuro).
+- **Contexto:** primeira varredura automatizada de acessibilidade que o
+  projeto recebe; achados abaixo, por severidade.
+- **Mudou (corrigido):**
+  - `ContactForm.tsx`: o checkbox de consentimento LGPD (`role="checkbox"`
+    custom) não tinha nome acessível nenhum — leitor de tela anunciava só
+    "checkbox, não marcado". Adicionado `id` no texto visível e
+    `aria-labelledby` no botão (crítico — é o controle de consentimento).
+  - `FeatureCards.tsx`: os títulos dos 4 cards ("Diagnóstico certeiro" etc.)
+    eram `<h3>` sem nenhum `<h2>` na seção — pulava direto do `<h1>` do hero.
+    Promovidos a `<h2>` (zero impacto visual, tamanho vem do className).
+  - `globals.css` `.section-index` (os numerais editoriais "01/02/03"):
+    cor era `rgba(198,255,77,0.5)` fixa — a cor de destaque do tema **escuro**
+    "vazada" para o CSS, sem variante para o tema claro. Contraste medido:
+    **1.06:1** (praticamente invisível) contra o fundo claro. Trocado para
+    `color-mix(in srgb, var(--accent-bright) 65%, transparent)`, que
+    acompanha o token de cada tema → melhora para 2.07:1. Além disso, os 3
+    usos (`FeatureCards`, `MethodologySection`, `ServiceRow`) ganharam
+    `aria-hidden="true"`: são puramente decorativos, sempre ao lado de um
+    heading com o mesmo conteúdo por extenso.
+  - `Footer.tsx`: texto do CNPJ estava em `opacity-70` (3.17:1 no tema claro,
+    abaixo do mínimo AA de 4.5:1); subido para `opacity-90` → passa.
+- **Não corrigido (decisão de marca, não é bug de código — fica para o dono
+  do repositório):** o token `--accent-bright` do tema claro (`#5c9a12`)
+  usado como cor de **texto**/fundo-de-botão-com-texto-branco fica
+  sistematicamente entre 3.1–3.5:1 em ~15 elementos (links "Saiba mais",
+  badges "eyebrow", botões de CTA com texto branco) — abaixo do 4.5:1 exigido
+  para texto normal. É o mesmo tom em todos os casos, não bugs isolados:
+  meio-termo comum é ter um tom mais escuro do verde dedicado a texto,
+  mantendo `#5c9a12` para uso decorativo/fundo. Números exatos no relatório
+  da auditoria.
+- **Também identificado, adiado para a lista pós-lançamento (menor
+  prioridade, sem risco de regressão visual imediato):** ~37 elementos sem
+  landmark ("region" do axe — best practice, não falha dura de WCAG);
+  cobertura completa de navegação por teclado e leitura de tela ainda não
+  testada manualmente, só via ferramenta automatizada (axe cobre uma fração
+  dos critérios WCAG).
+- **Validação:** axe-core 4.x, `resultTypes: violations`, 2 viewports
+  (375/1440) × 2 temas (claro/escuro) = 4 varreduras. Antes: 4 grupos de
+  violação em claro (`button-name` crítico, `color-contrast` sério,
+  `heading-order` moderado, `region` moderado) e 3 em escuro. Depois:
+  `button-name` e `heading-order` zerados nos dois temas; `color-contrast`
+  de 23→22 nós (só resta o que depende da decisão de marca); `region`
+  inalterado (adiado). Build de produção ok.
+
+### 2026-09-01 — Security: CSP enforcing estava bloqueando o Meta Pixel em produção
+- **Autor/PR:** solicitado pelo dono do repositório (consolidação de QA
+  pré-lançamento — auditoria Playwright, só leitura, contra
+  `sekoiamarketing.com.br` em produção).
+- **Diagnóstico:** o CSP virou *enforcing* no commit anterior (`9b0393f`) com
+  `trusted-types default` — isso só autoriza uma Trusted Types Policy chamada
+  literalmente `default`. O próprio `fbevents.js` do Meta tenta criar duas
+  policies com nome próprio (`connect.facebook.net/fbevents` e
+  `facebook.com/signals/iwl`) e leva bloqueio ("violates ... trusted-types
+  default"). Resultado observado ao vivo: o beacon `facebook.com/tr` (o
+  PageView do navegador) **não aparece** no log de rede da página — o Pixel
+  client-side não estava disparando.
+- **Achado relacionado (não é bug de CSP, é infra — fica para o dono do
+  repositório):** `POST /api/meta-capi` responde **503** em produção agora
+  (`curl` no endpoint confirma `tokenConfigured:false`). Ou seja,
+  `META_CAPI_ACCESS_TOKEN` não está setado na Vercel — o canal servidor de
+  CAPI (ver entrada de 2026-07-14) está fora do ar, falhando em silêncio como
+  desenhado. Client-side e server-side do Meta pareciam ambos inativos ao
+  mesmo tempo no momento da auditoria.
+- **Mudou:** `vercel.json` — `trusted-types default` →
+  `trusted-types default connect.facebook.net/fbevents facebook.com/signals/iwl`.
+- **Validação:** reproduzido o erro contra produção antes da mudança (log de
+  console com o texto exato da violação). A mudança em si só tem efeito após
+  deploy (headers do CSP não existem no `vite dev` local, só no
+  `vercel.json`) — **validar contra um preview da Vercel antes deste PR ir
+  pra produção**: repetir a mesma auditoria e confirmar que
+  `facebook.com/tr?...ev=PageView` aparece no log de rede e que os dois erros
+  de Trusted Types somem do console.
+- **Pendente (dono do repositório):** gerar/setar `META_CAPI_ACCESS_TOKEN` na
+  Vercel (ver passo a passo na entrada de 2026-07-14).
+
+### 2026-09-01 — Fix: CTA principal do hero cortado no mobile
+- **Autor/PR:** solicitado pelo dono do repositório (consolidação de QA
+  pré-lançamento — auditoria com Playwright em 375/390/414/768/1024/1440px).
+- **Diagnóstico:** o botão "Falar com um especialista" (hero) usa o `Button`
+  padrão do shadcn, que aplica `whitespace-nowrap` + `shrink-0` por padrão. O
+  conteúdo (texto + seta, `uppercase tracking-[0.2em]`) mede ~395px; abaixo de
+  ~415px de viewport isso estoura o container e a seta/borda direita ficam
+  cortadas (confirmado por bounding box: overflow de até 40px em 375px). É a
+  mesma classe de bug já corrigida uma vez em outro componente (ver entrada de
+  2026-07-02 "Mobile: correção de encaixe dos CTAs"), reintroduzida pela
+  reescrita de layout (`d19e4fb`) num componente novo.
+- **Mudou:** `glowy-waves-hero-shadcnui.tsx` — `CtaButton` do `primaryCta` e
+  `secondaryCta` ganharam `h-auto w-full shrink whitespace-normal py-3
+  text-center` abaixo de 640px (quebra em 2 linhas, ocupa a largura
+  disponível) e `sm:h-10 sm:w-auto sm:shrink-0 sm:whitespace-nowrap sm:py-0`
+  a partir de 640px (restaura o pixel exato do layout original).
+- **Validação:** bounding box do botão antes/depois em 6 larguras — sem
+  overflow em nenhuma (375/390/414: antes 40/25/1px de estouro, depois -20px
+  de folga); 768/1024/1440 idênticos ao original (x=32, w=395, h=40). Build
+  de produção (`npm run build`) ok.
+
 ### 2026-07-14 — CAPI própria com desduplicação por event_id (Meta Pixel)
 - **Autor/PR:** solicitado pelo dono do repositório, após aviso do Events
   Manager sobre cobertura da chave de desduplicação no PageView.

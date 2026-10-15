@@ -425,7 +425,7 @@ export function GlowyWavesHero({
                 <CtaButton
                   cta={primaryCta}
                   size="lg"
-                  className="group gap-2 rounded-full px-8 text-base uppercase tracking-[0.2em]"
+                  className="group h-auto w-full shrink gap-2 whitespace-normal rounded-full px-8 py-3 text-center text-base uppercase tracking-[0.2em] sm:h-10 sm:w-auto sm:shrink-0 sm:whitespace-nowrap sm:py-0"
                 >
                   {primaryCta.label}
                   <ArrowRight
@@ -439,7 +439,7 @@ export function GlowyWavesHero({
                   cta={secondaryCta}
                   size="lg"
                   variant="outline"
-                  className="rounded-full border-border/40 bg-background/60 px-8 text-base text-foreground/80 backdrop-blur transition-all hover:border-border/60 hover:bg-background/70 dark:border-border/50 dark:bg-background/40 dark:text-foreground/70 dark:hover:border-border/70 dark:hover:bg-background/50"
+                  className="h-auto w-full shrink whitespace-normal rounded-full border-border/40 bg-background/60 px-8 py-3 text-center text-base text-foreground/80 backdrop-blur transition-all hover:border-border/60 hover:bg-background/70 dark:border-border/50 dark:bg-background/40 dark:text-foreground/70 dark:hover:border-border/70 dark:hover:bg-background/50 sm:h-10 sm:w-auto sm:shrink-0 sm:whitespace-nowrap sm:py-0"
                 >
                   {secondaryCta.label}
                 </CtaButton>

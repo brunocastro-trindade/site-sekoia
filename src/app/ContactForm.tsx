@@ -140,6 +140,7 @@ export default function ContactForm() {
             className="flex size-[18px] shrink-0 items-center justify-center rounded-[4px] border-2 border-accent-bright/50 transition-colors disabled:opacity-60"
             style={{ background: checked ? "#c6ff4d" : "transparent" }}
             aria-checked={checked}
+            aria-labelledby="consent-label"
             role="checkbox"
           >
             {checked && (
@@ -148,7 +149,7 @@ export default function ContactForm() {
               </svg>
             )}
           </button>
-          <span className="text-left text-[13px] leading-[1.4] text-muted-foreground">
+          <span id="consent-label" className="text-left text-[13px] leading-[1.4] text-muted-foreground">
             Aceito receber e-mails personalizados com estratégias e materiais sobre marketing digital
           </span>
         </div>

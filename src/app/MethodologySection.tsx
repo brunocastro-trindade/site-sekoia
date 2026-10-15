@@ -87,7 +87,7 @@ export default function MethodologySection() {
                   onClick={() => toggle(phase.id)}
                   className="flex w-full items-center gap-4 px-5 py-5 text-left md:px-7"
                 >
-                  <span className="section-index text-2xl">0{phase.id}</span>
+                  <span aria-hidden="true" className="section-index text-2xl">0{phase.id}</span>
                   <span className="flex-1 text-[17px] font-semibold text-foreground">{phase.title}</span>
                   <Plus
                     aria-hidden="true"

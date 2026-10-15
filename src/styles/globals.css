@@ -97,7 +97,7 @@ body {
 .section-index {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  color: rgba(198, 255, 77, 0.5);
+  color: color-mix(in srgb, var(--accent-bright) 65%, transparent);
 }
 
 /* ── Rótulo "eyebrow" técnico: uppercase, tracking largo ── */
