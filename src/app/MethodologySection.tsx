@@ -44,12 +44,12 @@ export const PHASES: PhaseData[] = [
   },
   {
     id: 3,
-    title: "3ª fase — Ongoing",
+    title: "3ª fase — Onboarding",
     Icon: RefreshCw,
     badge: "Gestão contínua",
     daysLabel: "entre 25 a 35 dias",
     paragraphs: [
-      "Na fase de Ongoing, as campanhas entram em um processo contínuo de gestão, monitoramento e otimização.",
+      "Na fase de Onboarding, as campanhas entram em um processo contínuo de gestão, monitoramento e otimização.",
       "Nossa equipe acompanha diariamente os indicadores de performance, realiza ajustes estratégicos, testa novas oportunidades de crescimento e busca constantemente aumentar o volume de conversões com o melhor custo possível.",
       "É nesta etapa que transformamos dados em decisões, garantindo que sua operação continue evoluindo, gerando mais leads, mais vendas e maior retorno sobre o investimento ao longo do tempo.",
     ],
